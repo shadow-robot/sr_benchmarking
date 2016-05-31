@@ -13,32 +13,32 @@ class AnnotationParserBase(object):
     Parses the given annotation file (yaml).
     """
     def __init__(self, path_to_annotation, path_to_data):
-        self.__path_to_annotation = path_to_annotation
-        self.__path_to_data = path_to_data
+        self._path_to_annotation = path_to_annotation
+        self._path_to_data = path_to_data
         self.parse()
 
     def parse(self):
-        with open(self.__path_to_annotation, 'r') as f:
-            self.__annotations = yaml.load(f)
+        with open(self._path_to_annotation, 'r') as f:
+            self._annotations = yaml.load(f)
 
     def play_bag(self):
         """
         Plays the associated bag file
         """
-        self.__rosbag_proc = subprocess.Popen("rosbag play --clock " + self.__annotations["bag_file"],
-                                              stdin=subprocess.PIPE, shell=True,
-                                              cwd=self.__path_to_data)
+        self._rosbag_proc = subprocess.Popen("rosbag play --clock " + self._annotations["bag_file"],
+                                             stdin=subprocess.PIPE, shell=True,
+                                             cwd=self._path_to_data)
 
     def stop_bag(self):
         """
         Stops the currently running rosbag process.
         """
-        process = psutil.Process(self.__rosbag_proc.pid)
+        process = psutil.Process(self._rosbag_proc.pid)
         for sub_process in process.get_children(recursive=True):
             sub_process.send_signal(signal.SIGINT)
-        self.__rosbag_proc.wait()  # we wait for children to terminate
+        self._rosbag_proc.wait()  # we wait for children to terminate
         try:
-            self.__rosbag_proc.terminate()
+            self._rosbag_proc.terminate()
         except:
             pass
             # the terminate might not be needed
@@ -46,7 +46,7 @@ class AnnotationParserBase(object):
     def check_results(self, results):
         """
         Compares the results with the annotations found in
-        self.__annotations. This method is specific to the
+        self._annotations. This method is specific to the
         benchmarking used.
         """
         raise NotImplementedError("Implement this method in your own class.")
@@ -66,9 +66,9 @@ class BenchmarkingBase(object):
         if not isdir(path_to_data):
             raise Exception("Could not find the directory " + path_to_data)
 
-        self.__path_to_data = path_to_data
+        self._path_to_data = path_to_data
 
-    def load_files(path_to_data):
+    def load_files(self, path_to_data):
         """
         Loads the annotation file list from the given path.
 
