@@ -21,11 +21,11 @@ class AnnotationParserBase(object):
         with open(self._path_to_annotation, 'r') as f:
             self._annotations = yaml.load(f)
 
-    def play_bag(self):
+    def play_bag(self, bag_file):
         """
         Plays the associated bag file
         """
-        self._rosbag_proc = subprocess.Popen("rosbag play --clock " + self._annotations["bag_file"],
+        self._rosbag_proc = subprocess.Popen("rosbag play --clock " + bag_file,
                                              stdin=subprocess.PIPE, shell=True,
                                              cwd=self._path_to_data)
 
