@@ -37,7 +37,6 @@ class AnnotationParserBase(object):
         """
         Roslaunch the given command.
         """
-        print "Launching : ", command
         self._launch_proc = subprocess.Popen(command,
                                              stdin=subprocess.PIPE, shell=True)
         rospy.sleep(40)
