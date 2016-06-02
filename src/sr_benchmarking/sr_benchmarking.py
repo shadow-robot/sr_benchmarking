@@ -6,6 +6,7 @@ import subprocess
 from os.path import isdir
 import signal
 import psutil
+import rospy
 
 
 class AnnotationParserBase(object):
@@ -15,11 +16,38 @@ class AnnotationParserBase(object):
     def __init__(self, path_to_annotation, path_to_data):
         self._path_to_annotation = path_to_annotation
         self._path_to_data = path_to_data
+
+        self._launch_proc = None
+        self._rosbag_proc = None
+
         self.parse()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, type, value, traceback):
+        self.stop_bag()
+        self.stop_launch()
 
     def parse(self):
         with open(self._path_to_annotation, 'r') as f:
             self._annotations = yaml.load(f)
+
+    def play_launch(self, command):
+        """
+        Roslaunch the given command.
+        """
+        print "Launching : ", command
+        self._launch_proc = subprocess.Popen(command,
+                                             stdin=subprocess.PIPE, shell=True)
+        rospy.sleep(40)
+
+    def stop_launch(self):
+        """
+        Stop the running launch file and its subprocesses
+        """
+        if self._launch_proc:
+            self._stop_process(self._launch_proc)
 
     def play_bag(self, bag_file):
         """
@@ -33,15 +61,22 @@ class AnnotationParserBase(object):
         """
         Stops the currently running rosbag process.
         """
-        process = psutil.Process(self._rosbag_proc.pid)
-        for sub_process in process.get_children(recursive=True):
+        if self._rosbag_proc:
+            self._stop_process(self._rosbag_proc)
+
+    def _stop_process(self, process):
+        """
+        Stops the given process and all its subprocesses
+        """
+        process_id = psutil.Process(process.pid)
+        for sub_process in process_id.get_children(recursive=True):
             sub_process.send_signal(signal.SIGINT)
-        self._rosbag_proc.wait()  # we wait for children to terminate
+            sub_process.send_signal(signal.SIGTERM)
+        process.wait()  # we wait for children to terminate
         try:
-            self._rosbag_proc.terminate()
+            process.terminate()
         except:
             pass
-            # the terminate might not be needed
 
     def check_results(self, results):
         """
