@@ -2,6 +2,7 @@
 
 import glob
 import yaml
+import importlib
 import subprocess
 from os.path import isdir
 import signal
@@ -32,6 +33,21 @@ class AnnotationParserBase(object):
     def parse(self):
         with open(self._path_to_annotation, 'r') as f:
             self._annotations = yaml.load(f)
+
+    def load_python(self, full_class_string):
+        """
+        Import and returns an instance of a given python class.
+
+        @full_class_string the class name as a string: module.submodule.Class
+        @return an instance of the given class.
+        """
+        class_data = full_class_string.split(".")
+        module_path = ".".join(class_data[:-1])
+        class_str = class_data[-1]
+
+        module = importlib.import_module(module_path)
+        # Finally, we retrieve the Class and return an instance
+        return getattr(module, class_str)()
 
     def play_launch(self, command):
         """
