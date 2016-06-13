@@ -7,8 +7,8 @@ catkin_python_setup()
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES sr_benchmarking
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
+  CATKIN_DEPENDS rospy
+  DEPENDS python-psutil
 )
 
 # install(PROGRAMS
