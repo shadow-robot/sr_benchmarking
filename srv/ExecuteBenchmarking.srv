@@ -1,0 +1,7 @@
+string[] input_files
+string output_file
+
+---
+
+bool result
+
