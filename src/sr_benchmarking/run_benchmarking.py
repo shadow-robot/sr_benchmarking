@@ -15,7 +15,6 @@ class RunBenchmarking(TestCase):
         self._output_file = rospy.get_param('output_file')
 
     def test_run_benchmarking(self):
-
         rospy.wait_for_service('execute_benchmarking')
         try:
             execute_benchmarking = rospy.ServiceProxy('execute_benchmarking', ExecuteBenchmarking)
