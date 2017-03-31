@@ -4,15 +4,15 @@ See README.md
 """
 import rospy
 from unittest import TestCase
-from sr_benchmarking.srv import ExecuteBenchmarking
+from sr_benchmarking_msgs.srv import ExecuteBenchmarking
 
 
 class RunBenchmarking(TestCase):
 
     def setUp(self):
         rospy.init_node('run_benchmarking', anonymous=True)
-        self._input_files = rospy.get_param('input_files')
-        self._output_file = rospy.get_param('output_file')
+        self._input_files = rospy.get_param('~input_files')
+        self._output_file = rospy.get_param('~output_file')
 
     def test_run_benchmarking(self):
         rospy.wait_for_service('execute_benchmarking')

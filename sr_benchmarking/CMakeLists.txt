@@ -1,30 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sr_benchmarking)
 
-find_package(catkin REQUIRED
-  genmsg
-  message_generation
-  rospy
-  std_msgs
-)
-
+find_package(catkin REQUIRED rospy sr_benchmarking_msgs)
 catkin_python_setup()
-
-## Generate services in the 'srv' folder
-add_service_files(
-  FILES
-  ExecuteBenchmarking.srv
-)
-
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
 
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES sr_benchmarking
-  CATKIN_DEPENDS message_runtime rospy std_msgs
+  CATKIN_DEPENDS rospy sr_benchmarking_msgs
   DEPENDS python-psutil
 )
 
