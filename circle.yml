@@ -1,7 +1,6 @@
 machine:
   services:
     - docker
-
   environment:
     toolset_branch: master
     server_type: circle
