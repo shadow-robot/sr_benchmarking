@@ -1,14 +1,16 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sr_benchmarking)
 
-find_package(catkin REQUIRED rospy)
+find_package(catkin REQUIRED COMPONENTS rospy)
+include_directories(${Boost_INCLUDE_DIR} ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+
 catkin_python_setup()
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES sr_benchmarking
-  CATKIN_DEPENDS rospy
   DEPENDS python-psutil
+  CATKIN_DEPENDS rospy
+  INCLUDE_DIRS
+  LIBRARIES
 )
 
 # install(PROGRAMS
