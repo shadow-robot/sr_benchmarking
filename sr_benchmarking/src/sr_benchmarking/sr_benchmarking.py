@@ -84,7 +84,7 @@ class AnnotationParserBase(object):
         Stops the given process and all its subprocesses
         """
         process_id = psutil.Process(process.pid)
-        for sub_process in process_id.get_children(recursive=True):
+        for sub_process in process_id.children(recursive=True):
             sub_process.send_signal(signal.SIGINT)
             sub_process.send_signal(signal.SIGTERM)
         process.wait()  # we wait for children to terminate
