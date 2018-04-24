@@ -1,4 +1,4 @@
 - git:
     local-name: sr_interface
     uri: https://github.com/shadow-robot/sr_interface
-    version: kinetic-devel
+    version: F#SRC-1494/removing_benchmarks
