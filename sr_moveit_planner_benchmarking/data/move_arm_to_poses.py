@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 
-# This example demonstrates some of the functions of the arm commander.
-# The arm is moved through a sequence of goals generated via different functions in the commander.
+# This is an example for manually saving the queries
 
 import rospy
-from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from sr_robot_commander.sr_arm_commander import SrArmCommander
 
 rospy.init_node("basic_right_arm_example", anonymous=True)
@@ -12,18 +10,6 @@ rospy.init_node("basic_right_arm_example", anonymous=True)
 arm_commander = SrArmCommander(set_ground=False)
 
 rospy.sleep(rospy.Duration(2))
-
-# # The arm commander generates a plan to a new pose before the pose is executed.
-# pose = [0.70, -0.19, 0.65, -0.62, -0.08, -0.65, 0.42]
-# print("Planning the move to the first pose:\n" + str(pose) + "\n")
-# arm_commander.plan_to_pose_target(pose)
-# print("Finished planning, moving the arm now.")
-# arm_commander.execute()
-# rospy.sleep(6.0)
-# raw_input("press key after pose")
-# print("Arm joints position:\n" + str(arm_commander.get_joints_position()) + "\n")
-# raw_input("press a key to continue")
-
 
 keys = ['ra_shoulder_pan_joint', 'ra_shoulder_lift_joint', 'ra_elbow_joint', 'ra_wrist_1_joint', 'ra_wrist_2_joint',
         'ra_wrist_3_joint']
