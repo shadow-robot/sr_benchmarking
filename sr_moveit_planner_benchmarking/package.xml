@@ -1,0 +1,17 @@
+<package>
+  <name>sr_moveit_planner_benchmarking</name>
+  <version>0.0.1</version>
+  <description>
+    A package to test moveit planners with the UR10 arm and Shadow hand using the moveit benchmark interface.
+  </description>
+  <author email="beatriz@shadowrobot.com">Beatriz León</author>
+  <maintainer email="software@shadowrobot.com">>Shadow Robot's software team</maintainer>
+
+  <license>GPL</license>
+
+  <run_depend>xacro</run_depend>
+  <run_depend>moveit_ros_benchmarks</run_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

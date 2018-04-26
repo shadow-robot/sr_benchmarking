@@ -1,0 +1,10 @@
+<launch>
+  <arg name="planning" default="ompl"/>
+  <arg name="visualization" default="False"/>
+  <!--Should the planner yaml be automatically generated? -->
+  <arg name="generate_planning_config" default="True"/>
+
+  <!-- Using arm with box -->
+  <include file = "$(find sr_box_ur10_moveit_config)/launch/demo.launch" />
+
+</launch>
