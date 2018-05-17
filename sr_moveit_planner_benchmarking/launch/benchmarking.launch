@@ -1,10 +1,14 @@
 <launch>
+  <!-- Set initial_z of the robot to enable to set it on a table -->
+  <arg name="initial_z" default="0.1"/>
+
   <!-- benchmark options file -->
   <arg name="bench_opts" default="$(find sr_moveit_planner_benchmarking)/data/scene_with_boxes.yaml"/>
 
   <!-- Load robot settings -->
   <include file="$(find sr_box_ur10_moveit_config)/launch/planning_context.launch">
     <arg name="load_robot_description" value="true"/>
+    <arg name="initial_z" value="$(arg initial_z)" />
   </include>
 
   <!-- Load all planning pipelines that will be benchmarked -->

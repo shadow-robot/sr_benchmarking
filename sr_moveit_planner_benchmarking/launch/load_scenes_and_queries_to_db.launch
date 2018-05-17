@@ -1,0 +1,23 @@
+<launch>
+    <arg name="node_name" default=""/>
+    <arg name="queries_file" default="$(find sr_moveit_planner_benchmarking)/data/scene_with_boxes.queries"/>
+    <arg name="scene_file" default="$(find sr_moveit_planner_benchmarking)/data/scene_with_boxes.scene"/>
+    <arg name="load_robot" default="true"/>
+
+    <!-- Load robot and warehouse-->
+    <group if="$(arg load_robot)">
+        <include file="$(find sr_box_ur10_moveit_config)/launch/planning_context.launch">
+            <arg name="load_robot_description" value="true"/>
+        </include>
+        <include file="$(find sr_box_ur10_moveit_config)/launch/default_warehouse_db.launch"/>
+    </group>
+
+    <!-- Import scene -->
+    <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="8 sr_moveit_planner_benchmarking load_scenes_to_db.launch
+        scene_file:=$(arg scene_file)" name="timed_import_scenes_$(arg node_name)" output="screen"/>
+
+    <!-- Import queries -->
+    <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="10 sr_moveit_planner_benchmarking load_queries_to_db.launch
+        queries_file:=$(arg queries_file)" name="timed_import_queries_$(arg node_name)" output="screen"/>
+
+</launch>
