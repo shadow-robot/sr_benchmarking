@@ -50,7 +50,14 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.solved_layout = self._widget.findChild(QVBoxLayout, "solved_layout")
         self.experiments_info = self._widget.findChild(QTextBrowser, "experiments_info")
 
+        self.perquery_clearance_layout = self._widget.findChild(QVBoxLayout, "perquery_clearance_layout")
+        self.perquery_correct_layout = self._widget.findChild(QVBoxLayout, "perquery_correct_layout")
+        self.perquery_lenght_layout = self._widget.findChild(QVBoxLayout, "perquery_lenght_layout")
         self.perquery_quality_1_layout = self._widget.findChild(QVBoxLayout, "perquery_quality_1_layout")
+        self.perquery_quality_2_layout = self._widget.findChild(QVBoxLayout, "perquery_quality_2_layout")
+        self.perquery_smoothness_layout = self._widget.findChild(QVBoxLayout, "perquery_smoothness_layout")
+        self.perquery_plan_time_layout = self._widget.findChild(QVBoxLayout, "perquery_plan_time_layout")
+        self.perquery_solved_layout = self._widget.findChild(QVBoxLayout, "perquery_solved_layout")
 
         self.connect_to_database("example_benchmark.db")
         # rospy.sleep(3.0)
@@ -233,22 +240,22 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         colInfo = self.c.fetchall()[3:]
 
         for col in colInfo:
-            # if "path_simplify_clearance" == col[1]:
-            #     self.plotAttribute(self.c, planners, col[1], col[2], self.clearance_layout)
-            # elif "path_simplify_correct" == col[1]:
-            #     self.plotAttribute(self.c, planners, col[1], col[2], self.correct_layout)
-            # elif "path_simplify_length" == col[1]:
-            #     self.plotAttribute(self.c, planners, col[1], col[2], self.lenght_layout)
+            if "path_simplify_clearance" == col[1]:
+                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_clearance_layout)
+            elif "path_simplify_correct" == col[1]:
+                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_correct_layout)
+            elif "path_simplify_length" == col[1]:
+                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_lenght_layout)
             if "path_simplify_plan_quality" == col[1]:
                 self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_quality_1_layout)
-            # if "path_simplify_plan_quality_cartesian" == col[1]:
-            #     self.plotAttribute(self.c, planners, col[1], col[2], self.quality_2_layout)
-            # if "path_simplify_smoothness" == col[1]:
-            #     self.plotAttribute(self.c, planners, col[1], col[2], self.smoothness_layout)
-            # if "time" == col[1]:
-            #     self.plotAttribute(self.c, planners, col[1], col[2], self.plan_time_layout)
-            # if "solved" == col[1]:
-            #     self.plotAttribute(self.c, planners, col[1], col[2], self.solved_layout)
+            if "path_simplify_plan_quality_cartesian" == col[1]:
+                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_quality_2_layout)
+            if "path_simplify_smoothness" == col[1]:
+                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_smoothness_layout)
+            if "time" == col[1]:
+                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_plan_time_layout)
+            if "solved" == col[1]:
+                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_solved_layout)
 
     def plotAttributePerQuery(self, cur, planners, attribute, typename, layout):
         labels = []
@@ -279,9 +286,10 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         cur.execute('SELECT runcount FROM experiments WHERE id = 1')
         runcount = cur.fetchall()[0][0]
 
-        # Find number of queries
-        cur.execute('SELECT count(id) FROM experiments')
-        num_queries = cur.fetchall()[0][0]
+        # Find names and number of queries
+        cur.execute('SELECT name FROM experiments')
+        queries = [q[0] for q in cur.fetchall()]
+        num_queries = len(queries)
 
         if len(measurements) == 0:
             print('Skipping "%s": no available measurements' % attribute)
@@ -356,14 +364,9 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                         print matrix_measurements.shape
                         matrix_measurements = matrix_measurements.reshape(num_queries, runcount)
                         ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
-                        # ax.plot()
 
-
-
-
-
-
-        xtickNames = plt.setp(ax, xticklabels=labels)
+        print "labels", labels
+        xtickNames = plt.setp(ax, xticklabels=queries)
         plt.setp(xtickNames, rotation=90)
         for tick in ax.xaxis.get_major_ticks():  # shrink the font size of the x tick labels
             tick.label.set_fontsize(8)
