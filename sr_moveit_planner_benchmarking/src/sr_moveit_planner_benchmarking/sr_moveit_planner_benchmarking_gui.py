@@ -16,6 +16,7 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 from matplotlib import __version__ as matplotlibversion
 
+import signal
 import rospy
 import os
 import rospkg
@@ -30,6 +31,8 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         super(SrMoveitPlannerBenchmarksVisualizer, self).__init__(context)
         self.setObjectName("SrMoveitPlannerBenchmarksVisualizer")
         self._widget = QWidget()
+        self.loaded_databases = []
+        self.create_menu_bar()
 
         ui_file = os.path.join(rospkg.RosPack().get_path(
             'sr_moveit_planner_benchmarking'), 'uis', 'moveit_planner_benchmarking.ui')
@@ -49,6 +52,9 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.plan_time_layout = self._widget.findChild(QVBoxLayout, "plan_time_layout")
         self.solved_layout = self._widget.findChild(QVBoxLayout, "solved_layout")
         self.experiments_info = self._widget.findChild(QTextBrowser, "experiments_info")
+        self.scene_label = self._widget.findChild(QLabel, "scene_label")
+        self.dbs_combo_box = self._widget.findChild(QComboBox, "dbs_combo_box")
+        self.load_db_button = self._widget.findChild(QPushButton, "load_button")
 
         self.perquery_clearance_layout = self._widget.findChild(QVBoxLayout, "perquery_clearance_layout")
         self.perquery_correct_layout = self._widget.findChild(QVBoxLayout, "perquery_correct_layout")
@@ -59,29 +65,61 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.perquery_plan_time_layout = self._widget.findChild(QVBoxLayout, "perquery_plan_time_layout")
         self.perquery_solved_layout = self._widget.findChild(QVBoxLayout, "perquery_solved_layout")
 
-        self.connect_to_database("example_benchmark.db")
-        # rospy.sleep(3.0)
-        self.plotStatistics()
-        self.plotStatisticsPerQuery()
-        self.setExperimentsInfo()
-
-        # Scene
         self.createScenePlugin()
-        self.scene_label = self._widget.findChild(QLabel, "scene_label")
-        scene_name = self.findScene()
-        self.scene_label.setText(scene_name)
-        self.loadSceneFile(scene_name)
-
-        # self.scene_view = self._widget.findChild(QPushButton, "scene_view")
-        # self.scene_view.clicked.connect()
+        self.load_db_button.clicked.connect(self.load_db)
 
     def destruct(self):
         self._widget = None
         rospy.loginfo("Closing planner benchmarks visualizer")
 
-    def connect_to_database(self, db_name):
-        db_folder_path = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')
-        db_path = db_folder_path + "/data/" + db_name
+    def update_data_display(self, path_to_db):
+        self.connect_to_database(path_to_db)
+        self.plotStatistics()
+        self.plotStatisticsPerQuery()
+        self.setExperimentsInfo()
+
+        scene_name = self.findScene()
+        self.scene_label.setText(scene_name)
+        self.loadSceneFile(scene_name)
+
+    def load_db(self):
+        path_to_db = None
+        db_to_be_loaded = self.dbs_combo_box.currentText()
+        for db in self.loaded_databases:
+            if db_to_be_loaded == db['rel_path']:
+                print "Loading db: {}".format(db_to_be_loaded)
+                path_to_db = db['full_path']
+                break
+        if path_to_db is not None:
+            print "db_full_path: {}".format(path_to_db)
+            self.update_data_display(path_to_db)
+
+    def create_menu_bar(self):
+        self._widget.myQMenuBar = QMenuBar(self._widget)
+        fileMenu = self._widget.myQMenuBar.addMenu('&File')
+        setPathAction = QAction('Open dbs directory', self._widget)
+        setPathAction.triggered.connect(self.show_dialog)
+        fileMenu.addAction(setPathAction)
+
+    def show_dialog(self):
+        chosen_path = QFileDialog.getExistingDirectory(self._widget, 'Open file', "")
+        chosen_package_name = os.path.basename(os.path.normpath(chosen_path))
+        if chosen_package_name in rospkg.RosPack().list():
+            self.find_dbs_in_directory(chosen_path)
+            for db in self.loaded_databases:
+                self.dbs_combo_box.addItem(db['rel_path'])
+        else:
+            QMessageBox.warning(self._widget, 'Warning', "Chosen directory must be a ros package!")
+
+    def find_dbs_in_directory(self, directory):
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                if file.endswith(".db"):
+                    db_full_path = os.path.join(root, file)
+                    db_rel_path = os.path.relpath(db_full_path, directory)
+                    self.loaded_databases.append({'rel_path': db_rel_path, 'full_path': db_full_path})
+
+    def connect_to_database(self, db_path):
         conn = sqlite3.connect(db_path)
         self.c = conn.cursor()
 
@@ -199,6 +237,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                 x = i + width / 2 if typename == 'BOOLEAN' else i + 1
                 ax.text(x, .95 * maxy, str(nanCounts[i]), horizontalalignment='center', size='small')
 
+        self.clearLayout(layout)
         layout.addWidget(figcanvas)
 
     def plotStatistics(self):
@@ -355,17 +394,10 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                 for planner in range(len(planners)):
                     # TODO: REMOVE
                     if planner == 0:
-                        print "Here 4"
-                        print len(planners)
-                        print len(measurements[0])
-                        print "num_queries", num_queries
-                        print "runcount", runcount
                         matrix_measurements = np.array(measurements[0])
-                        print matrix_measurements.shape
                         matrix_measurements = matrix_measurements.reshape(num_queries, runcount)
                         ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
 
-        print "labels", labels
         xtickNames = plt.setp(ax, xticklabels=queries)
         plt.setp(xtickNames, rotation=90)
         for tick in ax.xaxis.get_major_ticks():  # shrink the font size of the x tick labels
@@ -403,6 +435,8 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         scene_layout = self._widget.findChild(QVBoxLayout, "scene_layout")
         scene_layout.addWidget(self.frame_scene)
 
+        self.loadSceneFile("empty")
+
     def loadSceneFile(self, scene_name):
         try:
             scenes_path = "`rospack find sr_moveit_planner_benchmarking`/scenes/" + scene_name + ".scene"
@@ -427,11 +461,14 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                 break
         return scene_name
 
+    def clearLayout(self, layout):
+        for i in reversed(range(layout.count())):
+            layout.itemAt(i).widget().setParent(None)
 
 if __name__ == "__main__":
     rospy.init_node("moveit_planner_visualizer")
     app = QApplication(sys.argv)
     planner_benchmarking_gui = SrMoveitPlannerBenchmarksVisualizer(None)
     planner_benchmarking_gui._widget.show()
-    app.exec_()
-    planner_benchmarking_gui.destruct()
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    sys.exit(app.exec_())
