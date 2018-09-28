@@ -697,9 +697,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>20</y>
+      <y>50</y>
       <width>401</width>
-      <height>781</height>
+      <height>751</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="scene_layout"/>
@@ -708,7 +708,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>25</y>
       <width>301</width>
       <height>21</height>
      </rect>
