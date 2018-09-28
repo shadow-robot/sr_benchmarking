@@ -52,6 +52,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.plan_time_layout = self._widget.findChild(QVBoxLayout, "plan_time_layout")
         self.solved_layout = self._widget.findChild(QVBoxLayout, "solved_layout")
         self.experiments_info = self._widget.findChild(QTextBrowser, "experiments_info")
+        self.queries_legend = self._widget.findChild(QTextBrowser, "queries_legend")
         self.scene_label = self._widget.findChild(QLabel, "scene_label")
         self.dbs_combo_box = self._widget.findChild(QComboBox, "dbs_combo_box")
         self.load_db_button = self._widget.findChild(QPushButton, "load_button")
@@ -296,6 +297,12 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             if "solved" == col[1]:
                 self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_solved_layout)
 
+        self.c.execute('SELECT name FROM experiments')
+        queries = [q[0] for q in self.c.fetchall()]
+        num_queries = len(queries)
+        for idx, query in enumerate(queries):
+            self.queries_legend.append('Query {}: {}'.format(idx + 1, query))
+
     def plotAttributePerQuery(self, cur, planners, attribute, typename, layout):
         labels = []
         measurements = []
@@ -326,6 +333,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         runcount = cur.fetchall()[0][0]
 
         # Find names and number of queries
+        # TODO: Remove when todo below resolved
         cur.execute('SELECT name FROM experiments')
         queries = [q[0] for q in cur.fetchall()]
         num_queries = len(queries)
@@ -398,8 +406,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                         matrix_measurements = matrix_measurements.reshape(num_queries, runcount)
                         ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
 
-        xtickNames = plt.setp(ax, xticklabels=queries)
-        plt.setp(xtickNames, rotation=90)
         for tick in ax.xaxis.get_major_ticks():  # shrink the font size of the x tick labels
             tick.label.set_fontsize(8)
         for tick in ax.yaxis.get_major_ticks():  # shrink the font size of the x tick labels
