@@ -156,6 +156,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL' \
                         % (attribute, planner[0], attribute))
             measurement = [t[0] for t in cur.fetchall() if t[0] != None]
+            print measurement
             if len(measurement) > 0:
                 cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL' \
                             % (planner[0], attribute))
@@ -404,7 +405,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             tick.label.set_fontsize(8)
         for tick in ax.yaxis.get_major_ticks():  # shrink the font size of the x tick labels
             tick.label.set_fontsize(8)
-        fig.subplots_adjust(bottom=0.3, top=0.95, left=0.1, right=0.98)  # Squish the plot into the upper 2/3 of the page.  Leave room for labels
 
         ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
         if max(nanCounts) > 0:
