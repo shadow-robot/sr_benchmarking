@@ -241,7 +241,7 @@
        <x>10</x>
        <y>610</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -253,7 +253,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_lenght_layout"/>
@@ -263,9 +263,9 @@
      <property name="geometry">
       <rect>
        <x>400</x>
-       <y>10</y>
+       <y>50</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -277,7 +277,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_clearance_layout"/>
@@ -287,9 +287,9 @@
      <property name="geometry">
       <rect>
        <x>400</x>
-       <y>310</y>
+       <y>330</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -301,7 +301,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_correct_layout"/>
@@ -311,9 +311,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
+       <y>50</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -325,7 +325,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_plan_time_layout"/>
@@ -337,7 +337,7 @@
        <x>400</x>
        <y>610</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -349,7 +349,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_smoothness_layout"/>
@@ -359,9 +359,9 @@
      <property name="geometry">
       <rect>
        <x>790</x>
-       <y>10</y>
+       <y>50</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -373,7 +373,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_quality_1_layout"/>
@@ -383,9 +383,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>310</y>
+       <y>330</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -397,7 +397,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_solved_layout"/>
@@ -407,9 +407,9 @@
      <property name="geometry">
       <rect>
        <x>790</x>
-       <y>310</y>
+       <y>330</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -421,7 +421,7 @@
         <x>0</x>
         <y>20</y>
         <width>381</width>
-        <height>271</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="perquery_quality_2_layout"/>
@@ -433,7 +433,7 @@
        <x>790</x>
        <y>610</y>
        <width>381</width>
-       <height>291</height>
+       <height>280</height>
       </rect>
      </property>
      <property name="title">
@@ -443,12 +443,40 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>25</y>
+        <y>27</y>
         <width>361</width>
-        <height>251</height>
+        <height>245</height>
        </rect>
       </property>
      </widget>
+    </widget>
+    <widget class="QComboBox" name="planners_combo_box">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>10</y>
+       <width>221</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="scene_label_2">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>15</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose planner</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_3">

@@ -32,6 +32,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.setObjectName("SrMoveitPlannerBenchmarksVisualizer")
         self._widget = QWidget()
         self.loaded_databases = []
+        self.planners = []
         self.create_menu_bar()
 
         ui_file = os.path.join(rospkg.RosPack().get_path(
@@ -55,6 +56,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.queries_legend = self._widget.findChild(QTextBrowser, "queries_legend")
         self.scene_label = self._widget.findChild(QLabel, "scene_label")
         self.dbs_combo_box = self._widget.findChild(QComboBox, "dbs_combo_box")
+        self.planners_combo_box = self._widget.findChild(QComboBox, "planners_combo_box")
         self.load_db_button = self._widget.findChild(QPushButton, "load_button")
 
         self.perquery_clearance_layout = self._widget.findChild(QVBoxLayout, "perquery_clearance_layout")
@@ -68,6 +70,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
         self.createScenePlugin()
         self.load_db_button.clicked.connect(self.load_db)
+        self.planners_combo_box.currentIndexChanged.connect(self.change_plots_per_query)
 
     def destruct(self):
         self._widget = None
@@ -75,6 +78,8 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
     def update_data_display(self, path_to_db):
         self.connect_to_database(path_to_db)
+        self.get_planners()
+        self.set_planners_combobox()
         self.plotStatistics()
         self.plotStatisticsPerQuery()
         self.setExperimentsInfo()
@@ -107,6 +112,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         chosen_package_name = os.path.basename(os.path.normpath(chosen_path))
         if chosen_package_name in rospkg.RosPack().list():
             self.find_dbs_in_directory(chosen_path)
+            self.dbs_combo_box.clear()
             for db in self.loaded_databases:
                 self.dbs_combo_box.addItem(db['rel_path'])
         else:
@@ -242,60 +248,48 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         layout.addWidget(figcanvas)
 
     def plotStatistics(self):
-        self.c.execute('PRAGMA FOREIGN_KEYS = ON')
-        self.c.execute('SELECT id, name FROM plannerConfigs')
-        planners = [(t[0], t[1].replace('geometric_', '').replace('control_', '').replace('kConfigDefault',''))
-                    for t in self.c.fetchall()]
-        planners = sorted(planners, key=lambda a: a[1])
-
         self.c.execute('PRAGMA table_info(runs)')
         colInfo = self.c.fetchall()[3:]
 
         for col in colInfo:
             if "path_simplify_clearance" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.clearance_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.clearance_layout)
             elif "path_simplify_correct" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.correct_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.correct_layout)
             elif "path_simplify_length" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.lenght_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.lenght_layout)
             elif "path_simplify_plan_quality" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.quality_1_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.quality_1_layout)
             if "path_simplify_plan_quality_cartesian" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.quality_2_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.quality_2_layout)
             if "path_simplify_smoothness" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.smoothness_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.smoothness_layout)
             if "time" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.plan_time_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.plan_time_layout)
             if "solved" == col[1]:
-                self.plotAttribute(self.c, planners, col[1], col[2], self.solved_layout)
+                self.plotAttribute(self.c, self.planners, col[1], col[2], self.solved_layout)
 
     def plotStatisticsPerQuery(self):
-        self.c.execute('PRAGMA FOREIGN_KEYS = ON')
-        self.c.execute('SELECT id, name FROM plannerConfigs')
-        planners = [(t[0], t[1].replace('geometric_', '').replace('control_', '').replace('kConfigDefault',''))
-                    for t in self.c.fetchall()]
-        planners = sorted(planners, key=lambda a: a[1])
-
         self.c.execute('PRAGMA table_info(runs)')
         colInfo = self.c.fetchall()[3:]
 
         for col in colInfo:
             if "path_simplify_clearance" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_clearance_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_clearance_layout)
             elif "path_simplify_correct" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_correct_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_correct_layout)
             elif "path_simplify_length" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_lenght_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_lenght_layout)
             if "path_simplify_plan_quality" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_quality_1_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_quality_1_layout)
             if "path_simplify_plan_quality_cartesian" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_quality_2_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_quality_2_layout)
             if "path_simplify_smoothness" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_smoothness_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_smoothness_layout)
             if "time" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_plan_time_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_plan_time_layout)
             if "solved" == col[1]:
-                self.plotAttributePerQuery(self.c, planners, col[1], col[2], self.perquery_solved_layout)
+                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_solved_layout)
 
         self.c.execute('SELECT name FROM experiments')
         queries = [q[0] for q in self.c.fetchall()]
@@ -419,6 +413,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                 x = i + width / 2 if typename == 'BOOLEAN' else i + 1
                 ax.text(x, .95 * maxy, str(nanCounts[i]), horizontalalignment='center', size='small')
 
+        self.clearLayout(layout)
         layout.addWidget(figcanvas)
 
     def createScenePlugin(self):
@@ -470,6 +465,21 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def clearLayout(self, layout):
         for i in reversed(range(layout.count())):
             layout.itemAt(i).widget().setParent(None)
+
+    def get_planners(self):
+        self.c.execute('PRAGMA FOREIGN_KEYS = ON')
+        self.c.execute('SELECT id, name FROM plannerConfigs')
+        planners = [(t[0], t[1].replace('geometric_', '').replace('control_', '').replace('kConfigDefault',''))
+                    for t in self.c.fetchall()]
+        self.planners = sorted(planners, key=lambda a: a[1])
+
+    def set_planners_combobox(self):
+        self.planners_combo_box.clear()
+        for planner in self.planners:
+            self.planners_combo_box.addItem(planner[1])
+
+    def change_plots_per_query(self):
+        print "changing plots, planner: {}".format(self.planners_combo_box.currentText())
 
 if __name__ == "__main__":
     rospy.init_node("moveit_planner_visualizer")
