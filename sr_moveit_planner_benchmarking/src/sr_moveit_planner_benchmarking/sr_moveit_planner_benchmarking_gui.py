@@ -273,23 +273,25 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.c.execute('PRAGMA table_info(runs)')
         colInfo = self.c.fetchall()[3:]
 
+        planner = self.planners[0]
+
         for col in colInfo:
             if "path_simplify_clearance" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_clearance_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_clearance_layout)
             elif "path_simplify_correct" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_correct_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_correct_layout)
             elif "path_simplify_length" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_lenght_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_lenght_layout)
             if "path_simplify_plan_quality" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_quality_1_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_quality_1_layout)
             if "path_simplify_plan_quality_cartesian" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_quality_2_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_quality_2_layout)
             if "path_simplify_smoothness" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_smoothness_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_smoothness_layout)
             if "time" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_plan_time_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_plan_time_layout)
             if "solved" == col[1]:
-                self.plotAttributePerQuery(self.c, self.planners, col[1], col[2], self.perquery_solved_layout)
+                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_solved_layout)
 
         self.c.execute('SELECT name FROM experiments')
         queries = [q[0] for q in self.c.fetchall()]
@@ -297,47 +299,38 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         for idx, query in enumerate(queries):
             self.queries_legend.append('Query {}: {}'.format(idx + 1, query))
 
-    def plotAttributePerQuery(self, cur, planners, attribute, typename, layout):
-        labels = []
+    def plotAttributePerQuery(self, cur, planner, attribute, typename, layout):
         measurements = []
-        measurements_including_nans = []
-        nanCounts = []
         if typename == 'ENUM':
-            cur.execute('SELECT description FROM enums where name IS "%s"' % attribute)
-            descriptions = [t[0] for t in cur.fetchall()]
-            numValues = len(descriptions)
-        for planner in planners:
-            cur.execute('SELECT %s FROM runs WHERE plannerid = %s' \
-                        % (attribute, planner[0]))
-            measurement_including_nan = [t[0] for t in cur.fetchall()]
-            measurements_including_nans.append(measurement_including_nan)
-            cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL' \
-                        % (attribute, planner[0], attribute))
-            measurement = [t[0] for t in cur.fetchall() if t[0] != None]
-            if len(measurement) > 0:
-                cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL' \
-                            % (planner[0], attribute))
-                nanCounts.append(cur.fetchone()[0])
-                labels.append(planner[1])
-                if typename == 'ENUM':
-                    scale = 100. / len(measurement)
-                    measurements.append([measurement.count(i) * scale for i in range(numValues)])
-                else:
-                    measurements.append(measurement)
+            # TODO: Implement enum support
+            return
+        cur.execute('SELECT %s FROM runs WHERE plannerid = %s' \
+                    % (attribute, planner[0]))
+        measurement_including_nan = [t[0] for t in cur.fetchall()]
+        if 0 == len(measurement_including_nan):
+            rospy.logwarn("No measurement available. Returning...")
+            return
 
         # Find the number of runs
         cur.execute('SELECT runcount FROM experiments WHERE id = 1')
         runcount = cur.fetchall()[0][0]
 
         # Find names and number of queries
-        # TODO: Remove when todo below resolved
         cur.execute('SELECT name FROM experiments')
         queries = [q[0] for q in cur.fetchall()]
         num_queries = len(queries)
 
-        if len(measurements) == 0:
-            print('Skipping "%s": no available measurements' % attribute)
+        # Remove NaNs from the measurement array
+        matrix_measurements_with_nans = np.array(measurement_including_nan, dtype=object)
+        try:
+            matrix_measurements_with_nans = matrix_measurements_with_nans.reshape(num_queries, runcount)
+        except ValueError:
+            rospy.logwarn("Database malformed - number of all runs for the planner different to num of queries x  runcount per query")
             return
+        else:
+            matrix_measurements = matrix_measurements_with_nans.tolist()
+            for idx, per_query_result in enumerate(matrix_measurements_with_nans):
+                matrix_measurements[idx] = [x for x in per_query_result if x is not None]
 
         # Add the unit if the attribute is known
         attribute = attribute.replace('_', ' ')
@@ -366,62 +359,22 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         FigureCanvas.setSizePolicy(figcanvas, QSizePolicy.Expanding, QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(figcanvas)
 
-        # ax = plt.gca()
-        if typename == 'ENUM':
+        if typename == 'BOOLEAN':
             width = .5
-            measurements = np.transpose(np.vstack(measurements))
-            colsum = np.sum(measurements, axis=1)
-            rows = np.where(colsum != 0)[0]
-            heights = np.zeros((1, measurements.shape[1]))
-            ind = range(measurements.shape[1])
-            for i in rows:
-                ax.bar(ind, measurements[i], width, bottom=heights[0],
-                       color=matplotlib.cm.hot(int(floor(i * 256 / numValues))),
-                       label=descriptions[i])
-                heights = heights + measurements[i]
-            plt.setp(ax, xticks=[x + width / 2. for x in ind])
-            box = ax.get_position()
-            ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-            props = matplotlib.font_manager.FontProperties()
-            props.set_size('small')
-            ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop=props)
-        elif typename == 'BOOLEAN':
-            width = .5
-            measurementsPercentage = [sum(m) * 100. / len(m) for m in measurements]
-            ind = range(len(measurements))
-            ax.bar(ind, measurementsPercentage, width)
-            plt.setp(ax, xticks=[x + width / 2. for x in ind])
+            measurements_percentage = [sum(m) * 100. / len(m) for m in matrix_measurements]
+            idx = range(len(measurements_percentage))
+            ax.bar(idx, measurements_percentage, width)
+            plt.setp(ax, xticks=[x + width / 2 for x in idx], xticklabels=[x + 1 for x in idx])
         else:
-
             if int(matplotlibversion.split('.')[0]) < 1:
                 ax.boxplot(measurements, notch=0, sym='k+', vert=1, whis=1.5)
             else:
-                for planner in range(len(planners)):
-                    # TODO: REMOVE
-                    if planner == 0:
-                        matrix_measurements_with_nans = np.array(measurements_including_nans[0], dtype=object)
-                        try:
-                            matrix_measurements_with_nans = matrix_measurements_with_nans.reshape(num_queries, runcount)
-                        except ValueError:
-                            rospy.logwarn("Database malformed - number of all runs for the planner different to num of queries x  runcount per query")
-                        else:
-                            matrix_measurements = matrix_measurements_with_nans.tolist()
-                            for idx, per_query_result in enumerate(matrix_measurements_with_nans):
-                                matrix_measurements[idx] = [x for x in per_query_result if x is not None]
-                            print matrix_measurements
-                            ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
+                ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
 
         for tick in ax.xaxis.get_major_ticks():  # shrink the font size of the x tick labels
             tick.label.set_fontsize(8)
         for tick in ax.yaxis.get_major_ticks():  # shrink the font size of the x tick labels
             tick.label.set_fontsize(8)
-
-        ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
-        if max(nanCounts) > 0:
-            maxy = max([max(y) for y in measurements])
-            for i in range(len(labels)):
-                x = i + width / 2 if typename == 'BOOLEAN' else i + 1
-                ax.text(x, .95 * maxy, str(nanCounts[i]), horizontalalignment='center', size='small')
 
         self.clearLayout(layout)
         layout.addWidget(figcanvas)
