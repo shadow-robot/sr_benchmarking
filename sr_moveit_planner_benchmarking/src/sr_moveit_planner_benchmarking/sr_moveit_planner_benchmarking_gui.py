@@ -156,7 +156,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL' \
                         % (attribute, planner[0], attribute))
             measurement = [t[0] for t in cur.fetchall() if t[0] != None]
-            print measurement
             if len(measurement) > 0:
                 cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL' \
                             % (planner[0], attribute))
@@ -301,17 +300,20 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def plotAttributePerQuery(self, cur, planners, attribute, typename, layout):
         labels = []
         measurements = []
+        measurements_including_nans = []
         nanCounts = []
         if typename == 'ENUM':
             cur.execute('SELECT description FROM enums where name IS "%s"' % attribute)
             descriptions = [t[0] for t in cur.fetchall()]
             numValues = len(descriptions)
         for planner in planners:
-            print attribute, planner[0], attribute
+            cur.execute('SELECT %s FROM runs WHERE plannerid = %s' \
+                        % (attribute, planner[0]))
+            measurement_including_nan = [t[0] for t in cur.fetchall()]
+            measurements_including_nans.append(measurement_including_nan)
             cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL' \
                         % (attribute, planner[0], attribute))
             measurement = [t[0] for t in cur.fetchall() if t[0] != None]
-            # print "measurement:", measurement
             if len(measurement) > 0:
                 cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL' \
                             % (planner[0], attribute))
@@ -397,9 +399,17 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                 for planner in range(len(planners)):
                     # TODO: REMOVE
                     if planner == 0:
-                        matrix_measurements = np.array(measurements[0])
-                        matrix_measurements = matrix_measurements.reshape(num_queries, runcount)
-                        ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
+                        matrix_measurements_with_nans = np.array(measurements_including_nans[0], dtype=object)
+                        try:
+                            matrix_measurements_with_nans = matrix_measurements_with_nans.reshape(num_queries, runcount)
+                        except ValueError:
+                            rospy.logwarn("Database malformed - number of all runs for the planner different to num of queries x  runcount per query")
+                        else:
+                            matrix_measurements = matrix_measurements_with_nans.tolist()
+                            for idx, per_query_result in enumerate(matrix_measurements_with_nans):
+                                matrix_measurements[idx] = [x for x in per_query_result if x is not None]
+                            print matrix_measurements
+                            ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
 
         for tick in ax.xaxis.get_major_ticks():  # shrink the font size of the x tick labels
             tick.label.set_fontsize(8)
