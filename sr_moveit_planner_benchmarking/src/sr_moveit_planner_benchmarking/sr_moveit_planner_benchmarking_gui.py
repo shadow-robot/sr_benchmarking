@@ -81,7 +81,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.get_planners()
         self.set_planners_combobox()
         self.plotStatistics()
-        self.plotStatisticsPerQuery()
+        # self.plotStatisticsPerQuery()
         self.setExperimentsInfo()
 
         scene_name = self.findScene()
@@ -269,11 +269,9 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             if "solved" == col[1]:
                 self.plotAttribute(self.c, self.planners, col[1], col[2], self.solved_layout)
 
-    def plotStatisticsPerQuery(self):
+    def plotStatisticsPerQuery(self, planner):
         self.c.execute('PRAGMA table_info(runs)')
         colInfo = self.c.fetchall()[3:]
-
-        planner = self.planners[0]
 
         for col in colInfo:
             if "path_simplify_clearance" == col[1]:
@@ -296,6 +294,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.c.execute('SELECT name FROM experiments')
         queries = [q[0] for q in self.c.fetchall()]
         num_queries = len(queries)
+        self.queries_legend.clear()
         for idx, query in enumerate(queries):
             self.queries_legend.append('Query {}: {}'.format(idx + 1, query))
 
@@ -361,7 +360,11 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
         if typename == 'BOOLEAN':
             width = .5
-            measurements_percentage = [sum(m) * 100. / len(m) for m in matrix_measurements]
+            try:
+                measurements_percentage = [sum(m) * 100 / len(m) for m in matrix_measurements]
+            except ZeroDivisionError:
+                rospy.logwarn("No measurement availeble. Returning...")
+                return
             idx = range(len(measurements_percentage))
             ax.bar(idx, measurements_percentage, width)
             plt.setp(ax, xticks=[x + width / 2 for x in idx], xticklabels=[x + 1 for x in idx])
@@ -443,6 +446,11 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
     def change_plots_per_query(self):
         print "changing plots, planner: {}".format(self.planners_combo_box.currentText())
+        for planner in self.planners:
+            if self.planners_combo_box.currentText() == planner[1]:
+                self.plotStatisticsPerQuery(planner)
+                return
+
 
 if __name__ == "__main__":
     rospy.init_node("moveit_planner_visualizer")
