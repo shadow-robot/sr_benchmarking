@@ -21,7 +21,7 @@ mpld3.plugins.connect(fig, tooltip)
 # mpld3.show()
 
 # multiple subplots, shared axes
-fig, ax = plt.subplots(2, 2, figsize=(8, 6),sharex='col', sharey='row')
+fig, ax = plt.subplots(2, 2, figsize=(8, 6), sharex='col', sharey='row')
 fig.subplots_adjust(hspace=0.3)
 
 np.random.seed(0)
