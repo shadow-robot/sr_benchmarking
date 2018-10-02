@@ -32,9 +32,10 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         super(SrMoveitPlannerBenchmarksVisualizer, self).__init__(context)
         self.setObjectName("SrMoveitPlannerBenchmarksVisualizer")
         self._widget = QWidget()
+        self.create_menu_bar()
+
         self.loaded_databases = []
         self.planners = []
-        self.create_menu_bar()
 
         ui_file = os.path.join(rospkg.RosPack().get_path(
             'sr_moveit_planner_benchmarking'), 'uis', 'moveit_planner_benchmarking.ui')
@@ -44,7 +45,12 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             context.add_widget(self._widget)
 
         self._widget.setWindowTitle("Moveit Planner Benchmarks")
+        self.init_widget_children()
+        self.create_scene_plugin()
+        self.load_db_button.clicked.connect(self.load_db)
+        self.planners_combo_box.currentIndexChanged.connect(self.change_plots_per_query)
 
+    def init_widget_children():
         self.clearance_layout = self._widget.findChild(QVBoxLayout, "clearance_layout")
         self.correct_layout = self._widget.findChild(QVBoxLayout, "correct_layout")
         self.lenght_layout = self._widget.findChild(QVBoxLayout, "lenght_layout")
@@ -53,12 +59,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.smoothness_layout = self._widget.findChild(QVBoxLayout, "smoothness_layout")
         self.plan_time_layout = self._widget.findChild(QVBoxLayout, "plan_time_layout")
         self.solved_layout = self._widget.findChild(QVBoxLayout, "solved_layout")
-        self.experiments_info = self._widget.findChild(QTextBrowser, "experiments_info")
-        self.queries_legend = self._widget.findChild(QTextBrowser, "queries_legend")
-        self.scene_label = self._widget.findChild(QLabel, "scene_label")
-        self.dbs_combo_box = self._widget.findChild(QComboBox, "dbs_combo_box")
-        self.planners_combo_box = self._widget.findChild(QComboBox, "planners_combo_box")
-        self.load_db_button = self._widget.findChild(QPushButton, "load_button")
 
         self.perquery_clearance_layout = self._widget.findChild(QVBoxLayout, "perquery_clearance_layout")
         self.perquery_correct_layout = self._widget.findChild(QVBoxLayout, "perquery_correct_layout")
@@ -69,9 +69,12 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.perquery_plan_time_layout = self._widget.findChild(QVBoxLayout, "perquery_plan_time_layout")
         self.perquery_solved_layout = self._widget.findChild(QVBoxLayout, "perquery_solved_layout")
 
-        self.createScenePlugin()
-        self.load_db_button.clicked.connect(self.load_db)
-        self.planners_combo_box.currentIndexChanged.connect(self.change_plots_per_query)
+        self.experiments_info = self._widget.findChild(QTextBrowser, "experiments_info")
+        self.queries_legend = self._widget.findChild(QTextBrowser, "queries_legend")
+        self.scene_label = self._widget.findChild(QLabel, "scene_label")
+        self.dbs_combo_box = self._widget.findChild(QComboBox, "dbs_combo_box")
+        self.planners_combo_box = self._widget.findChild(QComboBox, "planners_combo_box")
+        self.load_db_button = self._widget.findChild(QPushButton, "load_button")
 
     def destruct(self):
         self._widget = None
@@ -383,7 +386,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.clearLayout(layout)
         layout.addWidget(figcanvas)
 
-    def createScenePlugin(self):
+    def create_scene_plugin(self):
         package_path = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')
         rviz_config_approach = package_path + "/config/scene.rviz"
 
