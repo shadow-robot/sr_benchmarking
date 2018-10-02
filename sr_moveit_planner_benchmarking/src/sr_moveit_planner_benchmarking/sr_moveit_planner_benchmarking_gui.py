@@ -26,6 +26,7 @@ import rviz
 import subprocess
 import numpy as np
 
+
 class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def __init__(self, context):
         super(SrMoveitPlannerBenchmarksVisualizer, self).__init__(context)
@@ -153,11 +154,11 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             descriptions = [t[0] for t in cur.fetchall()]
             numValues = len(descriptions)
         for planner in planners:
-            cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL' \
+            cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL'
                         % (attribute, planner[0], attribute))
             measurement = [t[0] for t in cur.fetchall() if t[0] != None]
             if len(measurement) > 0:
-                cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL' \
+                cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL'
                             % (planner[0], attribute))
                 nanCounts.append(cur.fetchone()[0])
                 labels.append(planner[1])
@@ -235,7 +236,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             tick.label.set_fontsize(8)
         for tick in ax.yaxis.get_major_ticks():  # shrink the font size of the x tick labels
             tick.label.set_fontsize(8)
-        fig.subplots_adjust(bottom=0.3, top=0.95, left=0.1, right=0.98)  # Squish the plot into the upper 2/3 of the page.  Leave room for labels
+        fig.subplots_adjust(bottom=0.3, top=0.95, left=0.1, right=0.98)
 
         ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
         if max(nanCounts) > 0:
@@ -303,7 +304,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         if typename == 'ENUM':
             # TODO: Implement enum support
             return
-        cur.execute('SELECT %s FROM runs WHERE plannerid = %s' \
+        cur.execute('SELECT %s FROM runs WHERE plannerid = %s'
                     % (attribute, planner[0]))
         measurement_including_nan = [t[0] for t in cur.fetchall()]
         if 0 == len(measurement_including_nan):
@@ -324,7 +325,8 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         try:
             matrix_measurements_with_nans = matrix_measurements_with_nans.reshape(num_queries, runcount)
         except ValueError:
-            rospy.logwarn("Database malformed - number of all runs for the planner different to num of queries x  runcount per query")
+            rospy.logwarn("Database malformed - number of all runs for the planner different \
+                           to num of queries x runcount per query")
             return
         else:
             matrix_measurements = matrix_measurements_with_nans.tolist()
@@ -435,7 +437,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def get_planners(self):
         self.c.execute('PRAGMA FOREIGN_KEYS = ON')
         self.c.execute('SELECT id, name FROM plannerConfigs')
-        planners = [(t[0], t[1].replace('geometric_', '').replace('control_', '').replace('kConfigDefault',''))
+        planners = [(t[0], t[1].replace('geometric_', '').replace('control_', '').replace('kConfigDefault', ''))
                     for t in self.c.fetchall()]
         self.planners = sorted(planners, key=lambda a: a[1])
 
