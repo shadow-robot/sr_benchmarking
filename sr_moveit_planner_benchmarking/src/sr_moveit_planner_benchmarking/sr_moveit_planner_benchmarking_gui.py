@@ -34,7 +34,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self._widget = QWidget()
         self.create_menu_bar()
 
-        self.loaded_databases = []
+        self.available_databases = []
         self.planners = []
 
         ui_file = os.path.join(rospkg.RosPack().get_path(
@@ -47,10 +47,10 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self._widget.setWindowTitle("Moveit Planner Benchmarks")
         self.init_widget_children()
         self.create_scene_plugin()
-        self.load_db_button.clicked.connect(self.load_db)
+        self.load_db_button.clicked.connect(self.load_database)
         self.planners_combo_box.currentIndexChanged.connect(self.change_plots_per_query)
 
-    def init_widget_children():
+    def init_widget_children(self):
         self.clearance_layout = self._widget.findChild(QVBoxLayout, "clearance_layout")
         self.correct_layout = self._widget.findChild(QVBoxLayout, "correct_layout")
         self.lenght_layout = self._widget.findChild(QVBoxLayout, "lenght_layout")
@@ -80,43 +80,41 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self._widget = None
         rospy.loginfo("Closing planner benchmarks visualizer")
 
-    def update_data_display(self, path_to_db):
-        self.connect_to_database(path_to_db)
-        self.get_planners()
+    def update_data_display(self):
         self.set_planners_combobox()
-        self.plotStatistics()
-        self.setExperimentsInfo()
-
-        scene_name = self.findScene()
+        self.plot_statistics()
+        self.change_plots_per_query()
+        self.set_experiments_info()
+        scene_name = self.find_scene()
         self.scene_label.setText(scene_name)
-        self.loadSceneFile(scene_name)
+        self.load_scene_file(scene_name)
 
-    def load_db(self):
+    def load_database(self):
         path_to_db = None
         db_to_be_loaded = self.dbs_combo_box.currentText()
-        for db in self.loaded_databases:
+        for db in self.available_databases:
             if db_to_be_loaded == db['rel_path']:
-                print "Loading db: {}".format(db_to_be_loaded)
                 path_to_db = db['full_path']
                 break
         if path_to_db is not None:
-            print "db_full_path: {}".format(path_to_db)
-            self.update_data_display(path_to_db)
+            self.connect_to_database(path_to_db)
+            self.get_planners_list()
+            self.update_data_display()
 
     def create_menu_bar(self):
         self._widget.myQMenuBar = QMenuBar(self._widget)
         fileMenu = self._widget.myQMenuBar.addMenu('&File')
         setPathAction = QAction('Open dbs directory', self._widget)
-        setPathAction.triggered.connect(self.show_dialog)
+        setPathAction.triggered.connect(self.get_available_databases_from_path)
         fileMenu.addAction(setPathAction)
 
-    def show_dialog(self):
+    def get_available_databases_from_path(self):
         chosen_path = QFileDialog.getExistingDirectory(self._widget, 'Open file', "")
         chosen_package_name = os.path.basename(os.path.normpath(chosen_path))
         if chosen_package_name in rospkg.RosPack().list():
             self.find_dbs_in_directory(chosen_path)
             self.dbs_combo_box.clear()
-            for db in self.loaded_databases:
+            for db in self.available_databases:
                 self.dbs_combo_box.addItem(db['rel_path'])
         else:
             QMessageBox.warning(self._widget, 'Warning', "Chosen directory must be a ros package!")
@@ -127,13 +125,13 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                 if file.endswith(".db"):
                     db_full_path = os.path.join(root, file)
                     db_rel_path = os.path.relpath(db_full_path, directory)
-                    self.loaded_databases.append({'rel_path': db_rel_path, 'full_path': db_full_path})
+                    self.available_databases.append({'rel_path': db_rel_path, 'full_path': db_full_path})
 
     def connect_to_database(self, db_path):
         conn = sqlite3.connect(db_path)
         self.c = conn.cursor()
 
-    def setExperimentsInfo(self):
+    def set_experiments_info(self):
         self.c.execute("""SELECT id, name, timelimit, memorylimit FROM experiments""")
         experiments = self.c.fetchall()
         for experiment in experiments:
@@ -147,7 +145,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             self.experiments_info.append("   Time limit per run: %g seconds" % experiment[2])
             self.experiments_info.append("   Memory limit per run: %g MB" % experiment[3])
 
-    def plotAttribute(self, cur, planners, attribute, typename, layout):
+    def plot_attribute(self, cur, planners, attribute, typename, layout):
         labels = []
         measurements = []
         nanCounts = []
@@ -250,58 +248,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.clearLayout(layout)
         layout.addWidget(figcanvas)
 
-    def plotStatistics(self):
-        self.c.execute('PRAGMA table_info(runs)')
-        colInfo = self.c.fetchall()[3:]
-
-        for col in colInfo:
-            if "path_simplify_clearance" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.clearance_layout)
-            elif "path_simplify_correct" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.correct_layout)
-            elif "path_simplify_length" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.lenght_layout)
-            elif "path_simplify_plan_quality" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.quality_1_layout)
-            if "path_simplify_plan_quality_cartesian" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.quality_2_layout)
-            if "path_simplify_smoothness" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.smoothness_layout)
-            if "time" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.plan_time_layout)
-            if "solved" == col[1]:
-                self.plotAttribute(self.c, self.planners, col[1], col[2], self.solved_layout)
-
-    def plotStatisticsPerQuery(self, planner):
-        self.c.execute('PRAGMA table_info(runs)')
-        colInfo = self.c.fetchall()[3:]
-
-        for col in colInfo:
-            if "path_simplify_clearance" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_clearance_layout)
-            elif "path_simplify_correct" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_correct_layout)
-            elif "path_simplify_length" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_lenght_layout)
-            if "path_simplify_plan_quality" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_quality_1_layout)
-            if "path_simplify_plan_quality_cartesian" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_quality_2_layout)
-            if "path_simplify_smoothness" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_smoothness_layout)
-            if "time" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_plan_time_layout)
-            if "solved" == col[1]:
-                self.plotAttributePerQuery(self.c, planner, col[1], col[2], self.perquery_solved_layout)
-
-        self.c.execute('SELECT name FROM experiments')
-        queries = [q[0] for q in self.c.fetchall()]
-        num_queries = len(queries)
-        self.queries_legend.clear()
-        for idx, query in enumerate(queries):
-            self.queries_legend.append('Query {}: {}'.format(idx + 1, query))
-
-    def plotAttributePerQuery(self, cur, planner, attribute, typename, layout):
+    def plot_attribute_per_query(self, cur, planner, attribute, typename, layout):
         measurements = []
         if typename == 'ENUM':
             # TODO: Implement enum support
@@ -386,6 +333,57 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.clearLayout(layout)
         layout.addWidget(figcanvas)
 
+    def plot_statistics(self):
+        self.c.execute('PRAGMA table_info(runs)')
+        colInfo = self.c.fetchall()[3:]
+
+        for col in colInfo:
+            if "path_simplify_clearance" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.clearance_layout)
+            elif "path_simplify_correct" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.correct_layout)
+            elif "path_simplify_length" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.lenght_layout)
+            elif "path_simplify_plan_quality" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.quality_1_layout)
+            if "path_simplify_plan_quality_cartesian" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.quality_2_layout)
+            if "path_simplify_smoothness" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.smoothness_layout)
+            if "time" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.plan_time_layout)
+            if "solved" == col[1]:
+                self.plot_attribute(self.c, self.planners, col[1], col[2], self.solved_layout)
+
+    def plot_statistics_per_query(self, planner):
+        self.c.execute('PRAGMA table_info(runs)')
+        colInfo = self.c.fetchall()[3:]
+
+        for col in colInfo:
+            if "path_simplify_clearance" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_clearance_layout)
+            elif "path_simplify_correct" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_correct_layout)
+            elif "path_simplify_length" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_lenght_layout)
+            if "path_simplify_plan_quality" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_quality_1_layout)
+            if "path_simplify_plan_quality_cartesian" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_quality_2_layout)
+            if "path_simplify_smoothness" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_smoothness_layout)
+            if "time" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_plan_time_layout)
+            if "solved" == col[1]:
+                self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_solved_layout)
+
+        self.c.execute('SELECT name FROM experiments')
+        queries = [q[0] for q in self.c.fetchall()]
+        num_queries = len(queries)
+        self.queries_legend.clear()
+        for idx, query in enumerate(queries):
+            self.queries_legend.append('Query {}: {}'.format(idx + 1, query))
+
     def create_scene_plugin(self):
         package_path = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')
         rviz_config_approach = package_path + "/config/scene.rviz"
@@ -406,9 +404,9 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         scene_layout = self._widget.findChild(QVBoxLayout, "scene_layout")
         scene_layout.addWidget(self.frame_scene)
 
-        self.loadSceneFile("empty")
+        self.load_scene_file("empty")
 
-    def loadSceneFile(self, scene_name):
+    def load_scene_file(self, scene_name):
         try:
             scenes_path = "`rospack find sr_moveit_planner_benchmarking`/scenes/" + scene_name + ".scene"
             p = subprocess.Popen(['rosrun moveit_ros_planning moveit_publish_scene_from_text {}'.format(scenes_path)],
@@ -418,7 +416,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             rospy.logerr(e)
             return
 
-    def findScene(self):
+    def find_scene(self):
         self.c.execute("""SELECT setup FROM experiments""")
         setups = self.c.fetchall()
 
@@ -436,7 +434,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         for i in reversed(range(layout.count())):
             layout.itemAt(i).widget().setParent(None)
 
-    def get_planners(self):
+    def get_planners_list(self):
         self.c.execute('PRAGMA FOREIGN_KEYS = ON')
         self.c.execute('SELECT id, name FROM plannerConfigs')
         planners = [(t[0], t[1].replace('geometric_', '').replace('control_', '').replace('kConfigDefault', ''))
@@ -444,15 +442,16 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.planners = sorted(planners, key=lambda a: a[1])
 
     def set_planners_combobox(self):
+        self.planners_combo_box.blockSignals(True)
         self.planners_combo_box.clear()
         for planner in self.planners:
             self.planners_combo_box.addItem(planner[1])
+        self.planners_combo_box.blockSignals(False)
 
     def change_plots_per_query(self):
-        print "changing plots, planner: {}".format(self.planners_combo_box.currentText())
         for planner in self.planners:
             if self.planners_combo_box.currentText() == planner[1]:
-                self.plotStatisticsPerQuery(planner)
+                self.plot_statistics_per_query(planner)
                 return
 
 
