@@ -82,7 +82,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.get_planners()
         self.set_planners_combobox()
         self.plotStatistics()
-        # self.plotStatisticsPerQuery()
         self.setExperimentsInfo()
 
         scene_name = self.findScene()
