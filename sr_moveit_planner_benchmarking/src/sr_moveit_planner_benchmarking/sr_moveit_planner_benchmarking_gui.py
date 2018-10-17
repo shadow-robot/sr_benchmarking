@@ -270,8 +270,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         queries = [q[0] for q in cur.fetchall()]
         num_queries = len(queries)
 
-        cur.execute('SELECT experimentid FROM runs WHERE plannerid = %s'
-                % (planner[0]))
+        cur.execute('SELECT experimentid FROM runs WHERE plannerid = %s' % (planner[0]))
         queryid_to_run_mapping = [t[0] for t in cur.fetchall()]
 
         query_runcount = []
