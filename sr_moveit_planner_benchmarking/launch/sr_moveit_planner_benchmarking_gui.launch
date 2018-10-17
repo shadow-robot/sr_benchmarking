@@ -1,6 +1,6 @@
 <launch>
   <!-- Load robot -->
-  <!--include file="$(find iplanr_launch)/launch/demo.launch" /-->
+  <include file="$(find iplanr_launch)/launch/demo.launch" />
 
   <node pkg="sr_utilities_common" type="timed_rosrun.sh" args="0 sr_moveit_planner_benchmarking sr_moveit_planner_benchmarking_gui.py" name="timed_gui" output="screen"/>
 </launch>
