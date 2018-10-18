@@ -254,9 +254,11 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         if typename == 'ENUM':
             # TODO: Implement enum support
             return
+
         cur.execute('SELECT %s FROM runs WHERE plannerid = %s'
                     % (attribute, planner[0]))
         measurement_including_nan = [t[0] for t in cur.fetchall()]
+
         if 0 == len(measurement_including_nan):
             rospy.logwarn("No measurements for {} available!".format(attribute))
             self.clearLayout(layout)
@@ -274,12 +276,12 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         cur.execute('SELECT experimentid FROM runs WHERE plannerid = %s' % (planner[0]))
         queryid_to_run_mapping = [t[0] for t in cur.fetchall()]
 
-        query_runcount = []
+        per_query_runcount = []
         for query_id in queries:
-            query_runcount.append(queryid_to_run_mapping.count(query_id))
+            per_query_runcount.append(queryid_to_run_mapping.count(query_id))
 
         matrix_measurements_with_nans = []
-        for runcount in query_runcount:
+        for runcount in per_query_runcount:
             matrix_measurements_with_nans.append(measurement_including_nan[0: runcount])
             del measurement_including_nan[0: runcount]
 
@@ -319,16 +321,17 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             width = .5
             measurements_percentage = []
             missing_measurements = []
-            for m in matrix_measurements:
+            missing_measurements_index = []
+            for i, m in enumerate(matrix_measurements):
                 if 0 == len(m):
                     measurements_percentage.append(0)
                     missing_measurements.append(50)
+                    missing_measurements_index.append(i + width / 2)
                 else:
                     measurements_percentage.append(sum(m) * 100 / len(m))
-                    missing_measurements.append(-10)
             idx = range(len(measurements_percentage))
             ax.bar(idx, measurements_percentage, width)
-            ax.scatter(idx, missing_measurements, color='r', marker='x')
+            ax.scatter(missing_measurements_index, missing_measurements, color='r', marker='x')
             plt.setp(ax, xticks=[x + width / 2 for x in idx], xticklabels=[x + 1 for x in idx])
             ax.set_ylim([0, 100])
             ax.set_xlim([0, len(matrix_measurements)])
