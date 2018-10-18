@@ -134,6 +134,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def set_experiments_info(self):
         self.c.execute("""SELECT id, name, timelimit, memorylimit FROM experiments""")
         experiments = self.c.fetchall()
+        self.experiments_info.clear()
         for experiment in experiments:
             self.c.execute("""SELECT count(*) FROM runs WHERE runs.experimentid = %d
                            GROUP BY runs.plannerid""" % experiment[0])
