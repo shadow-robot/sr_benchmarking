@@ -50,13 +50,13 @@ double evaluate_plan(const robot_trajectory::RobotTrajectory& p)
     int num_of_joints = p.getWayPoint(0).getVariableCount();
 
     std::vector<int> weights(num_of_joints, 0);
-    for(int k = 0; k < num_of_joints; k++)
+    for (int k = 0; k < num_of_joints; k++)
     {
         weights[k] = num_of_joints - k;
     }
 
-    std::vector<std::vector <double> > plan_array (p.getWayPointCount(), std::vector<double>(num_of_joints));
-    for(size_t i = 0 ; i < p.getWayPointCount() ; ++i)
+    std::vector<std::vector <double> > plan_array(p.getWayPointCount(), std::vector<double>(num_of_joints));
+    for (size_t i = 0 ; i < p.getWayPointCount() ; ++i)
     {
         for (size_t j = 0 ; j < num_of_joints ; ++j)
         {
@@ -64,8 +64,8 @@ double evaluate_plan(const robot_trajectory::RobotTrajectory& p)
         }
     }
 
-    std::vector<std::vector <double> > deltas (p.getWayPointCount()-1, std::vector<double>(num_of_joints));
-    for(size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i)
+    std::vector<std::vector <double> > deltas(p.getWayPointCount()-1, std::vector<double>(num_of_joints));
+    for (size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i)
     {
         for (size_t j = 0 ; j < num_of_joints ; ++j)
         {
@@ -155,4 +155,4 @@ double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p)
 
     return plan_quality;
 }
-} //  namespace sr_moveit_planner_benchmarking
+}  // namespace sr_moveit_planner_benchmarking
