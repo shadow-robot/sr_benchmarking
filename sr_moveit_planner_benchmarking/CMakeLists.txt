@@ -19,9 +19,6 @@ catkin_package(
 
 include_directories(include ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
 
-add_library(sr_benchmark_executor src/SrBenchmarkExecutor.cpp)
-target_link_libraries(sr_benchmark_executor ${catkin_LIBRARIES})
-
 add_executable(sr_moveit_run_benchmark src/SrRunBenchmark.cpp src/SrBenchmarkExecutor.cpp)
 target_link_libraries(sr_moveit_run_benchmark ${catkin_LIBRARIES})
 

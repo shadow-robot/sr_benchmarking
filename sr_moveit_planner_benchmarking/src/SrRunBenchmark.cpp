@@ -32,8 +32,6 @@
 *  POSSIBILITY OF SUCH DAMAGE.
 *********************************************************************/
 
-/* Author: Ryan Luna */
-
 #include <ros/ros.h>
 #include <string>
 
