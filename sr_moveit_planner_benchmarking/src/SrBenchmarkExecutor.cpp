@@ -1,3 +1,10 @@
+/**
+ * Copyright (C) 2017 Shadow Robot Company Ltd - All Rights Reserved.
+ * @file SrBenchmarkExecutor.cpp
+ * @author Michal Kramarczyk <michal@shadowrobot.com>
+ * @date Nov 01 2018
+ **/
+
 #include <sr_moveit_planner_benchmarking/SrBenchmarkExecutor.h>
 #include <eigen_conversions/eigen_msg.h>
 #include <math.h>
@@ -7,7 +14,8 @@
 
 namespace sr_moveit_planner_benchmarking
 {
-SrBenchmarkExecutor::SrBenchmarkExecutor(const std::string& robot_description_param) : moveit_ros_benchmarks::BenchmarkExecutor(robot_description_param)
+SrBenchmarkExecutor::SrBenchmarkExecutor(const std::string& robot_description_param)
+    : moveit_ros_benchmarks::BenchmarkExecutor(robot_description_param)
 {
 }
 
@@ -29,8 +37,10 @@ void SrBenchmarkExecutor::collectMetrics(PlannerRunData& metrics,
             const robot_trajectory::RobotTrajectory& p = *mp_res.trajectory_[j];
             plan_quality = evaluate_plan(p);
             plan_quality_cart = evaluate_plan_cart(p);
-            metrics["path_" + mp_res.description_[j] + "_plan_quality REAL"] = boost::lexical_cast<std::string>(plan_quality);
-            metrics["path_" + mp_res.description_[j] + "_plan_quality_cartesian REAL"] = boost::lexical_cast<std::string>(plan_quality_cart);
+            metrics["path_" + mp_res.description_[j] + "_plan_quality REAL"] =
+                boost::lexical_cast<std::string>(plan_quality);
+            metrics["path_" + mp_res.description_[j] + "_plan_quality_cartesian REAL"] =
+                boost::lexical_cast<std::string>(plan_quality_cart);
         }
     }
 }
@@ -38,15 +48,15 @@ void SrBenchmarkExecutor::collectMetrics(PlannerRunData& metrics,
 double evaluate_plan(const robot_trajectory::RobotTrajectory& p)
 {
     int num_of_joints = p.getWayPoint(0).getVariableCount();
-    
+
     std::vector<int> weights(num_of_joints, 0);
-    for(int k = 0; k<num_of_joints; k++)
+    for(int k = 0; k < num_of_joints; k++)
     {
         weights[k] = num_of_joints - k;
     }
-    
+
     std::vector<std::vector <double> > plan_array (p.getWayPointCount(), std::vector<double>(num_of_joints));
-    for (size_t i = 0 ; i < p.getWayPointCount() ; ++i)
+    for(size_t i = 0 ; i < p.getWayPointCount() ; ++i)
     {
         for (size_t j = 0 ; j < num_of_joints ; ++j)
         {
@@ -55,13 +65,15 @@ double evaluate_plan(const robot_trajectory::RobotTrajectory& p)
     }
 
     std::vector<std::vector <double> > deltas (p.getWayPointCount()-1, std::vector<double>(num_of_joints));
-    for (size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i)
+    for(size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i)
     {
         for (size_t j = 0 ; j < num_of_joints ; ++j)
         {
         deltas[i][j] = plan_array[i+1][j] - plan_array[i][j];
-        if(deltas[i][j] < 0)                                      // abs() only works for integers. We can also use fabs() from math.h
-        deltas[i][j] = - deltas[i][j];
+        if (deltas[i][j] < 0)
+        {
+            deltas[i][j] = - deltas[i][j];
+        }
         }
     }
 
@@ -143,4 +155,4 @@ double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p)
 
     return plan_quality;
 }
-} // namespace sr_moveit_planner_benchmarking
+} //  namespace sr_moveit_planner_benchmarking
