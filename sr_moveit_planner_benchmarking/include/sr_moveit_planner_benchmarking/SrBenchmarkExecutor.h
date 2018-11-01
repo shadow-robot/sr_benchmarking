@@ -5,8 +5,8 @@
  * @date Nov 01 2018
  **/
 
-#ifndef SR_MOVEIT_PLANNER_BENCHMARKING_SR_BENCHMARK_EXECUTOR_H
-#define SR_MOVEIT_PLANNER_BENCHMARKING_SR_BENCHMARK_EXECUTOR_H
+#ifndef SR_MOVEIT_PLANNER_BENCHMARKING_SRBENCHMARKEXECUTOR_H
+#define SR_MOVEIT_PLANNER_BENCHMARKING_SRBENCHMARKEXECUTOR_H
 
 #include <ros/ros.h>
 #include <string>
@@ -28,6 +28,6 @@ class SrBenchmarkExecutor : public moveit_ros_benchmarks::BenchmarkExecutor
 
 double evaluate_plan(const robot_trajectory::RobotTrajectory& p);
 double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p);
-}  //  namespace sr_moveit_planner_benchmarking
+}  // namespace sr_moveit_planner_benchmarking
 
-#endif //  SR_MOVEIT_PLANNER_BENCHMARKING_SRBENCHMARKEXECUTOR_H
+#endif  // SR_MOVEIT_PLANNER_BENCHMARKING_SRBENCHMARKEXECUTOR_H

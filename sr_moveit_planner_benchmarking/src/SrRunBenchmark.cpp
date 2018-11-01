@@ -34,6 +34,7 @@
 
 #include <ros/ros.h>
 #include <string>
+#include <vector>
 
 #include <moveit/benchmarks/BenchmarkOptions.h>
 #include <sr_moveit_planner_benchmarking/SrBenchmarkExecutor.h>
