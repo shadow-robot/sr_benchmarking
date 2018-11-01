@@ -2,6 +2,9 @@
 #include <eigen_conversions/eigen_msg.h>
 #include <math.h>
 
+#include <vector>
+#include <string>
+
 namespace sr_moveit_planner_benchmarking
 {
 SrBenchmarkExecutor::SrBenchmarkExecutor(const std::string& robot_description_param) : moveit_ros_benchmarks::BenchmarkExecutor(robot_description_param)
@@ -37,20 +40,25 @@ double evaluate_plan(const robot_trajectory::RobotTrajectory& p)
     int num_of_joints = p.getWayPoint(0).getVariableCount();
     
     std::vector<int> weights(num_of_joints, 0);
-    for(int k = 0; k<num_of_joints; k++){
+    for(int k = 0; k<num_of_joints; k++)
+    {
         weights[k] = num_of_joints - k;
     }
     
     std::vector<std::vector <double> > plan_array (p.getWayPointCount(), std::vector<double>(num_of_joints));
-    for (size_t i = 0 ; i < p.getWayPointCount() ; ++i){
-        for (size_t j = 0 ; j < num_of_joints ; ++j){
+    for (size_t i = 0 ; i < p.getWayPointCount() ; ++i)
+    {
+        for (size_t j = 0 ; j < num_of_joints ; ++j)
+        {
         plan_array[i][j] = p.getWayPoint(i).getVariablePositions()[j];
         }
     }
 
     std::vector<std::vector <double> > deltas (p.getWayPointCount()-1, std::vector<double>(num_of_joints));
-    for (size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i){
-        for (size_t j = 0 ; j < num_of_joints ; ++j){
+    for (size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i)
+    {
+        for (size_t j = 0 ; j < num_of_joints ; ++j)
+        {
         deltas[i][j] = plan_array[i+1][j] - plan_array[i][j];
         if(deltas[i][j] < 0)                                      // abs() only works for integers. We can also use fabs() from math.h
         deltas[i][j] = - deltas[i][j];
@@ -58,32 +66,36 @@ double evaluate_plan(const robot_trajectory::RobotTrajectory& p)
     }
 
     std::vector<double> sum_deltas(num_of_joints, 0);
-    for (size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i){
-        for (size_t j = 0 ; j < num_of_joints ; ++j){
+    for (size_t i = 0 ; i < p.getWayPointCount()-1 ; ++i)
+    {
+        for (size_t j = 0 ; j < num_of_joints ; ++j)
+        {
         sum_deltas[j] += deltas[i][j];
         }
     }
 
     std::vector<double> sum_deltas_weighted(num_of_joints, 0);
-    for (size_t j = 0 ; j < num_of_joints ; ++j){
+    for (size_t j = 0 ; j < num_of_joints ; ++j)
+    {
         sum_deltas_weighted[j] = sum_deltas[j] * weights[j];
     }
 
     double plan_quality = 0.0;
-    for (auto it = sum_deltas_weighted.begin() ; it != sum_deltas_weighted.end(); ++it){
+    for (auto it = sum_deltas_weighted.begin() ; it != sum_deltas_weighted.end(); ++it)
+    {
         plan_quality += *it;
     }
-    
     return plan_quality;
 }
 
 double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p)
 {
-    std::vector<geometry_msgs::Transform> transforms (p.getWayPointCount());
+    std::vector<geometry_msgs::Transform> transforms(p.getWayPointCount());
     for (size_t i = 0 ; i < p.getWayPointCount(); ++i)
     {
         moveit::core::RobotState goal_state = p.getWayPoint(i);
-        const moveit::core::JointModel* joint_eef = goal_state.getJointModel(goal_state.getVariableNames()[goal_state.getVariableCount()-1]);
+        const moveit::core::JointModel* joint_eef = goal_state.getJointModel(goal_state.getVariableNames()
+            [goal_state.getVariableCount()-1]);
         std::string link_eef  = joint_eef->getChildLinkModel()->getName();
         const Eigen::Affine3d& link_pose = goal_state.getGlobalLinkTransform(link_eef);
         tf::transformEigenToMsg(link_pose, transforms[i]);
@@ -92,8 +104,8 @@ double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p)
     int n = p.getWayPointCount()-1;
     double eef_dist = 0.0;
     double eef_rot  = 0.0;
-    
-    for(size_t i = 0; i<n; ++i)
+
+    for (size_t i = 0; i < n; ++i)
     {
         geometry_msgs::Quaternion q2 = transforms[i+1].rotation;
         geometry_msgs::Quaternion q1 = transforms[i  ].rotation;
@@ -116,13 +128,13 @@ double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p)
     w_t = -qn.x * q0.x - qn.y * q0.y - qn.z * q0.z + qn.w * q0.w;
     tot_dist = sqrt(x_t*x_t+y_t*y_t+z_t*z_t);
     tot_rot = 2*acos(w_t);
-    
+
     double plan_quality = 0.0;
-    if(tot_dist > 0.001)
+    if (tot_dist > 0.001)
         plan_quality += eef_dist/tot_dist;
     else
         plan_quality += 1;
-    if(tot_rot  > 0.001)
+    if (tot_rot  > 0.001)
         plan_quality += eef_rot/tot_rot;
     else
         plan_quality += 1;
@@ -131,5 +143,4 @@ double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p)
 
     return plan_quality;
 }
-
-}
+} // namespace sr_moveit_planner_benchmarking

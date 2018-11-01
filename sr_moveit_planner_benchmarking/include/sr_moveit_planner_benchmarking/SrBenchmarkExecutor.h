@@ -1,5 +1,12 @@
+/**
+ * Copyright (C) 2017 Shadow Robot Company Ltd - All Rights Reserved.
+ * @file SrBenchmarkExecutor.h
+ * @author Michal Kramarczyk <michal@shadowrobot.com>
+ * @date Nov 01 2018
+ **/
+
 #ifndef SR_MOVEIT_PLANNER_BENCHMARKING_SR_BENCHMARK_EXECUTOR_
-#define SR_MOVEIT_PLANNER_BENCHMARKING_SR_BENCHMARK_EXECUTOR_
+#define SR_MOVEIT_PLANNER_BENCHMARKING_SR_BENCHMARK_EXECUTOR_H
 
 #include <ros/ros.h>
 #include <string>
@@ -11,7 +18,7 @@ namespace sr_moveit_planner_benchmarking
 class SrBenchmarkExecutor : public moveit_ros_benchmarks::BenchmarkExecutor
 {
     public:
-        SrBenchmarkExecutor(const std::string& robot_description_param = "robot_description");
+        explicit SrBenchmarkExecutor(const std::string& robot_description_param = "robot_description");
         ~SrBenchmarkExecutor();
 
     protected:
@@ -21,6 +28,6 @@ class SrBenchmarkExecutor : public moveit_ros_benchmarks::BenchmarkExecutor
 
 double evaluate_plan(const robot_trajectory::RobotTrajectory& p);
 double evaluate_plan_cart(const robot_trajectory::RobotTrajectory& p);
-}
+}  // namespace sr_moveit_planner_benchmarking
 
-#endif
+#endif // SR_MOVEIT_PLANNER_BENCHMARKING_SRBENCHMARKEXECUTOR_H
