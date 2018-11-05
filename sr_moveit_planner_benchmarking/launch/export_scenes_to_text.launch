@@ -1,5 +1,5 @@
 <launch>
   <arg name="output_directory" default="$(find sr_moveit_planner_benchmarking)/data"/>
 
-  <node name="import_scenes" pkg="moveit_ros_warehouse" type="moveit_warehouse_save_as_text" output="screen" args="--scene --output_directory $(arg output_directory)"/>
+  <node name="export_scenes" pkg="moveit_ros_warehouse" type="moveit_warehouse_save_as_text" output="screen" args="--scene --output_directory $(arg output_directory)"/>
 </launch>
