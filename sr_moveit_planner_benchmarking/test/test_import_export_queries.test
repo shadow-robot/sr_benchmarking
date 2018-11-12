@@ -1,5 +1,6 @@
 <launch>
   <arg name="queries_file" default="$(find sr_moveit_planner_benchmarking)/test/test_queries_to_import.queries"/>
+  <arg name="queries_cartesian_file" default="$(find sr_moveit_planner_benchmarking)/test/test_cartesian_queries_to_import.queries"/>
 
   <!-- Allow user to specify database location -->
   <arg name="db_path" default="$(find sr_multi_moveit_config)/default_warehouse_mongo_db" />
@@ -20,18 +21,22 @@
   </include>
 
   <!-- Import queries -->
-  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="8 sr_moveit_planner_benchmarking load_queries_to_db.launch
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="12 sr_moveit_planner_benchmarking load_queries_to_db.launch
       queries_file:=$(arg queries_file)" name="timed_import_queries" output="screen"/>
+
+    <!-- Import queries -->
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="15 sr_moveit_planner_benchmarking load_queries_to_db.launch
+      queries_file:=$(arg queries_cartesian_file)" name="timed_import_cartesian_queries" output="screen"/>
 
   <arg name="output_directory" default="/tmp/generated_files_warehouse_moveit/"/>
   <arg name="group_prefix" default="ra"/>
 
   <!-- Export queries in joint space -->
-  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="10 sr_moveit_planner_benchmarking export_queries_to_text.launch
-      output_directory:=$(arg output_directory)" name="timed_export_queries" output="screen"/>
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="18 sr_moveit_planner_benchmarking export_queries_to_text.launch
+      output_directory:=$(arg output_directory) group_prefix:=$(arg group_prefix)" name="timed_export_queries" output="screen"/>
 
   <!-- Export queries in cartesian space -->
-  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="10 sr_moveit_planner_benchmarking export_queries_to_text.launch
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="20 sr_moveit_planner_benchmarking export_queries_to_text.launch
       output_directory:=$(arg output_directory) group_prefix:=$(arg group_prefix) cartesian:=true" name="timed_export_queries_cartesian" output="screen"/>
 
   <test test-name="test_import_export_queries" pkg="sr_moveit_planner_benchmarking" type="test_import_export_queries.py" time-limit = "400.0" args = "" />

@@ -2,6 +2,6 @@
   <!-- queries file -->
   <arg name="queries_file" default="$(find sr_moveit_planner_benchmarking)/data/scene_ground_with_boxes.queries"/>
 
-  <node name="import_queries" pkg="moveit_ros_warehouse" type="moveit_warehouse_queries_import_from_text"
+  <node name="import_queries" pkg="moveit_ros_warehouse" type="moveit_warehouse_import_from_text"
         output="screen" args="--host 127.0.0.1 --port 33829 --queries $(arg queries_file)"/>
 </launch>

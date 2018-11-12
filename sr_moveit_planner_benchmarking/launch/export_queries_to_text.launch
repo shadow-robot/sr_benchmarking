@@ -4,10 +4,10 @@
   <arg name="cartesian" default="false"/>
 
   <group if="$(arg cartesian)">
-    <node name="export_queries" pkg="moveit_ros_warehouse" type="moveit_warehouse_save_as_text" output="screen" args="--output_directory $(arg output_directory) --prefix $(arg group_prefix) --cartesian"/>
+    <node name="export_queries" pkg="moveit_ros_warehouse" type="moveit_warehouse_save_as_text" output="screen" args="--output_directory $(arg output_directory) --group_prefix $(arg group_prefix) --cartesian"/>
   </group>
 
   <group unless="$(arg cartesian)">
-    <node name="export_queries" pkg="moveit_ros_warehouse" type="moveit_warehouse_save_as_text" output="screen" args="--output_directory $(arg output_directory) --prefix $(arg group_prefix)"/>
+    <node name="export_queries_cartesian" pkg="moveit_ros_warehouse" type="moveit_warehouse_save_as_text" output="screen" args="--output_directory $(arg output_directory) --group_prefix $(arg group_prefix)"/>
   </group>
 </launch>
