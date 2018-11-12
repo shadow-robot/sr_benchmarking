@@ -3,7 +3,7 @@
   <arg name="initial_z" default="0.1"/>
 
   <!-- benchmark options file -->
-  <arg name="bench_opts" default="$(find sr_moveit_planner_benchmarking)/data/scene_with_boxes.yaml"/>
+  <arg name="bench_opts" default="$(find sr_moveit_planner_benchmarking)/data/scene_ground_with_boxes.yaml"/>
 
   <!-- Load robot settings -->
   <include file="$(find sr_box_ur10_moveit_config)/launch/planning_context.launch">
