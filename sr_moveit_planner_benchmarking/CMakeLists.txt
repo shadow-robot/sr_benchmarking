@@ -7,6 +7,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   moveit_ros_benchmarks
+  rospy
 )
 
 catkin_package(
@@ -23,3 +24,11 @@ add_executable(sr_moveit_run_benchmark src/SrRunBenchmark.cpp src/SrBenchmarkExe
 target_link_libraries(sr_moveit_run_benchmark ${catkin_LIBRARIES})
 
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+## Add folders to be run by python nosetests
+# catkin_add_nosetests(test)
+if (CATKIN_ENABLE_TESTING)
+    find_package(rostest REQUIRED)
+    add_rostest(test/test_import_export_scenes.test)
+    add_rostest(test/test_import_export_queries.test)
+endif ()

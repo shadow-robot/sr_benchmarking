@@ -1,0 +1,151 @@
+test_scene
+cartesian_Pose_easy_0
+START
+ra_shoulder_pan_joint = 0.11
+ra_shoulder_lift_joint = 0.00100692
+ra_elbow_joint = -0.93
+ra_wrist_1_joint = -2.22
+ra_wrist_2_joint = -1.71
+ra_wrist_3_joint = -1.68
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = -0.150682 0.639176 0.367213
+Orientation = -0.0381276 -0.708517 0.0384801 0.703612
+.
+cartesian_Pose_easy_1
+START
+ra_shoulder_pan_joint = 2.01244
+ra_shoulder_lift_joint = -0.639548
+ra_elbow_joint = 1.82721
+ra_wrist_1_joint = 2.01914
+ra_wrist_2_joint = -1.39041
+ra_wrist_3_joint = -3.05649
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = -0.916921 0.278056 0.507631
+Orientation = 0.322489 -0.648198 0.325261 0.608314
+.
+cartesian_Pose_easy_3
+START
+ra_shoulder_pan_joint = -1.87619
+ra_shoulder_lift_joint = -1.92367
+ra_elbow_joint = 2.08386
+ra_wrist_1_joint = -2.85064
+ra_wrist_2_joint = -1.17007
+ra_wrist_3_joint = 2.97304
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = 0.607896 -0.189985 0.549961
+Orientation = 0.000439505 -3.02937e-05 -0.706767 0.707446
+.
+cartesian_Pose_intermediate_1
+START
+ra_shoulder_pan_joint = -0.247948
+ra_shoulder_lift_joint = 3.6607
+ra_elbow_joint = -1.08346
+ra_wrist_1_joint = 3.72785
+ra_wrist_2_joint = -0.265925
+ra_wrist_3_joint = 3.06644
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = 0.474481 0.533199 0.796411
+Orientation = 0.00346187 -0.0270487 0.00886019 0.999589
+.
+cartesian_Pose_intermediate_2
+START
+ra_shoulder_pan_joint = 3.13073
+ra_shoulder_lift_joint = 3.92189
+ra_elbow_joint = -1.48769
+ra_wrist_1_joint = -2.32497
+ra_wrist_2_joint = -0.0611853
+ra_wrist_3_joint = -4.8231
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = 0.0274418 -0.282023 0.064953
+Orientation = -0.707516 -0.0203214 -0.706247 0.014937
+.
+cartesian_Pose_easy_4
+START
+ra_shoulder_pan_joint = -1.94813
+ra_shoulder_lift_joint = 4.22566
+ra_elbow_joint = -2.1719
+ra_wrist_1_joint = 4.22136
+ra_wrist_2_joint = -1.96856
+ra_wrist_3_joint = -4.71372
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = -0.597001 0.298886 0.041504
+Orientation = 0.509323 -0.486714 0.512145 0.491332
+.
+cartesian_Pose_hard_0
+START
+ra_shoulder_pan_joint = -0.083757
+ra_shoulder_lift_joint = -0.69743
+ra_elbow_joint = 1.77815
+ra_wrist_1_joint = 2.06286
+ra_wrist_2_joint = -1.54396
+ra_wrist_3_joint = -1.5776
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = 0.300798 0.510365 0.103878
+Orientation = 0.0242749 -0.705936 0.0285494 0.707284
+.
+cartesian_Pose_hard_1
+START
+ra_shoulder_pan_joint = -1.61225
+ra_shoulder_lift_joint = -0.846414
+ra_elbow_joint = 1.45557
+ra_wrist_1_joint = -1.37204
+ra_wrist_2_joint = -0.0563332
+ra_wrist_3_joint = -0.771444
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = 0.323129 -0.11407 0.225305
+Orientation = 0.000427418 -2.71459e-05 -0.706765 0.707448
+.
+cartesian_Pose_intermediate_0
+START
+ra_shoulder_pan_joint = 0.0868131
+ra_shoulder_lift_joint = -0.386024
+ra_elbow_joint = 0.748249
+ra_wrist_1_joint = 3.01457
+ra_wrist_2_joint = -0.0274676
+ra_wrist_3_joint = -1.80936
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = 0.142102 -0.45049 0.0806018
+Orientation = 0.704588 0.0390115 0.707539 0.0377247
+.
+cartesian_Pose_easy_2
+START
+ra_shoulder_pan_joint = -3.11701
+ra_shoulder_lift_joint = -2.53849
+ra_elbow_joint = -1.18806
+ra_wrist_1_joint = -4.74884
+ra_wrist_2_joint = -0.0837928
+ra_wrist_3_joint = 3.72593
+.
+GOAL
+position_constraint
+End_effector = ra_wrist_3_link
+Position = 0.646462 0.789319 0.868458
+Orientation = -0.534368 -0.450191 0.518375 0.493018
+.
