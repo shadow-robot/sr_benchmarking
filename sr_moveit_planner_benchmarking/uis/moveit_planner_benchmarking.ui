@@ -32,7 +32,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -144,7 +144,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>Plan Quality 1</string>
+      <string>Energy consumption optimality (ratio)</string>
      </property>
      <widget class="QWidget" name="verticalLayoutWidget_5">
       <property name="geometry">
@@ -216,7 +216,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>Plan Quality 2</string>
+      <string>Usefulness~Duration of the movements optimality (ratio)</string>
      </property>
      <widget class="QWidget" name="verticalLayoutWidget_8">
       <property name="geometry">
@@ -365,7 +365,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>Plan Quality 1</string>
+      <string>Energy consumption optimality (ratio)</string>
      </property>
      <widget class="QWidget" name="verticalLayoutWidget_19">
       <property name="geometry">
@@ -413,7 +413,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>Plan Quality 2</string>
+      <string>Usefulness~Duration of the movements optimality (ratio)</string>
      </property>
      <widget class="QWidget" name="verticalLayoutWidget_21">
       <property name="geometry">
@@ -647,18 +647,138 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Plan quality 1:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+Energy consumption optimality (ratio):&lt;/p&gt;
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Calculated by a weighted sum of angles traveled by each of the joints, giving higher weights to the joints closer to the base of the robot, thus penalizing them as small movements of these joints will result in bigger movements of the end effector. Formula:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+Calculated by a weighted sum of angles traveled by each of the joints, giving higher weights to the joints closer to the base of the robot, thus penalizing them -- as small movements of these joints will result in a higher energy (electrical/hydraulic) consumption.
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+Formula:&lt;/p&gt;
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PQ = sum&lt;span style=&quot; vertical-align:sub;&quot;&gt;i=0&lt;/span&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;n-1{&lt;/span&gt;w&lt;span style=&quot; vertical-align:sub;&quot;&gt;i *&lt;/span&gt; abs(x&lt;span style=&quot; vertical-align:sub;&quot;&gt;i &lt;/span&gt;- x&lt;span style=&quot; vertical-align:sub;&quot;&gt;i0&lt;/span&gt;)}, where:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+numerator = || [diag(n,...,1)]
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+nxn
+&lt;/span&gt;
+*[shortestDifference(q
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+goal
+&lt;/span&gt;
+-q
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+start
+&lt;/span&gt;
+)]
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+nx1
+&lt;/span&gt;
+ ||
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+1
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;n - number of robot's joints,&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;w - weight specified for each joint,&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;x - joint's goal position,&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;x&lt;span style=&quot; vertical-align:sub;&quot;&gt;0 &lt;/span&gt;- joint's initial position.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+denominator = || [diag(n,...,1)]
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+nxn
+&lt;/span&gt;
+*[sum
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t=0
+&lt;/span&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;
+t=end-1
+&lt;/span&gt;
+|(q
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t+1
+&lt;/span&gt;
+-q
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t
+&lt;/span&gt;
+)|]
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+nx1
+&lt;/span&gt;
+ ||
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+1 without abs()
+&lt;/span&gt;
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The lower the value, the better the plan.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+, where:&lt;/p&gt;
+
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+[diag(n,...,1)]
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+nxn
+&lt;/span&gt;
+ -- diagonal matrix which diagonal components contain the penalizing weights, the highest being on the top-left, and the smallest on the bottom-right,&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+[q
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t
+&lt;/span&gt;
+]
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+nx1
+&lt;/span&gt;
+ -- column vector listing the current n angles associated to the n joints of the robot at instant t, with the first component being the base angle, while the last is the wrist angle,&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+shortestDifference() -- applies on each component~angle and returns a delta = goal angle - start angle, in rad, such that delta=delta-360deg if delta higher than 180deg and delta=delta+360deg if delta lower than 180deg,&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+m*v -- product operator of a matrix by a vector on the right,&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+|| v ||
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+1
+&lt;/span&gt;
+-- "1-norm" of the vector v = sum
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+over its i
+&lt;/span&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;
+th
+&lt;/span&gt;
+component 
+&lt;/span&gt;
+ of |v
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+i
+&lt;/span&gt;
+|,&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+|x| -- absolute value of any number x.&lt;/p&gt;
+
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+The higher is the ratio, the better is the found plan.
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+Please note that in case of obstacles in the workspace of the robot, a found plan does can be the optimalest without having a ratio equals to 1.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QTextBrowser" name="textBrowser_8">
@@ -675,18 +795,131 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Plan quality 2:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+Usefulness~Duration of the movements optimality (ratio):&lt;/p&gt;
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Measures how different is the total distance traveled by the arm end effector to the most direct path between the start and goal position. Formula:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+Measures how different is the total distance traveled by the arm end effector to the most direct path between the start and goal position. 
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+Formula:&lt;/p&gt;
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PQ = (d&lt;span style=&quot; vertical-align:sub;&quot;&gt;t&lt;/span&gt;/d&lt;span style=&quot; vertical-align:sub;&quot;&gt;l&lt;/span&gt; + r&lt;span style=&quot; vertical-align:sub;&quot;&gt;t&lt;/span&gt;/r&lt;span style=&quot; vertical-align:sub;&quot;&gt;l&lt;/span&gt;)/2, where:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+ratio = ((||pos3Deef
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t=end
+&lt;/span&gt;
+-pos3Deef
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t=0
+&lt;/span&gt;
+||
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+2
+&lt;/span&gt;
+/sum
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t=0
+&lt;/span&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;
+t=end-1
+&lt;/span&gt;
+||pos3Deef
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t+1
+&lt;/span&gt;
+-pos3Deef
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t
+&lt;/span&gt;
+||
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+2
+&lt;/span&gt;
+)+(|shortestAngle(orientation
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t=0
+&lt;/span&gt;
+ to orientation
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t=end
+&lt;/span&gt;
+)|/sum
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t=0
+&lt;/span&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;
+t=end-1
+&lt;/span&gt;
+|shortestAngle(orientation
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t
+&lt;/span&gt;
+ to orientation
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+t+1
+&lt;/span&gt;
+)|))/2
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;d&lt;span style=&quot; vertical-align:sub;&quot;&gt;t&lt;/span&gt; - total distance travelled by the end effector,&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;d&lt;span style=&quot; vertical-align:sub;&quot;&gt;l &lt;/span&gt;- distance travelled by the end effector in a straight line,&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;r&lt;span style=&quot; vertical-align:sub;&quot;&gt;t&lt;/span&gt; - total rotation done by the end effector,&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;r&lt;span style=&quot; vertical-align:sub;&quot;&gt;l&lt;/span&gt; - relative rotation of end effector between start and goal pose.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+, where:&lt;/p&gt;
+
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The lower the value, the better the plan with 1 being the best possible score.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+eef -- stands for "end effector",&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+|| v ||
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+2
+&lt;/span&gt;
+-- "euclidean norm" of the vector v,&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+orientation -- normalized quaternion representing the rotation of the child link (eef) of the last joint, with respect to the global reference frame,&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+shortestAngle(quat
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+1
+&lt;/span&gt;
+ to quat
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+2
+&lt;/span&gt;
+) -- (signed angle) = 2*atan2(y=||quatRel.vectorPart||
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+2
+&lt;/span&gt;
+, x=quatRel.scalar), with quatRelative = quat
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+2
+&lt;/span&gt;
+*conjugate(quat
+&lt;span style=&quot; vertical-align:sub;&quot;&gt;
+1
+&lt;/span&gt;
+) obtained via hamiltonian product.&lt;/p&gt;
+
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+The higher is the ratio, the better is the found plan.
+
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;
+
+Please note that in case of obstacles in the workspace of the robot, a found plan does can be the optimalest without having a ratio equals to 1.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+
      </property>
     </widget>
    </widget>
