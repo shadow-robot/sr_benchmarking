@@ -53,7 +53,7 @@ ra_wrist_1_joint = -3.01516
 ra_wrist_2_joint = -1.61433
 ra_wrist_3_joint = 3.1422
 .
-Pose_medium_1
+Pose_intermediate_1
 START
 ra_shoulder_pan_joint = -0.247948
 ra_shoulder_lift_joint = 3.6607
@@ -71,7 +71,7 @@ ra_wrist_1_joint = 2.80548
 ra_wrist_2_joint = -2.08412
 ra_wrist_3_joint = 3.09106
 .
-Pose_medium_2
+Pose_intermediate_2
 START
 ra_shoulder_pan_joint = 3.13073
 ra_shoulder_lift_joint = 3.92189
@@ -143,7 +143,7 @@ ra_wrist_1_joint = 1.63869
 ra_wrist_2_joint = -0.731615
 ra_wrist_3_joint = 0.00128207
 .
-Pose_medium_0
+Pose_intermediate_0
 START
 ra_shoulder_pan_joint = 0.0868131
 ra_shoulder_lift_joint = -0.386024

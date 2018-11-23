@@ -1,0 +1,16 @@
+<launch>
+  <!-- Set initial_z of the robot to enable to set it on a table -->
+  <arg name="initial_z" default="0.1"/>
+
+  <!-- benchmark options file -->
+  <arg name="bench_opts" default="$(find sr_moveit_planner_benchmarking)/benchmark_configs/scene_ground_with_boxes.yaml"/>
+
+  <arg name="launch_benchmarking" default="true" />
+
+  <!-- Load robot settings -->
+  <include file="$(find sr_moveit_planner_benchmarking)/launch/benchmarking.launch">
+    <arg name="initial_z" value="$(arg initial_z)" />
+    <arg name="bench_opts" value="$(arg bench_opts)"/>
+    <arg name="launch_benchmarking" value="$(arg launch_benchmarking)" />
+  </include>
+</launch>
