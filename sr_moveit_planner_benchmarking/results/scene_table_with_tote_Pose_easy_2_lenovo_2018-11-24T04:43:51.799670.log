@@ -1,0 +1,1499 @@
+MoveIt! version 0.9.15-Alpha
+Experiment Pose_easy_2
+Running on lenovo
+Starting at 2018-11-24T04:43:51.799670
+<<<|
+Motion plan request:
+workspace_parameters: 
+  header: 
+    seq: 0
+    stamp: 0.000000000
+    frame_id: 
+  min_corner: 
+    x: -5
+    y: -5
+    z: -5
+  max_corner: 
+    x: 5
+    y: 5
+    z: 5
+start_state: 
+  joint_state: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: /world
+    name[]
+      name[0]: ra_shoulder_pan_joint
+      name[1]: ra_shoulder_lift_joint
+      name[2]: ra_elbow_joint
+      name[3]: ra_wrist_1_joint
+      name[4]: ra_wrist_2_joint
+      name[5]: ra_wrist_3_joint
+    position[]
+      position[0]: 1.31702
+      position[1]: -0.997465
+      position[2]: 1.47059
+      position[3]: 1.12603
+      position[4]: 1.57779
+      position[5]: -0.253997
+    velocity[]
+    effort[]
+  multi_dof_joint_state: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: /world
+    joint_names[]
+    transforms[]
+    twist[]
+    wrench[]
+  attached_collision_objects[]
+  is_diff: 0
+goal_constraints[]
+  goal_constraints[0]: 
+    name: 
+    joint_constraints[]
+      joint_constraints[0]: 
+            joint_name: ra_shoulder_pan_joint
+        position: -2.00962
+        tolerance_above: 0
+        tolerance_below: 0
+        weight: 1
+      joint_constraints[1]: 
+            joint_name: ra_shoulder_lift_joint
+        position: -2.11401
+        tolerance_above: 0
+        tolerance_below: 0
+        weight: 1
+      joint_constraints[2]: 
+            joint_name: ra_elbow_joint
+        position: -1.55889
+        tolerance_above: 0
+        tolerance_below: 0
+        weight: 1
+      joint_constraints[3]: 
+            joint_name: ra_wrist_1_joint
+        position: -1.05388
+        tolerance_above: 0
+        tolerance_below: 0
+        weight: 1
+      joint_constraints[4]: 
+            joint_name: ra_wrist_2_joint
+        position: 1.56433
+        tolerance_above: 0
+        tolerance_below: 0
+        weight: 1
+      joint_constraints[5]: 
+            joint_name: ra_wrist_3_joint
+        position: 4.28476
+        tolerance_above: 0
+        tolerance_below: 0
+        weight: 1
+    position_constraints[]
+    orientation_constraints[]
+    visibility_constraints[]
+path_constraints: 
+  name: 
+  joint_constraints[]
+  position_constraints[]
+  orientation_constraints[]
+  visibility_constraints[]
+trajectory_constraints: 
+  constraints[]
+planner_id: 
+group_name: right_arm
+num_planning_attempts: 1
+allowed_planning_time: 10
+max_velocity_scaling_factor: 0
+max_acceleration_scaling_factor: 0
+
+Planning scene: 
+name: scene_table_with_tote
+robot_state: 
+  joint_state: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: /world
+    name[]
+      name[0]: ra_shoulder_pan_joint
+      name[1]: ra_shoulder_lift_joint
+      name[2]: ra_elbow_joint
+      name[3]: ra_wrist_1_joint
+      name[4]: ra_wrist_2_joint
+      name[5]: ra_wrist_3_joint
+    position[]
+      position[0]: 0
+      position[1]: 0
+      position[2]: 0
+      position[3]: 0
+      position[4]: 0
+      position[5]: 0
+    velocity[]
+    effort[]
+  multi_dof_joint_state: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: /world
+    joint_names[]
+    transforms[]
+    twist[]
+    wrench[]
+  attached_collision_objects[]
+  is_diff: 0
+robot_model_name: ursrbox
+fixed_frame_transforms[]
+  fixed_frame_transforms[0]: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: /world
+    child_frame_id: /world
+    transform: 
+      translation: 
+        x: 0
+        y: 0
+        z: 0
+      rotation: 
+        x: 0
+        y: 0
+        z: 0
+        w: 1
+allowed_collision_matrix: 
+  entry_names[]
+    entry_names[0]: hand_base_attach
+    entry_names[1]: ra_base_link
+    entry_names[2]: ra_ee_link
+    entry_names[3]: ra_forearm_link
+    entry_names[4]: ra_shoulder_link
+    entry_names[5]: ra_upper_arm_link
+    entry_names[6]: ra_wrist_1_link
+    entry_names[7]: ra_wrist_2_link
+    entry_names[8]: ra_wrist_3_link
+  entry_values[]
+    entry_values[0]: 
+        enabled[]
+        enabled[0]: 0
+        enabled[1]: 0
+        enabled[2]: 1
+        enabled[3]: 0
+        enabled[4]: 0
+        enabled[5]: 0
+        enabled[6]: 1
+        enabled[7]: 1
+        enabled[8]: 1
+    entry_values[1]: 
+        enabled[]
+        enabled[0]: 0
+        enabled[1]: 0
+        enabled[2]: 0
+        enabled[3]: 0
+        enabled[4]: 1
+        enabled[5]: 1
+        enabled[6]: 1
+        enabled[7]: 1
+        enabled[8]: 0
+    entry_values[2]: 
+        enabled[]
+        enabled[0]: 1
+        enabled[1]: 0
+        enabled[2]: 0
+        enabled[3]: 0
+        enabled[4]: 0
+        enabled[5]: 0
+        enabled[6]: 1
+        enabled[7]: 1
+        enabled[8]: 1
+    entry_values[3]: 
+        enabled[]
+        enabled[0]: 0
+        enabled[1]: 0
+        enabled[2]: 0
+        enabled[3]: 0
+        enabled[4]: 0
+        enabled[5]: 1
+        enabled[6]: 1
+        enabled[7]: 0
+        enabled[8]: 0
+    entry_values[4]: 
+        enabled[]
+        enabled[0]: 0
+        enabled[1]: 1
+        enabled[2]: 0
+        enabled[3]: 0
+        enabled[4]: 0
+        enabled[5]: 1
+        enabled[6]: 1
+        enabled[7]: 1
+        enabled[8]: 0
+    entry_values[5]: 
+        enabled[]
+        enabled[0]: 0
+        enabled[1]: 1
+        enabled[2]: 0
+        enabled[3]: 1
+        enabled[4]: 1
+        enabled[5]: 0
+        enabled[6]: 0
+        enabled[7]: 0
+        enabled[8]: 0
+    entry_values[6]: 
+        enabled[]
+        enabled[0]: 1
+        enabled[1]: 1
+        enabled[2]: 1
+        enabled[3]: 1
+        enabled[4]: 1
+        enabled[5]: 0
+        enabled[6]: 0
+        enabled[7]: 1
+        enabled[8]: 1
+    entry_values[7]: 
+        enabled[]
+        enabled[0]: 1
+        enabled[1]: 1
+        enabled[2]: 1
+        enabled[3]: 0
+        enabled[4]: 1
+        enabled[5]: 0
+        enabled[6]: 1
+        enabled[7]: 0
+        enabled[8]: 1
+    entry_values[8]: 
+        enabled[]
+        enabled[0]: 1
+        enabled[1]: 0
+        enabled[2]: 1
+        enabled[3]: 0
+        enabled[4]: 0
+        enabled[5]: 0
+        enabled[6]: 1
+        enabled[7]: 1
+        enabled[8]: 0
+  default_entry_names[]
+  default_entry_values[]
+link_padding[]
+  link_padding[0]: 
+    link_name: hand_base_attach
+    padding: 0
+  link_padding[1]: 
+    link_name: ra_base_link
+    padding: 0
+  link_padding[2]: 
+    link_name: ra_ee_link
+    padding: 0
+  link_padding[3]: 
+    link_name: ra_forearm_link
+    padding: 0
+  link_padding[4]: 
+    link_name: ra_shoulder_link
+    padding: 0
+  link_padding[5]: 
+    link_name: ra_upper_arm_link
+    padding: 0
+  link_padding[6]: 
+    link_name: ra_wrist_1_link
+    padding: 0
+  link_padding[7]: 
+    link_name: ra_wrist_2_link
+    padding: 0
+  link_padding[8]: 
+    link_name: ra_wrist_3_link
+    padding: 0
+link_scale[]
+  link_scale[0]: 
+    link_name: hand_base_attach
+    scale: 1
+  link_scale[1]: 
+    link_name: ra_base_link
+    scale: 1
+  link_scale[2]: 
+    link_name: ra_ee_link
+    scale: 1
+  link_scale[3]: 
+    link_name: ra_forearm_link
+    scale: 1
+  link_scale[4]: 
+    link_name: ra_shoulder_link
+    scale: 1
+  link_scale[5]: 
+    link_name: ra_upper_arm_link
+    scale: 1
+  link_scale[6]: 
+    link_name: ra_wrist_1_link
+    scale: 1
+  link_scale[7]: 
+    link_name: ra_wrist_2_link
+    scale: 1
+  link_scale[8]: 
+    link_name: ra_wrist_3_link
+    scale: 1
+object_colors[]
+world: 
+  collision_objects[]
+    collision_objects[0]: 
+        header: 
+        seq: 0
+        stamp: 0.000000000
+        frame_id: /world
+      id: ground_2__link
+      type: 
+        key: 
+        db: 
+      primitives[]
+        primitives[0]: 
+                type: 1
+          dimensions[]
+            dimensions[0]: 5
+            dimensions[1]: 5
+            dimensions[2]: 0.01
+      primitive_poses[]
+        primitive_poses[0]: 
+                position: 
+            x: -0.2
+            y: 0.6
+            z: 1.907
+          orientation: 
+            x: 0
+            y: 0
+            z: 0
+            w: 1
+      meshes[]
+      mesh_poses[]
+      planes[]
+      plane_poses[]
+      operation: 0
+    collision_objects[1]: 
+        header: 
+        seq: 0
+        stamp: 0.000000000
+        frame_id: /world
+      id: ground__link
+      type: 
+        key: 
+        db: 
+      primitives[]
+        primitives[0]: 
+                type: 1
+          dimensions[]
+            dimensions[0]: 5
+            dimensions[1]: 5
+            dimensions[2]: 0.01
+      primitive_poses[]
+        primitive_poses[0]: 
+                position: 
+            x: -0.2
+            y: 0.6
+            z: 0
+          orientation: 
+            x: 0
+            y: 0
+            z: 0
+            w: 1
+      meshes[]
+      mesh_poses[]
+      planes[]
+      plane_poses[]
+      operation: 0
+    collision_objects[2]: 
+        header: 
+        seq: 0
+        stamp: 0.000000000
+        frame_id: /world
+      id: shadow_table_2017_full_simplified__link
+      type: 
+        key: 
+        db: 
+      primitives[]
+      primitive_poses[]
+      meshes[]
+        meshes[0]: 
+                triangles[]
+            triangles[0]: 
+                        vertex_indices[]
+                vertex_indices[0]: 0
+                vertex_indices[1]: 1
+                vertex_indices[2]: 2
+            triangles[1]: 
+                        vertex_indices[]
+                vertex_indices[0]: 3
+                vertex_indices[1]: 4
+                vertex_indices[2]: 5
+            triangles[2]: 
+                        vertex_indices[]
+                vertex_indices[0]: 6
+                vertex_indices[1]: 7
+                vertex_indices[2]: 8
+            triangles[3]: 
+                        vertex_indices[]
+                vertex_indices[0]: 9
+                vertex_indices[1]: 10
+                vertex_indices[2]: 11
+            triangles[4]: 
+                        vertex_indices[]
+                vertex_indices[0]: 12
+                vertex_indices[1]: 13
+                vertex_indices[2]: 14
+            triangles[5]: 
+                        vertex_indices[]
+                vertex_indices[0]: 15
+                vertex_indices[1]: 16
+                vertex_indices[2]: 17
+            triangles[6]: 
+                        vertex_indices[]
+                vertex_indices[0]: 18
+                vertex_indices[1]: 19
+                vertex_indices[2]: 20
+            triangles[7]: 
+                        vertex_indices[]
+                vertex_indices[0]: 21
+                vertex_indices[1]: 22
+                vertex_indices[2]: 23
+            triangles[8]: 
+                        vertex_indices[]
+                vertex_indices[0]: 24
+                vertex_indices[1]: 25
+                vertex_indices[2]: 26
+            triangles[9]: 
+                        vertex_indices[]
+                vertex_indices[0]: 27
+                vertex_indices[1]: 28
+                vertex_indices[2]: 29
+            triangles[10]: 
+                        vertex_indices[]
+                vertex_indices[0]: 30
+                vertex_indices[1]: 31
+                vertex_indices[2]: 32
+            triangles[11]: 
+                        vertex_indices[]
+                vertex_indices[0]: 33
+                vertex_indices[1]: 34
+                vertex_indices[2]: 35
+          vertices[]
+            vertices[0]: 
+                        x: 1
+              y: 1
+              z: 0
+            vertices[1]: 
+                        x: -0.5
+              y: 1
+              z: 0
+            vertices[2]: 
+                        x: -0.5
+              y: 1
+              z: 0.012
+            vertices[3]: 
+                        x: 1
+              y: 1
+              z: 0
+            vertices[4]: 
+                        x: -0.5
+              y: 1
+              z: 0.012
+            vertices[5]: 
+                        x: 1
+              y: 1
+              z: 0.012
+            vertices[6]: 
+                        x: 1
+              y: -0.5
+              z: 0
+            vertices[7]: 
+                        x: 1
+              y: 1
+              z: 0
+            vertices[8]: 
+                        x: 1
+              y: 1
+              z: 0.012
+            vertices[9]: 
+                        x: 1
+              y: -0.5
+              z: 0
+            vertices[10]: 
+                        x: 1
+              y: 1
+              z: 0.012
+            vertices[11]: 
+                        x: 1
+              y: -0.5
+              z: 0.012
+            vertices[12]: 
+                        x: -0.5
+              y: -0.5
+              z: 0
+            vertices[13]: 
+                        x: 1
+              y: -0.5
+              z: 0
+            vertices[14]: 
+                        x: 1
+              y: -0.5
+              z: 0.012
+            vertices[15]: 
+                        x: -0.5
+              y: -0.5
+              z: 0
+            vertices[16]: 
+                        x: 1
+              y: -0.5
+              z: 0.012
+            vertices[17]: 
+                        x: -0.5
+              y: -0.5
+              z: 0.012
+            vertices[18]: 
+                        x: -0.5
+              y: 1
+              z: 0
+            vertices[19]: 
+                        x: -0.5
+              y: -0.5
+              z: 0
+            vertices[20]: 
+                        x: -0.5
+              y: -0.5
+              z: 0.012
+            vertices[21]: 
+                        x: -0.5
+              y: 1
+              z: 0
+            vertices[22]: 
+                        x: -0.5
+              y: -0.5
+              z: 0.012
+            vertices[23]: 
+                        x: -0.5
+              y: 1
+              z: 0.012
+            vertices[24]: 
+                        x: 1
+              y: -0.5
+              z: 0
+            vertices[25]: 
+                        x: -0.5
+              y: -0.5
+              z: 0
+            vertices[26]: 
+                        x: 1
+              y: 1
+              z: 0
+            vertices[27]: 
+                        x: -0.5
+              y: -0.5
+              z: 0
+            vertices[28]: 
+                        x: -0.5
+              y: 1
+              z: 0
+            vertices[29]: 
+                        x: 1
+              y: 1
+              z: 0
+            vertices[30]: 
+                        x: 1
+              y: 1
+              z: 0.012
+            vertices[31]: 
+                        x: -0.5
+              y: -0.5
+              z: 0.012
+            vertices[32]: 
+                        x: 1
+              y: -0.5
+              z: 0.012
+            vertices[33]: 
+                        x: 1
+              y: 1
+              z: 0.012
+            vertices[34]: 
+                        x: -0.5
+              y: 1
+              z: 0.012
+            vertices[35]: 
+                        x: -0.5
+              y: -0.5
+              z: 0.012
+      mesh_poses[]
+        mesh_poses[0]: 
+                position: 
+            x: 0
+            y: 0
+            z: 0.75
+          orientation: 
+            x: 0
+            y: 0
+            z: 0
+            w: 1
+      planes[]
+      plane_poses[]
+      operation: 0
+    collision_objects[3]: 
+        header: 
+        seq: 0
+        stamp: 0.000000000
+        frame_id: /world
+      id: tote__link
+      type: 
+        key: 
+        db: 
+      primitives[]
+      primitive_poses[]
+      meshes[]
+        meshes[0]: 
+                triangles[]
+            triangles[0]: 
+                        vertex_indices[]
+                vertex_indices[0]: 0
+                vertex_indices[1]: 1
+                vertex_indices[2]: 2
+            triangles[1]: 
+                        vertex_indices[]
+                vertex_indices[0]: 3
+                vertex_indices[1]: 4
+                vertex_indices[2]: 5
+            triangles[2]: 
+                        vertex_indices[]
+                vertex_indices[0]: 6
+                vertex_indices[1]: 7
+                vertex_indices[2]: 8
+            triangles[3]: 
+                        vertex_indices[]
+                vertex_indices[0]: 9
+                vertex_indices[1]: 10
+                vertex_indices[2]: 11
+            triangles[4]: 
+                        vertex_indices[]
+                vertex_indices[0]: 12
+                vertex_indices[1]: 13
+                vertex_indices[2]: 14
+            triangles[5]: 
+                        vertex_indices[]
+                vertex_indices[0]: 15
+                vertex_indices[1]: 16
+                vertex_indices[2]: 17
+            triangles[6]: 
+                        vertex_indices[]
+                vertex_indices[0]: 18
+                vertex_indices[1]: 19
+                vertex_indices[2]: 20
+            triangles[7]: 
+                        vertex_indices[]
+                vertex_indices[0]: 21
+                vertex_indices[1]: 22
+                vertex_indices[2]: 23
+            triangles[8]: 
+                        vertex_indices[]
+                vertex_indices[0]: 24
+                vertex_indices[1]: 25
+                vertex_indices[2]: 26
+            triangles[9]: 
+                        vertex_indices[]
+                vertex_indices[0]: 27
+                vertex_indices[1]: 28
+                vertex_indices[2]: 29
+            triangles[10]: 
+                        vertex_indices[]
+                vertex_indices[0]: 30
+                vertex_indices[1]: 31
+                vertex_indices[2]: 32
+            triangles[11]: 
+                        vertex_indices[]
+                vertex_indices[0]: 33
+                vertex_indices[1]: 34
+                vertex_indices[2]: 35
+            triangles[12]: 
+                        vertex_indices[]
+                vertex_indices[0]: 36
+                vertex_indices[1]: 37
+                vertex_indices[2]: 38
+            triangles[13]: 
+                        vertex_indices[]
+                vertex_indices[0]: 39
+                vertex_indices[1]: 40
+                vertex_indices[2]: 41
+            triangles[14]: 
+                        vertex_indices[]
+                vertex_indices[0]: 42
+                vertex_indices[1]: 43
+                vertex_indices[2]: 44
+            triangles[15]: 
+                        vertex_indices[]
+                vertex_indices[0]: 45
+                vertex_indices[1]: 46
+                vertex_indices[2]: 47
+            triangles[16]: 
+                        vertex_indices[]
+                vertex_indices[0]: 48
+                vertex_indices[1]: 49
+                vertex_indices[2]: 50
+            triangles[17]: 
+                        vertex_indices[]
+                vertex_indices[0]: 51
+                vertex_indices[1]: 52
+                vertex_indices[2]: 53
+            triangles[18]: 
+                        vertex_indices[]
+                vertex_indices[0]: 54
+                vertex_indices[1]: 55
+                vertex_indices[2]: 56
+            triangles[19]: 
+                        vertex_indices[]
+                vertex_indices[0]: 57
+                vertex_indices[1]: 58
+                vertex_indices[2]: 59
+            triangles[20]: 
+                        vertex_indices[]
+                vertex_indices[0]: 60
+                vertex_indices[1]: 61
+                vertex_indices[2]: 62
+            triangles[21]: 
+                        vertex_indices[]
+                vertex_indices[0]: 63
+                vertex_indices[1]: 64
+                vertex_indices[2]: 65
+            triangles[22]: 
+                        vertex_indices[]
+                vertex_indices[0]: 66
+                vertex_indices[1]: 67
+                vertex_indices[2]: 68
+            triangles[23]: 
+                        vertex_indices[]
+                vertex_indices[0]: 69
+                vertex_indices[1]: 70
+                vertex_indices[2]: 71
+            triangles[24]: 
+                        vertex_indices[]
+                vertex_indices[0]: 72
+                vertex_indices[1]: 73
+                vertex_indices[2]: 74
+            triangles[25]: 
+                        vertex_indices[]
+                vertex_indices[0]: 75
+                vertex_indices[1]: 76
+                vertex_indices[2]: 77
+            triangles[26]: 
+                        vertex_indices[]
+                vertex_indices[0]: 78
+                vertex_indices[1]: 79
+                vertex_indices[2]: 80
+            triangles[27]: 
+                        vertex_indices[]
+                vertex_indices[0]: 81
+                vertex_indices[1]: 82
+                vertex_indices[2]: 83
+          vertices[]
+            vertices[0]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.335
+            vertices[1]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.02
+            vertices[2]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.02
+            vertices[3]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.335
+            vertices[4]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.335
+            vertices[5]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.02
+            vertices[6]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.335
+            vertices[7]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.02
+            vertices[8]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.02
+            vertices[9]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.335
+            vertices[10]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.335
+            vertices[11]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.02
+            vertices[12]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.335
+            vertices[13]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.02
+            vertices[14]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.02
+            vertices[15]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.335
+            vertices[16]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.335
+            vertices[17]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.02
+            vertices[18]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.335
+            vertices[19]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.02
+            vertices[20]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.02
+            vertices[21]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.335
+            vertices[22]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.335
+            vertices[23]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.02
+            vertices[24]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.02
+            vertices[25]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.02
+            vertices[26]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.02
+            vertices[27]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.02
+            vertices[28]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.02
+            vertices[29]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.02
+            vertices[30]: 
+                        x: -0.315
+              y: 0.22
+              z: 0.335
+            vertices[31]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.335
+            vertices[32]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.335
+            vertices[33]: 
+                        x: -0.315
+              y: 0.22
+              z: 0.335
+            vertices[34]: 
+                        x: -0.315
+              y: -0.22
+              z: 0.335
+            vertices[35]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.335
+            vertices[36]: 
+                        x: 0.315
+              y: -0.22
+              z: 0.335
+            vertices[37]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.335
+            vertices[38]: 
+                        x: -0.315
+              y: -0.22
+              z: 0.335
+            vertices[39]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.335
+            vertices[40]: 
+                        x: -0.295
+              y: -0.2
+              z: 0.335
+            vertices[41]: 
+                        x: 0.315
+              y: -0.22
+              z: 0.335
+            vertices[42]: 
+                        x: 0.315
+              y: 0.22
+              z: 0.335
+            vertices[43]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.335
+            vertices[44]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.335
+            vertices[45]: 
+                        x: 0.315
+              y: 0.22
+              z: 0.335
+            vertices[46]: 
+                        x: 0.295
+              y: -0.2
+              z: 0.335
+            vertices[47]: 
+                        x: 0.315
+              y: -0.22
+              z: 0.335
+            vertices[48]: 
+                        x: 0.315
+              y: 0.22
+              z: 0.335
+            vertices[49]: 
+                        x: -0.315
+              y: 0.22
+              z: 0.335
+            vertices[50]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.335
+            vertices[51]: 
+                        x: 0.315
+              y: 0.22
+              z: 0.335
+            vertices[52]: 
+                        x: -0.295
+              y: 0.2
+              z: 0.335
+            vertices[53]: 
+                        x: 0.295
+              y: 0.2
+              z: 0.335
+            vertices[54]: 
+                        x: 0.315
+              y: 0.22
+              z: 0
+            vertices[55]: 
+                        x: -0.315
+              y: 0.22
+              z: 0.335
+            vertices[56]: 
+                        x: 0.315
+              y: 0.22
+              z: 0.335
+            vertices[57]: 
+                        x: 0.315
+              y: 0.22
+              z: 0
+            vertices[58]: 
+                        x: -0.315
+              y: 0.22
+              z: 0
+            vertices[59]: 
+                        x: -0.315
+              y: 0.22
+              z: 0.335
+            vertices[60]: 
+                        x: 0.315
+              y: -0.22
+              z: 0
+            vertices[61]: 
+                        x: 0.315
+              y: 0.22
+              z: 0.335
+            vertices[62]: 
+                        x: 0.315
+              y: -0.22
+              z: 0.335
+            vertices[63]: 
+                        x: 0.315
+              y: -0.22
+              z: 0
+            vertices[64]: 
+                        x: 0.315
+              y: 0.22
+              z: 0
+            vertices[65]: 
+                        x: 0.315
+              y: 0.22
+              z: 0.335
+            vertices[66]: 
+                        x: -0.315
+              y: -0.22
+              z: 0
+            vertices[67]: 
+                        x: 0.315
+              y: -0.22
+              z: 0
+            vertices[68]: 
+                        x: 0.315
+              y: -0.22
+              z: 0.335
+            vertices[69]: 
+                        x: -0.315
+              y: -0.22
+              z: 0
+            vertices[70]: 
+                        x: 0.315
+              y: -0.22
+              z: 0.335
+            vertices[71]: 
+                        x: -0.315
+              y: -0.22
+              z: 0.335
+            vertices[72]: 
+                        x: -0.315
+              y: 0.22
+              z: 0
+            vertices[73]: 
+                        x: -0.315
+              y: -0.22
+              z: 0
+            vertices[74]: 
+                        x: -0.315
+              y: -0.22
+              z: 0.335
+            vertices[75]: 
+                        x: -0.315
+              y: 0.22
+              z: 0
+            vertices[76]: 
+                        x: -0.315
+              y: -0.22
+              z: 0.335
+            vertices[77]: 
+                        x: -0.315
+              y: 0.22
+              z: 0.335
+            vertices[78]: 
+                        x: -0.315
+              y: -0.22
+              z: 0
+            vertices[79]: 
+                        x: -0.315
+              y: 0.22
+              z: 0
+            vertices[80]: 
+                        x: 0.315
+              y: 0.22
+              z: 0
+            vertices[81]: 
+                        x: 0.315
+              y: -0.22
+              z: 0
+            vertices[82]: 
+                        x: -0.315
+              y: -0.22
+              z: 0
+            vertices[83]: 
+                        x: 0.315
+              y: 0.22
+              z: 0
+      mesh_poses[]
+        mesh_poses[0]: 
+                position: 
+            x: 0
+            y: 0.75
+            z: 0.762
+          orientation: 
+            x: 0
+            y: 0
+            z: 0
+            w: 1
+      planes[]
+      plane_poses[]
+      operation: 0
+    collision_objects[4]: 
+        header: 
+        seq: 0
+        stamp: 0.000000000
+        frame_id: /world
+      id: wall_1__link
+      type: 
+        key: 
+        db: 
+      primitives[]
+        primitives[0]: 
+                type: 1
+          dimensions[]
+            dimensions[0]: 5
+            dimensions[1]: 0.01
+            dimensions[2]: 2
+      primitive_poses[]
+        primitive_poses[0]: 
+                position: 
+            x: -0.48861
+            y: -0.5
+            z: 1
+          orientation: 
+            x: 0
+            y: 0
+            z: 0
+            w: 1
+      meshes[]
+      mesh_poses[]
+      planes[]
+      plane_poses[]
+      operation: 0
+    collision_objects[5]: 
+        header: 
+        seq: 0
+        stamp: 0.000000000
+        frame_id: /world
+      id: wall_2__link
+      type: 
+        key: 
+        db: 
+      primitives[]
+        primitives[0]: 
+                type: 1
+          dimensions[]
+            dimensions[0]: 5
+            dimensions[1]: 0.01
+            dimensions[2]: 2
+      primitive_poses[]
+        primitive_poses[0]: 
+                position: 
+            x: -0.5
+            y: -0.46315
+            z: 1
+          orientation: 
+            x: 0
+            y: 0
+            z: 0.707107
+            w: 0.707106
+      meshes[]
+      mesh_poses[]
+      planes[]
+      plane_poses[]
+      operation: 0
+  octomap: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: /world
+    origin: 
+      position: 
+        x: 0
+        y: 0
+        z: 0
+      orientation: 
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+    octomap: 
+      header: 
+        seq: 0
+        stamp: 0.000000000
+        frame_id: 
+      binary: 0
+      id: 
+      resolution: 0
+      data[]
+is_diff: 0
+
+|>>>
+0 is the random seed
+10 seconds per run
+-1 MB per run
+10 runs per planner
+273.969 seconds spent to collect the data
+0 enum types
+8 planners
+ESTkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+0.0001; 1; 28.8801; 0.165863; 4.8758e-05; 0.0001; 1; 62.4908; 10.7661; 0.940661; 0.0001; 1; 28.8801; 2.68023; 0.0403317; 0.000463679; 1; 0.981505; 
+0.0001; 1; 28.3914; 0.42265; 3.2341e-05; 0.0001; 1; 86.622; 14.8203; 0.472117; 0.0001; 1; 28.3914; 5.42006; 0.0361121; 0.000555641; 1; 0.508817; 
+0.0001; 1; 20.5846; 0.225526; 3.3143e-05; 0.0001; 1; 67.3511; 13.615; 0.49925; 0.0001; 1; 20.5846; 3.01158; 0.0439697; 0.000491605; 1; 0.543744; 
+0.0001; 1; 30.3472; 0.506563; 2.1092e-05; 0.0001; 1; 88.9948; 13.6534; 1.40747; 0.0001; 1; 30.3472; 7.04047; 0.0417044; 0.00053181; 1; 1.44973; 
+0.0001; 1; 24.1076; 0.109137; 2.7647e-05; 0.0001; 1; 55.5829; 10.9791; 0.481598; 0.0001; 1; 24.1076; 1.38388; 0.0227672; 0.000445369; 1; 0.504838; 
+0.0001; 1; 35.8942; 0.194784; 8.5633e-05; 0.0001; 1; 74.9568; 8.10543; 0.245162; 0.0001; 1; 35.8942; 2.50404; 0.0414825; 0.000530755; 1; 0.287261; 
+0.0001; 1; 28.6695; 0.282994; 5.2983e-05; 0.0001; 1; 68.3609; 10.3957; 1.01941; 0.0001; 1; 28.6695; 3.293; 0.0436621; 0.000444764; 1; 1.06357; 
+0.0001; 1; 21.7094; 0.0749083; 5.0307e-05; 0.0001; 1; 68.0963; 8.10614; 0.540112; 0.0001; 1; 21.7094; 0.690482; 0.0393704; 0.000463625; 1; 0.579996; 
+0.0001; 1; 36.0418; 0.381126; 7.1953e-05; 0.0001; 1; 72.9582; 12.2908; 1.71652; 0.0001; 1; 36.0418; 6.0992; 0.0386506; 0.000548078; 1; 1.75579; 
+0.0001; 1; 31.4812; 0.276825; 5.2871e-05; 0.0001; 1; 104.54; 13.0047; 0.900566; 0.0001; 1; 31.4812; 2.69979; 0.0401629; 0.00060516; 1; 0.941387; 
+.
+BKPIECEkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+0.0001; 1; 27.0948; 0.312568; 2.7389e-05; 0.0001; 1; 56.1308; 8.65883; 1.61753; 0.0001; 1; 27.0948; 2.12903; 0.0362139; 0.000406195; 1; 1.65418; 
+0.0001; 1; 33.6714; 0.396175; 7.9946e-05; 0.0001; 1; 278.146; 19.0329; 1.11637; 0.0001; 1; 33.6714; 3.8774; 0.044895; 0.000624007; 1; 1.16197; 
+0.0001; 1; 26.4425; 0.308032; 5.4759e-05; 0.0001; 1; 575.464; 16.9905; 1.58268; 0.0001; 1; 26.4425; 3.66475; 0.0614237; 0.00070296; 1; 1.64487; 
+0.0001; 1; 26.4015; 0.289554; 7.4386e-05; 0.0001; 1; 207.445; 14.9584; 1.183; 0.0001; 1; 26.4015; 3.47452; 0.049137; 0.000590863; 1; 1.2328; 
+0.0001; 1; 26.396; 0.3996; 7.7947e-05; 0.0001; 1; 153.92; 15.5926; 0.934966; 0.0001; 1; 26.396; 3.70083; 0.0464609; 0.000624452; 1; 0.982129; 
+0.0001; 1; 22.491; 0.279262; 5.1485e-05; 0.0001; 1; 293.02; 14.0338; 1.10064; 0.0001; 1; 22.491; 3.75219; 0.0621574; 0.000574055; 1; 1.16342; 
+0.0001; 1; 22.1944; 0.215676; 7.2157e-05; 0.0001; 1; 250.688; 18.4042; 0.558407; 0.0001; 1; 22.1944; 1.31603; 0.0445836; 0.000559116; 1; 0.603622; 
+0.0001; 1; 35.0576; 0.368642; 5.7276e-05; 0.0001; 1; 257.523; 13.8108; 1.33472; 0.0001; 1; 35.0576; 3.86488; 0.0587623; 0.000633377; 1; 1.39418; 
+9.90928e-05; 1; 32.5062; 0.656627; 4.4236e-05; 0.0001; 1; 138.096; 20.4353; 0.40954; 0.0001; 1; 32.5062; 5.57096; 0.0338989; 0.000612365; 1; 0.444096; 
+0.0001; 1; 26.7853; 0.481107; 5.2097e-05; 0.0001; 1; 351.674; 18.6299; 2.01558; 0.0001; 1; 26.7853; 5.418; 0.0442324; 0.000577886; 1; 2.06045; 
+.
+KPIECEkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+0.0001; 1; 25.4667; 0.22806; 3.264e-05; 0.0001; 1; 168.214; 17.5888; 0.44504; 0.0001; 1; 25.4667; 1.95118; 0.0466928; 0.000495908; 1; 0.492261; 
+0.0001; 1; 28.908; 0.344913; 6.8938e-05; 0.0001; 1; 99.977; 15.1593; 0.410495; 0.0001; 1; 28.908; 4.44626; 0.0377378; 0.000516013; 1; 0.448818; 
+0.0001; 1; 29.2231; 0.246583; 1.5171e-05; 0.0001; 1; 80.6768; 11.9235; 0.166333; 0.0001; 1; 29.2231; 2.57502; 0.0261856; 0.000789509; 1; 0.193323; 
+0.0001; 1; 29.2965; 0.235348; 2.4907e-05; 0.0001; 1; 51.1724; 11.026; 0.166825; 0.0001; 1; 29.2965; 2.74787; 0.0412101; 0.000454507; 1; 0.208515; 
+0.0001; 1; 24.2616; 0.387928; 4.838e-05; 0.0001; 1; 63.2919; 12.8268; 0.195974; 0.0001; 1; 24.2616; 3.7283; 0.0476077; 0.000503106; 1; 0.244133; 
+0.0001; 1; 21.6082; 0.185603; 1.7466e-05; 0.0001; 1; 44.9709; 9.44041; 0.295768; 0.0001; 1; 21.6082; 1.74187; 0.0334387; 0.000491003; 1; 0.329715; 
+0.0001; 1; 21.5139; 0.215379; 5.083e-05; 0.0001; 1; 36.0899; 9.74537; 0.586866; 0.0001; 1; 21.5139; 1.60426; 0.0343736; 0.000474627; 1; 0.621765; 
+0.0001; 1; 21.6895; 0.121913; 4.9321e-05; 0.0001; 1; 55.8174; 9.25057; 0.25315; 0.0001; 1; 21.6895; 1.55463; 0.0329378; 0.000568806; 1; 0.286706; 
+0.0001; 1; 25.6022; 0.102126; 5.6113e-05; 0.0001; 1; 127.375; 17.4343; 0.832416; 0.0001; 1; 25.6022; 1.1851; 0.034585; 0.000564604; 1; 0.867622; 
+0.0001; 1; 26.6897; 0.191718; 5.3852e-05; 0.0001; 1; 58.162; 12.2135; 0.831958; 0.0001; 1; 26.6897; 2.85279; 0.0344474; 0.000519694; 1; 0.866979; 
+.
+RRTkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+0.0001; 1; 29.2502; 0.180611; 6.0046e-05; 0.0001; 1; 60.073; 7.26435; 0.382205; 0.0001; 1; 29.2502; 4.06116; 0.0363708; 0.000434147; 1; 0.41907; 
+0.0001; 1; 40.6058; 0.145701; 5.505e-05; 0.0001; 1; 87.6005; 6.91729; 4.73509; 0.0001; 1; 40.6058; 2.6918; 0.0612851; 0.000540017; 1; 4.79697; 
+0.0001; 1; 29.0678; 0.33827; 5.5242e-05; 0.0001; 1; 41.9945; 5.86719; 0.580712; 0.0001; 1; 29.0678; 5.41895; 0.0299663; 0.00063361; 1; 0.611367; 
+0.0001; 1; 35.105; 0.40191; 5.9399e-05; 0.0001; 1; 81.8249; 9.21844; 0.616339; 0.0001; 1; 35.105; 3.75634; 0.0480438; 0.000520962; 1; 0.664963; 
+9.88518e-05; 1; 27.8053; 0.0464733; 5.3337e-05; 0.0001; 1; 32.1276; 2.41602; 0.141643; 8.78001e-05; 1; 27.8053; 0.580713; 0.0500548; 0.000502221; 1; 0.192253; 
+9.88769e-05; 1; 22.503; 0.204829; 3.4458e-05; 0.0001; 1; 67.533; 7.92068; 0.522173; 0.0001; 1; 22.503; 2.17111; 0.042443; 0.000504574; 1; 0.565155; 
+0.0001; 1; 28.7257; 0.192047; 5.56e-05; 0.0001; 1; 57.6106; 8.54835; 0.414122; 0.0001; 1; 28.7257; 2.0562; 0.0359548; 0.000541879; 1; 0.450675; 
+0.0001; 1; 24.2474; 0.142515; 5.496e-05; 0.0001; 1; 55.032; 7.05892; 0.668739; 0.0001; 1; 24.2474; 1.49215; 0.0297393; 0.000471796; 1; 0.699005; 
+0.0001; 1; 24.0663; 0.175262; 4.95e-05; 0.0001; 1; 53.8509; 9.43722; 0.567661; 0.0001; 1; 24.0663; 1.39799; 0.0384937; 0.000555674; 1; 0.60676; 
+0.0001; 1; 21.9344; 0.189087; 5.3792e-05; 0.0001; 1; 59.2116; 6.50625; 0.266412; 0.0001; 1; 21.9344; 2.10914; 0.033942; 0.000484228; 1; 0.300892; 
+.
+RRTConnectkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+0.0001; 1; 26.515; 0.249012; 5.2176e-05; 0.0001; 1; 83.4845; 8.43799; 0.896663; 0.0001; 1; 26.515; 3.32387; 0.0375354; 0.00043006; 1; 0.934681; 
+0.0001; 1; 29.1599; 0.204593; 6.0408e-05; 0.0001; 1; 63.2916; 10.3485; 0.252963; 0.0001; 1; 29.1599; 3.94032; 0.0444249; 0.000508983; 1; 0.297957; 
+0.0001; 1; 32.247; 0.283444; 5.7017e-05; 0.0001; 1; 40.5971; 7.10517; 0.0451944; 0.0001; 1; 32.247; 5.3408; 0.0234757; 0.000476558; 1; 0.0692036; 
+0.0001; 1; 31.2975; 0.21124; 4.6888e-05; 0.0001; 1; 65.7016; 5.51676; 0.509544; 0.0001; 1; 31.2975; 5.43322; 0.0426183; 0.000564471; 1; 0.552773; 
+0.0001; 1; 32.9904; 0.141372; 4.0671e-05; 0.0001; 1; 67.5372; 8.23602; 0.107326; 0.0001; 1; 32.9904; 3.0277; 0.0381565; 0.000468982; 1; 0.145992; 
+0.0001; 1; 30.2384; 0.30324; 1.5793e-05; 0.0001; 1; 90.6567; 9.26401; 0.330927; 0.0001; 1; 30.2384; 2.71887; 0.0435722; 0.000491608; 1; 0.375006; 
+0.0001; 1; 29.2043; 0.236187; 1.4594e-05; 0.0001; 1; 63.3875; 9.10435; 0.492683; 0.0001; 1; 29.2043; 4.57114; 0.0386377; 0.000487225; 1; 0.531822; 
+0.0001; 1; 37.6763; 0.28937; 5.7374e-05; 0.0001; 1; 58.1238; 5.48269; 0.481387; 0.0001; 1; 37.6763; 2.75547; 0.0431719; 0.000535029; 1; 0.525152; 
+0.0001; 1; 23.555; 0.0861529; 1.2021e-05; 0.0001; 1; 40.5798; 8.11422; 0.116258; 0.0001; 1; 23.555; 1.57793; 0.0204943; 0.000413593; 1; 0.137178; 
+0.0001; 1; 32.9575; 0.0955749; 5.4312e-05; 0.0001; 1; 68.4873; 7.33578; 0.322508; 0.0001; 1; 32.9575; 1.04961; 0.0375908; 0.000547498; 1; 0.360701; 
+.
+TRRTkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0002; 
+0.0001; 1; 20.4266; 0.132041; 2.7864e-05; 0.0001; 1; 35.7484; 4.02173; 0.0460638; 0.0001; 1; 20.4266; 1.42325; 0.0229546; 0.000878249; 1; 0.0699246; 
+0.0001; 1; 19.2473; 0.104342; 3.1751e-05; 0.0001; 1; 36.5179; 4.67043; 0.831865; 0.0001; 1; 19.2473; 0.562822; 0.0292473; 0.000496554; 1; 0.86164; 
+0.0001; 1; 21.903; 0.204154; 4.4861e-05; 0.0001; 1; 45.8373; 5.61373; 1.05113; 0.0001; 1; 21.903; 1.37479; 0.0251455; 0.000622491; 1; 1.07695; 
+0.0001; 1; 18.7727; 0.0902985; 1.2688e-05; 0.0001; 1; 39.5611; 6.64965; 0.0943863; 0.0001; 1; 18.7727; 0.47531; 0.0407992; 0.000689479; 1; 0.135888; 
+9.88641e-05; 1; 22.5492; 0.237942; 4.569e-05; 0.0001; 1; 38.863; 3.34266; 0.0501425; 0.0001; 1; 22.5492; 2.03912; 0.0283591; 0.000544033; 1; 0.0790914; 
+0.0001; 1; 23.537; 0.136047; 1.3454e-05; 0.0001; 1; 47.8762; 5.58277; 0.667009; 0.0001; 1; 23.537; 0.955628; 0.0307246; 0.000568226; 1; 0.698315; 
+0.0001; 1; 28.6326; 0.266057; 2.8779e-05; 0.0001; 1; 39.2377; 3.93277; 0.0498447; 0.0001; 1; 28.6326; 5.15069; 0.0422511; 0.000638648; 1; 0.0927632; 
+0.0001; 1; 25.0173; 0.136427; 1.2985e-05; 0.0001; 1; 42.5258; 3.96171; 0.0585819; 0.0001; 1; 25.0173; 2.3821; 0.0367731; 0.000495088; 1; 0.095863; 
+0.0001; 1; 20.0654; 0.135432; 2.8537e-05; 0.0001; 1; 34.4536; 4.2032; 0.0202333; 0.0001; 1; 20.0654; 1.02492; 0.0292665; 0.000473553; 1; 0.0500019; 
+.
+LBKPIECEkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0004; 
+0.0001; 1; 28.5672; 0.184086; 3.4545e-05; 0.0001; 1; 1284.72; 19.4741; 7.48713; 0.0001; 1; 28.5672; 2.53227; 0.0749006; 0.00111866; 1; 7.56318; 
+0.0001; 1; 27.0676; 0.192164; 3.5182e-05; 0.0001; 1; 399.565; 17.5148; 7.9402; 0.0001; 1; 27.0676; 1.82265; 0.0523665; 0.000958777; 1; 7.99356; 
+0.0001; 1; 20.1796; 0.0907431; 4.7854e-05; 0.0001; 1; 692.691; 16.6318; 6.65631; 0.0001; 1; 20.1796; 0.507663; 0.056326; 0.00102482; 1; 6.71371; 
+0.0001; 1; 19.6419; 0.241446; 2.8837e-05; 9.91039e-05; 1; 698.15; 17.1943; 9.15536; 0.0001; 1; 19.6419; 1.74809; 0.0453046; 0.0010735; 1; 9.20177; 
+0.0001; 1; 26.5572; 0.323629; 2.7619e-05; 0.0001; 1; 936.311; 17.2624; 4.56053; 0.0001; 1; 26.5572; 3.15173; 0.0722911; 0.00116609; 1; 4.63401; 
+0.0001; 1; 21.5892; 0.243802; 2.8542e-05; 0.0001; 1; 375.596; 17.4654; 3.40858; 0.0001; 1; 21.5892; 2.63498; 0.0522119; 0.00088821; 1; 3.4617; 
+0.0001; 1; 23.1332; 0.496546; 3.0221e-05; 0.0001; 1; 1274.42; 16.4414; 9.2365; 0.0001; 1; 23.1332; 4.29306; 0.0636632; 0.00105199; 1; 9.30124; 
+0.0001; 1; 19.7563; 0.0866625; 2.8764e-05; 0.0001; 1; 972.89; 16.0395; 8.65705; 0.0001; 1; 19.7563; 1.0772; 0.0620276; 0.00113157; 1; 8.72023; 
+0.0001; 1; 20.8666; 0.119469; 3.1792e-05; 9.91265e-05; 1; 195.152; 15.9564; 1.08853; 0.0001; 1; 20.8666; 1.74586; 0.0509043; 0.000971452; 1; 1.14043; 
+.
+SBLkConfigDefault
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+time REAL
+10 runs
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0003; 
+0.0001; 1; 28.0924; 0.688689; 3.7951e-05; 0.0001; 1; 114.445; 13.2382; 9.46329; 0.0001; 1; 28.0924; 5.40448; 0.0322727; 0.00118224; 1; 9.49678; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0017; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0004; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0015; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0003; 
+0.0001; 1; 35.0031; 0.347649; 5.3834e-05; 0.0001; 1; 89.9117; 12.9017; 9.07726; 0.0001; 1; 35.0031; 3.59273; 0.036338; 0.00100558; 1; 9.11466; 
+0.0001; 1; 32.4068; 0.0946122; 1.9895e-05; 0.0001; 1; 82.084; 8.98693; 8.55461; 0.0001; 1; 32.4068; 1.46334; 0.0421833; 0.00121517; 1; 8.59802; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0002; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 10.0002; 
+.
