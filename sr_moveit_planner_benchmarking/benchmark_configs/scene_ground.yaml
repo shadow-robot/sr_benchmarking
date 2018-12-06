@@ -13,11 +13,14 @@ benchmark_config:
     planners:
         - plugin: ompl_interface/OMPLPlanner
           planners:
+            - SBLkConfigDefault
             - ESTkConfigDefault
+            - LBKPIECEkConfigDefault
             - BKPIECEkConfigDefault
             - KPIECEkConfigDefault
             - RRTkConfigDefault
             - RRTConnectkConfigDefault
+            - RRTstarkConfigDefault
             - TRRTkConfigDefault
-            - LBKPIECEkConfigDefault
-            - SBLkConfigDefault
+            - PRMkConfigDefault
+            - PRMstarkConfigDefault

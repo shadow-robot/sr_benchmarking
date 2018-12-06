@@ -1,7 +1,7 @@
 <launch>
     <arg name="node_name" default=""/>
-    <arg name="queries_file" default="$(find sr_moveit_planner_benchmarking)/queries/scene_ground_with_boxes.queries"/>
-    <arg name="scene_file" default="$(find sr_moveit_planner_benchmarking)/scenes/scene_ground_with_boxes.scene"/>
+    <arg name="queries_file" />
+    <arg name="scene_file" />
     <arg name="load_robot" default="true"/>
 
     <!-- Load robot and warehouse-->

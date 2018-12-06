@@ -15,12 +15,12 @@
   </include>
 
   <!-- Load all planning pipelines that will be benchmarked -->
-  <include ns="moveit_run_benchmark" file="$(find sr_box_ur10_moveit_config)/launch/planning_pipeline.launch.xml">
+  <include ns="sr_moveit_run_benchmark" file="$(find sr_box_ur10_moveit_config)/launch/planning_pipeline.launch.xml">
     <arg name="pipeline" value="ompl" />
   </include>
 
   <!-- Launch benchmark node -->
-  <node name="moveit_run_benchmark" pkg="moveit_ros_benchmarks" type="moveit_run_benchmark" output="screen" required="true">
+  <node name="sr_moveit_run_benchmark" pkg="sr_moveit_planner_benchmarking" type="sr_moveit_run_benchmark" output="screen" required="true">
     <rosparam command="load" file="$(arg bench_opts)"/>
   </node>
 </launch>
