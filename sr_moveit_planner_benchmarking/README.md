@@ -23,5 +23,3 @@ rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py -a resu
 rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py -a results/log_files/ --sort
 ```
 
-There are several experiments available:
-* 
