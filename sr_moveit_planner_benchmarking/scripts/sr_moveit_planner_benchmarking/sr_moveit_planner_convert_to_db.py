@@ -275,15 +275,10 @@ if __name__ == "__main__":
             for f in files:
                 if f.endswith(".log"):
                     if options.sort:
-                        print "Sorting"
                         # Separate log files per scene
                         scene_name = f.split("_Pose")[0]
-                        print "scene_name", scene_name
+                        print "Sorting files for scene_name", scene_name
                         readBenchmarkLog(scene_name + "_" + options.dbname, [options.log_folder + f])
-                        # print
-                        # files_per_scene = [i for i in os.listdir(options.log_folder) if os.path.isfile(os.path.join(options.log_folder,i)) and 'scene_ground_with_boxes' in i]
-                        # print "files_per_scene", files_per_scene
-
                     else:
                         # Add all log files to a single db file
                         readBenchmarkLog(options.dbname, [options.log_folder + f])

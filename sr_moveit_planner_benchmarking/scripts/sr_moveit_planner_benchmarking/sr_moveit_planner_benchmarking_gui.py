@@ -50,6 +50,9 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.load_db_button.clicked.connect(self.load_database)
         self.planners_combo_box.currentIndexChanged.connect(self.change_plots_per_query)
 
+        # Load databases from this repo by default
+        self.get_available_databases_from_default_path()
+
     def init_widget_children(self):
         self.clearance_layout = self._widget.findChild(QVBoxLayout, "clearance_layout")
         self.correct_layout = self._widget.findChild(QVBoxLayout, "correct_layout")
@@ -108,16 +111,21 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         setPathAction.triggered.connect(self.get_available_databases_from_path)
         fileMenu.addAction(setPathAction)
 
+    def get_available_databases_from_default_path(self):
+        self.dbs_combo_box.clear()
+        chosen_path = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')
+        self.find_dbs_in_directory(chosen_path)
+        self.dbs_combo_box.clear()
+        for db in self.available_databases:
+            self.dbs_combo_box.addItem(db['rel_path'])
+
     def get_available_databases_from_path(self):
+        self.dbs_combo_box.clear()
         chosen_path = QFileDialog.getExistingDirectory(self._widget, 'Open file', "")
-        chosen_package_name = os.path.basename(os.path.normpath(chosen_path))
-        if chosen_package_name in rospkg.RosPack().list():
-            self.find_dbs_in_directory(chosen_path)
-            self.dbs_combo_box.clear()
-            for db in self.available_databases:
-                self.dbs_combo_box.addItem(db['rel_path'])
-        else:
-            QMessageBox.warning(self._widget, 'Warning', "Chosen directory must be a ros package!")
+        self.find_dbs_in_directory(chosen_path)
+        self.dbs_combo_box.clear()
+        for db in self.available_databases:
+            self.dbs_combo_box.addItem(db['rel_path'])
 
     def find_dbs_in_directory(self, directory):
         for root, dirs, files in os.walk(directory):
@@ -150,6 +158,8 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         labels = []
         measurements = []
         nanCounts = []
+        total_per_planner = []
+
         if typename == 'ENUM':
             cur.execute('SELECT description FROM enums where name IS "%s"' % attribute)
             descriptions = [t[0] for t in cur.fetchall()]
@@ -158,16 +168,19 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL'
                         % (attribute, planner[0], attribute))
             measurement = [t[0] for t in cur.fetchall() if t[0] != None]
-            if len(measurement) > 0:
-                cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL'
-                            % (planner[0], attribute))
-                nanCounts.append(cur.fetchone()[0])
-                labels.append(planner[1])
-                if typename == 'ENUM':
-                    scale = 100. / len(measurement)
-                    measurements.append([measurement.count(i) * scale for i in range(numValues)])
-                else:
-                    measurements.append(measurement)
+            cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s'
+                        % (planner[0]))
+            total_per_planner.append(cur.fetchone()[0])
+
+            cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL'
+                        % (planner[0], attribute))
+            nanCounts.append(cur.fetchone()[0])
+            labels.append(planner[1])
+            if typename == 'ENUM':
+                scale = 100. / len(measurement)
+                measurements.append([measurement.count(i) * scale for i in range(numValues)])
+            else:
+                measurements.append(measurement)
 
         if len(measurements) == 0:
             print('Skipping "%s": no available measurements' % attribute)
@@ -221,7 +234,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop=props)
         elif typename == 'BOOLEAN':
             width = .5
-            measurementsPercentage = [sum(m) * 100. / len(m) for m in measurements]
+            measurementsPercentage = [sum(m) * 100. / total_per_planner[counter] for counter, m in enumerate(measurements)]
             ind = range(len(measurements))
             ax.bar(ind, measurementsPercentage, width)
             plt.setp(ax, xticks=[x + width / 2. for x in ind])
@@ -240,11 +253,11 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         fig.subplots_adjust(bottom=0.3, top=0.95, left=0.1, right=0.98)
 
         ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
-        if max(nanCounts) > 0:
-            maxy = max([max(y) for y in measurements])
-            for i in range(len(labels)):
-                x = i + width / 2 if typename == 'BOOLEAN' else i + 1
-                ax.text(x, .95 * maxy, str(nanCounts[i]), horizontalalignment='center', size='small')
+        # if max(nanCounts) > 0:
+        #     maxy = max([max(y) for y in measurements])
+        #     for i in range(len(labels)):
+        #         x = i + width / 2 if typename == 'BOOLEAN' else i + 1
+        #         ax.text(x, .95 * maxy, str(nanCounts[i]), horizontalalignment='center', size='small')
 
         self.clearLayout(layout)
         layout.addWidget(figcanvas)
@@ -424,7 +437,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
     def load_scene_file(self, scene_name):
         try:
-            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/scenes/" + scene_name + ".scene"
+            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/" + scene_name + ".scene"
             p = subprocess.Popen(['rosrun moveit_ros_planning moveit_publish_scene_from_text {}'.format(scenes_path)],
                                  shell=True)
         except rospy.ROSException as e:
