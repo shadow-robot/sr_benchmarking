@@ -1,5 +1,5 @@
 <launch>
-  <arg name="output_directory" default="$(find sr_moveit_planner_benchmarking)/data"/>
+  <arg name="output_directory" />
   <arg name="group_prefix" default="ra"/>
   <arg name="cartesian" default="false"/>
 
