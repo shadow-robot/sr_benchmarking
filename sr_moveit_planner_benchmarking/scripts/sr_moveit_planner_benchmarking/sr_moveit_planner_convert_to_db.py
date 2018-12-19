@@ -59,7 +59,7 @@ def readOptionalLogValue(filevar, desired_token_index, expected_tokens={}):
 
 def readRequiredLogValue(name, filevar, desired_token_index, expected_tokens={}):
     result = readLogValue(filevar, desired_token_index, expected_tokens)
-    if result == None:
+    if result is None:
         raise Exception("Unable to read " + name)
     return result
 
@@ -81,7 +81,7 @@ def readOptionalMultilineValue(filevar):
     while not line.startswith('|>>>'):
         value = value + line
         line = filevar.readline()
-        if line == None:
+        if line is None:
             raise Exception("Expected token |>>> missing")
     return value
 
@@ -93,7 +93,7 @@ def readRequiredMultilineValue(filevar):
     while not line.startswith('|>>>'):
         value = value + line
         line = filevar.readline()
-        if line == None:
+        if line is None:
             raise Exception("Expected token |>>> missing")
     return value
 
@@ -130,11 +130,11 @@ def readBenchmarkLog(dbname, filenames):
         logfile = open(filename, 'r')
         start_pos = logfile.tell()
         libname = readOptionalLogValue(logfile, 0, {1: "version"})
-        if libname == None:
+        if libname is None:
             libname = "OMPL"
         logfile.seek(start_pos)
         version = readOptionalLogValue(logfile, -1, {1: "version"})
-        if version == None:
+        if version is None:
             # set the version number to make Planner Arena happy
             version = "0.0.0"
         version = ' '.join([libname, version])
@@ -148,17 +148,17 @@ def readBenchmarkLog(dbname, filenames):
         memorylimit = float(readRequiredLogValue("memory limit", logfile, 0, {-3: "MB", -2: "per", -1: "run"}))
         nrrunsOrNone = readOptionalLogValue(logfile, 0, {-3: "runs", -2: "per", -1: "planner"})
         nrruns = -1
-        if nrrunsOrNone != None:
+        if nrrunsOrNone is not None:
             nrruns = int(nrrunsOrNone)
         totaltime = float(readRequiredLogValue("total time", logfile, 0, {-3: "collect", -2: "the", -1: "data"}))
         numEnums = 0
         numEnumsOrNone = readOptionalLogValue(logfile, 0, {-2: "enum"})
-        if numEnumsOrNone != None:
+        if numEnumsOrNone is not None:
             numEnums = int(numEnumsOrNone)
         for i in range(numEnums):
             enum = logfile.readline()[:-1].split('|')
             c.execute('SELECT * FROM enums WHERE name IS "%s"' % enum[0])
-            if c.fetchone() == None:
+            if c.fetchone() is None:
                 for j in range(len(enum) - 1):
                     c.execute('INSERT INTO enums VALUES (?,?,?)',
                               (enum[0], j, enum[j + 1]))
@@ -184,7 +184,7 @@ def readBenchmarkLog(dbname, filenames):
             c.execute('SELECT id FROM plannerConfigs WHERE (name=? AND settings=?)',
                       (plannerName, settings,))
             p = c.fetchone()
-            if p == None:
+            if p is None:
                 c.execute('INSERT INTO plannerConfigs VALUES (?,?,?)',
                           (None, plannerName, settings,))
                 plannerId = c.lastrowid
@@ -211,7 +211,7 @@ def readBenchmarkLog(dbname, filenames):
             numRuns = int(logfile.readline().split()[0])
             runIds = []
             for j in range(numRuns):
-                values = tuple([experimentId, plannerId] + \
+                values = tuple([experimentId, plannerId] +
                                [None if len(x) == 0 or x == 'nan' or x == 'inf' else x
                                 for x in logfile.readline().split('; ')[:-1]])
                 c.execute(insertFmtStr, values)
@@ -246,7 +246,7 @@ def readBenchmarkLog(dbname, filenames):
                 for j in range(numRuns):
                     dataSeries = logfile.readline().split(';')[:-1]
                     for dataSample in dataSeries:
-                        values = tuple([runIds[j]] + \
+                        values = tuple([runIds[j]] +
                                        [None if len(x) == 0 or x == 'nan' or x == 'inf' else x
                                         for x in dataSample.split(',')[:-1]])
                         try:
