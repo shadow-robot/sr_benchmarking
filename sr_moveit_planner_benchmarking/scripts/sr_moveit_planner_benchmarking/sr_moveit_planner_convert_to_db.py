@@ -41,7 +41,8 @@ import os
 import sqlite3
 from optparse import OptionParser
 
-def readLogValue(filevar, desired_token_index, expected_tokens) :
+
+def readLogValue(filevar, desired_token_index, expected_tokens):
     start_pos = filevar.tell()
     tokens = filevar.readline().split()
     for token_index in expected_tokens:
@@ -51,19 +52,23 @@ def readLogValue(filevar, desired_token_index, expected_tokens) :
             return None
     return tokens[desired_token_index]
 
-def readOptionalLogValue(filevar, desired_token_index, expected_tokens = {}) :
+
+def readOptionalLogValue(filevar, desired_token_index, expected_tokens={}):
     return readLogValue(filevar, desired_token_index, expected_tokens)
 
-def readRequiredLogValue(name, filevar, desired_token_index, expected_tokens = {}) :
+
+def readRequiredLogValue(name, filevar, desired_token_index, expected_tokens={}):
     result = readLogValue(filevar, desired_token_index, expected_tokens)
     if result == None:
         raise Exception("Unable to read " + name)
     return result
 
+
 def ensurePrefix(line, prefix):
     if not line.startswith(prefix):
         raise Exception("Expected prefix " + prefix + " was not found")
     return line
+
 
 def readOptionalMultilineValue(filevar):
     start_pos = filevar.tell()
@@ -79,6 +84,7 @@ def readOptionalMultilineValue(filevar):
         if line == None:
             raise Exception("Expected token |>>> missing")
     return value
+
 
 def readRequiredMultilineValue(filevar):
     ensurePrefix(filevar.readline(), "<<<|")
@@ -121,51 +127,51 @@ def readBenchmarkLog(dbname, filenames):
 
     for filename in filenames:
         print('Processing ' + filename)
-        logfile = open(filename,'r')
+        logfile = open(filename, 'r')
         start_pos = logfile.tell()
-        libname = readOptionalLogValue(logfile, 0, {1 : "version"})
+        libname = readOptionalLogValue(logfile, 0, {1: "version"})
         if libname == None:
             libname = "OMPL"
         logfile.seek(start_pos)
-        version = readOptionalLogValue(logfile, -1, {1 : "version"})
+        version = readOptionalLogValue(logfile, -1, {1: "version"})
         if version == None:
             # set the version number to make Planner Arena happy
             version = "0.0.0"
         version = ' '.join([libname, version])
-        expname = readRequiredLogValue("experiment name", logfile, -1, {0 : "Experiment"})
-        hostname = readRequiredLogValue("hostname", logfile, -1, {0 : "Running"})
+        expname = readRequiredLogValue("experiment name", logfile, -1, {0: "Experiment"})
+        hostname = readRequiredLogValue("hostname", logfile, -1, {0: "Running"})
         date = ' '.join(ensurePrefix(logfile.readline(), "Starting").split()[2:])
         expsetup = readRequiredMultilineValue(logfile)
         cpuinfo = readOptionalMultilineValue(logfile)
-        rseed = int(readRequiredLogValue("random seed", logfile, 0, {-2 : "random", -1 : "seed"}))
-        timelimit = float(readRequiredLogValue("time limit", logfile, 0, {-3 : "seconds", -2 : "per", -1 : "run"}))
-        memorylimit = float(readRequiredLogValue("memory limit", logfile, 0, {-3 : "MB", -2 : "per", -1 : "run"}))
-        nrrunsOrNone = readOptionalLogValue(logfile, 0, {-3 : "runs", -2 : "per", -1 : "planner"})
+        rseed = int(readRequiredLogValue("random seed", logfile, 0, {-2: "random", -1: "seed"}))
+        timelimit = float(readRequiredLogValue("time limit", logfile, 0, {-3: "seconds", -2: "per", -1: "run"}))
+        memorylimit = float(readRequiredLogValue("memory limit", logfile, 0, {-3: "MB", -2: "per", -1: "run"}))
+        nrrunsOrNone = readOptionalLogValue(logfile, 0, {-3: "runs", -2: "per", -1: "planner"})
         nrruns = -1
         if nrrunsOrNone != None:
             nrruns = int(nrrunsOrNone)
-        totaltime = float(readRequiredLogValue("total time", logfile, 0, {-3 : "collect", -2 : "the", -1 : "data"}))
+        totaltime = float(readRequiredLogValue("total time", logfile, 0, {-3: "collect", -2: "the", -1: "data"}))
         numEnums = 0
-        numEnumsOrNone = readOptionalLogValue(logfile, 0, {-2 : "enum"})
+        numEnumsOrNone = readOptionalLogValue(logfile, 0, {-2: "enum"})
         if numEnumsOrNone != None:
             numEnums = int(numEnumsOrNone)
         for i in range(numEnums):
             enum = logfile.readline()[:-1].split('|')
             c.execute('SELECT * FROM enums WHERE name IS "%s"' % enum[0])
             if c.fetchone() == None:
-                for j in range(len(enum)-1):
+                for j in range(len(enum) - 1):
                     c.execute('INSERT INTO enums VALUES (?,?,?)',
-                        (enum[0],j,enum[j+1]))
+                              (enum[0], j, enum[j + 1]))
         c.execute('INSERT INTO experiments VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
-              (None, expname, totaltime, timelimit, memorylimit, nrruns,
-              version, hostname, cpuinfo, date, rseed, expsetup) )
+                  (None, expname, totaltime, timelimit, memorylimit, nrruns,
+                   version, hostname, cpuinfo, date, rseed, expsetup))
         experimentId = c.lastrowid
-        numPlanners = int(readRequiredLogValue("planner count", logfile, 0, {-1 : "planners"}))
+        numPlanners = int(readRequiredLogValue("planner count", logfile, 0, {-1: "planners"}))
         for i in range(numPlanners):
             plannerName = logfile.readline()[:-1]
             print('Parsing data for ' + plannerName)
 
-            if("cartesian" in filename):
+            if ("cartesian" in filename):
                 plannerName += "-c"
 
             # read common data for planner
@@ -176,11 +182,11 @@ def readBenchmarkLog(dbname, filenames):
 
             # find planner id
             c.execute('SELECT id FROM plannerConfigs WHERE (name=? AND settings=?)',
-                (plannerName, settings,))
+                      (plannerName, settings,))
             p = c.fetchone()
-            if p==None:
+            if p == None:
                 c.execute('INSERT INTO plannerConfigs VALUES (?,?,?)',
-                    (None, plannerName, settings,))
+                          (None, plannerName, settings,))
                 plannerId = c.lastrowid
             else:
                 plannerId = p[0]
@@ -201,13 +207,13 @@ def readBenchmarkLog(dbname, filenames):
                 propertyNames.append(propertyName)
             # read measurements
             insertFmtStr = 'INSERT INTO runs (' + ','.join(propertyNames) + \
-                ') VALUES (' + ','.join('?'*len(propertyNames)) + ')'
+                           ') VALUES (' + ','.join('?' * len(propertyNames)) + ')'
             numRuns = int(logfile.readline().split()[0])
             runIds = []
             for j in range(numRuns):
                 values = tuple([experimentId, plannerId] + \
-                    [None if len(x) == 0 or x == 'nan' or x == 'inf' else x
-                    for x in logfile.readline().split('; ')[:-1]])
+                               [None if len(x) == 0 or x == 'nan' or x == 'inf' else x
+                                for x in logfile.readline().split('; ')[:-1]])
                 c.execute(insertFmtStr, values)
                 # extract primary key of each run row so we can reference them
                 # in the planner progress data table if needed
@@ -230,23 +236,24 @@ def readBenchmarkLog(dbname, filenames):
                     progressPropertyName = "_".join(field[:-1])
                     if progressPropertyName not in columnNames:
                         c.execute('ALTER TABLE progress ADD %s %s' %
-                            (progressPropertyName, progressPropertyType))
+                                  (progressPropertyName, progressPropertyType))
                     progressPropertyNames.append(progressPropertyName)
                 # read progress measurements
                 insertFmtStr = 'INSERT INTO progress (' + \
-                    ','.join(progressPropertyNames) + ') VALUES (' + \
-                    ','.join('?'*len(progressPropertyNames)) + ')'
+                               ','.join(progressPropertyNames) + ') VALUES (' + \
+                               ','.join('?' * len(progressPropertyNames)) + ')'
                 numRuns = int(logfile.readline().split()[0])
                 for j in range(numRuns):
                     dataSeries = logfile.readline().split(';')[:-1]
                     for dataSample in dataSeries:
                         values = tuple([runIds[j]] + \
-                            [None if len(x) == 0 or x == 'nan' or x == 'inf' else x
-                            for x in dataSample.split(',')[:-1]])
+                                       [None if len(x) == 0 or x == 'nan' or x == 'inf' else x
+                                        for x in dataSample.split(',')[:-1]])
                         try:
                             c.execute(insertFmtStr, values)
                         except sqlite3.IntegrityError:
-                            print('Ignoring duplicate progress data. Consider increasing ompl::tools::Benchmark::Request::timeBetweenUpdates.')
+                            print('Ignoring duplicate progress data. '
+                                  'Consider increasing ompl::tools::Benchmark::Request::timeBetweenUpdates.')
                             pass
 
                 logfile.readline()
@@ -259,9 +266,9 @@ if __name__ == "__main__":
     usage = """%prog [options] [<benchmark.log> ...]"""
     parser = OptionParser("A script to parse benchmarking results.\n" + usage)
     parser.add_option("-d", "--database", dest="dbname", default="benchmark.db",
-        help="Filename of benchmark database [default: %default]")
+                      help="Filename of benchmark database [default: %default]")
     parser.add_option("-a", "--all", dest="log_folder", default=".",
-        help="Option to save all log files in a folder to a sqlite3 database")
+                      help="Option to save all log files in a folder to a sqlite3 database")
     parser.add_option("-s", "--sort", action="store_true", dest="sort", default=False,
                       help="Sort databases per scene")
 
@@ -271,7 +278,7 @@ if __name__ == "__main__":
         if (os.path.isfile(options.dbname)):
             os.remove(options.dbname)
         if (os.path.isdir(options.log_folder)):
-            files = [f for f in os.listdir(options.log_folder) if os.path.isfile(options.log_folder+f)]
+            files = [f for f in os.listdir(options.log_folder) if os.path.isfile(options.log_folder + f)]
             for f in files:
                 if f.endswith(".log"):
                     if options.sort:

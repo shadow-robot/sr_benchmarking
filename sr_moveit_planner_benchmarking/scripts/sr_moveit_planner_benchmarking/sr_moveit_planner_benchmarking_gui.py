@@ -234,7 +234,8 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop=props)
         elif typename == 'BOOLEAN':
             width = .5
-            measurementsPercentage = [sum(m) * 100. / total_per_planner[counter] for counter, m in enumerate(measurements)]
+            measurementsPercentage = [sum(m) * 100. / total_per_planner[counter] for counter, m in
+                                      enumerate(measurements)]
             ind = range(len(measurements))
             ax.bar(ind, measurementsPercentage, width)
             plt.setp(ax, xticks=[x + width / 2. for x in ind])
