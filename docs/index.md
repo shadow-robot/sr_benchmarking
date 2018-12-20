@@ -4,7 +4,7 @@ This is the starting point for the Shadow Planner Benchmarking Documentation
 <img src="https://www.shadowrobot.com/wp-content/uploads/HandswRubiks1.png" alt="Drawing" style="width: 100%;"/>
 
 ```eval_rst
-.. image:: ../img/scene_table_with_tote_rrtconnect.gif
+.. image:: img/scene_table_with_tote_rrtconnect.gif
 ```
 
 ## Contents
