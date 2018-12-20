@@ -1,7 +1,7 @@
 # Shadow planner benchmarking documentation
 This is the starting point for the Shadow Planner Benchmarking Documentation
 
-<img src="https://www.shadowrobot.com/wp-content/uploads/copy-Shadow-Logo.png" alt="Drawing" style="width: 100%;"/>
+<img src="https://www.shadowrobot.com/wp-content/uploads/copy-Shadow-Logo.png" />
 
 ```eval_rst
 .. image:: img/scene_table_with_tote_rrtconnect.gif
