@@ -28,7 +28,7 @@ source_parsers = {
 
 # -- Project information -----------------------------------------------------
 
-project = u'Planning Benchmarking'
+project = u'Planners Benchmarking'
 copyright = u'2018, Shadow Robot Company'
 author = u'Shadow Robot Company'
 
@@ -121,7 +121,7 @@ html_favicon = 'img/favicon.ico'
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PlanningBenchmarkingdoc'
+htmlhelp_basename = 'PlannersBenchmarkingdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -148,7 +148,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PlanningBenchmarking.tex', u'Planning Benchmarking Documentation',
+    (master_doc, 'PlannersBenchmarking.tex', u'Planners Benchmarking Documentation',
      u'Shadow Robot Company', 'manual'),
 ]
 
@@ -158,7 +158,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'planningbenchmarking', u'Planning Benchmarking Documentation',
+    (master_doc, 'plannersbenchmarking', u'Planners Benchmarking Documentation',
      [author], 1)
 ]
 
@@ -169,8 +169,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'PlanningBenchmarking', u'Planning Benchmarking Documentation',
-     author, 'PlanningBenchmarking', 'One line description of project.',
+    (master_doc, 'PlannersBenchmarking', u'Planners Benchmarking Documentation',
+     author, 'PlannersBenchmarking', 'One line description of project.',
      'Miscellaneous'),
 ]
 
