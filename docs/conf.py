@@ -32,7 +32,7 @@ project = u'Planners Benchmarking'
 copyright = u'2018, Shadow Robot Company'
 author = u'Shadow Robot Company'
 
-github_doc_root = 'https://github.com/shadow-robot/sr_benchmarking/tree/master/docs/index.md'
+github_doc_root = 'https://github.com/shadow-robot/sr_benchmarking/tree/kinetic-devel/docs/index.md'
 
 # The short X.Y version
 version = u''
