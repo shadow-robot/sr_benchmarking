@@ -23,7 +23,7 @@ We have improve the visualization of the results with a graphical user interface
 * Displays the results per each query selecting a specific planner which will be useful to analyze the output of the different quality metrics
 
 ```eval_rst
-.. image:: img/benchmark_visualizer.png
+.. image:: ../img/benchmark_visualizer.png
 ```
 
 To run the benchmark visulizer, execute the following command:
