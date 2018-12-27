@@ -293,24 +293,24 @@ We use several metrics to perform the benchmarks of the different planneres.
 
 There are the metrics defined by default in MoveIt!:
 
-* Total time (s):
-  Time taken by the whole process. It is calculated with the following formula:
-  T = plan_time  + interpolation_time + simplify_time + process_time
-  The lower the value, the better performance of the planner.
-* Solved (%):
-  Percentage of queries that the planner was able to find a solution for.
+* Total time (s): <br>
+  Time taken by the whole process. It is calculated with the following formula: <br>
+  T = plan_time  + interpolation_time + simplify_time + process_time <br>
+  The lower the value, the better performance of the planner. 
+* Solved (%):<br>
+  Percentage of queries that the planner was able to find a solution for. <br>
   The higher the value, the better performance of the planner.  
-* Lenght (rad):
+* Lenght (rad):<br>
   Calculated by a sum of angles traveled by each of the joints. Formula:
-  <p>L = sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<span style=" vertical-align:sub;">i0</span>)}, where: </p>
+  <div>L = sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<span style=" vertical-align:sub;">i0</span>)}, where: </div>
   n - number of robot's joints, <br>
   x - joint's goal position, <br>
   x0 - joint's initial position. <br>
   The lower the value, the better the plan.
-* Clearance (m):
+* Clearance (m):<br>
   Calculated by average distance to nearest invalid state (obstacle) throughout the planned path. Formula: <br>
-  C = (1/n) * sum i=0 n-1 {cl(si)}, where:
-  n - number of states on path,
-  si - ith state,
-  cl() - distance to the first invalid state.
+  C = (1/n) * sum i=0 n-1 {cl(si)}, where:<br>
+  n - number of states on path,<br>
+  si - ith state,<br>
+  cl() - distance to the first invalid state.<br>
   The higher the value, the better the plan.
