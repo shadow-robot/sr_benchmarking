@@ -292,7 +292,6 @@ Here are a few examples of how to use them:
 We use several metrics to perform the benchmarks of the different planneres.
 
 There are the metrics defined by default in MoveIt!:
-
 * **Total time (s):**<br>
   Time taken by the whole process. It is calculated with the following formula: <br>
   T = plan_time  + interpolation_time + simplify_time + process_time <br>
@@ -302,15 +301,16 @@ There are the metrics defined by default in MoveIt!:
   The higher the value, the better performance of the planner.  
 * **Lenght (rad):**<br>
   Calculated by a sum of angles traveled by each of the joints. Formula: <br>
-  L = sum<sub>i=0</sub><super>n-1</super>{abs(x<sub>i</sub>- x<sub>i0</sub>)}, where:
+  L = sum<sub>i=0</sub><super>n-1</super>{abs(x<sub>i</sub>- x<sub>i0</sub>)}, where: <br>
   n - number of robot's joints, <br>
   x - joint's goal position, <br>
   x<sub>0</sub> - joint's initial position. <br>
   The lower the value, the better the plan.
 * **Clearance (m):**<br>
   Calculated by average distance to nearest invalid state (obstacle) throughout the planned path. Formula: <br>
-  <div>C = (1/n)<span style=" vertical-align:sub;"> * </span>sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1</span>{cl(s<span style=" vertical-align:sub;">i</span>)}, where:</div>
+  C = (1/n)<sub> * </sub>sum<sub>i=0</sub><super>n-1</super>{cl(s<sub>i</sub>)}, where: <br>
+  C = (1/n) * sum<sub>i=0</sub><super>n-1</super>{cl(s<sub>i</sub>)}, where: <br>
   n - number of states on path,<br>
-  si - ith state,<br>
+  s<sub>i</sub> - ith state,<br>
   cl() - distance to the first invalid state.<br>
   The higher the value, the better the plan.
