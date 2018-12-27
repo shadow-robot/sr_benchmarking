@@ -12,8 +12,6 @@ Hard Drive: Fast HDD or SSD (Laptop HDD are very slow)
 Graphics Card: Nvidia GPU (optional)
 OS: Ubuntu 18.04, 16.04 Kinetic (Active development)
 
-The most important one is to have a fast HDD or an SSD.
-
 ## Create docker container
 
 Pull docker image:
