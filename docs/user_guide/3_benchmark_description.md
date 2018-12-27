@@ -60,11 +60,10 @@ Each benchmark has a configuration file in yaml format, containing the following
 * The directory to write the output to
 * The stored start states in the warehouse to try
 * The motion plan queries in the warehouse to try
-* The path, goal and trajectory constraints to benchmark
 * The bounds of the workspace the robot plans in.
 * A list of planners to benchmark the queries in.
 
-An example can be this:
+This is an example of the format of a benchmark configurarion yaml file:
 ```
 benchmark_config:
     warehouse:
@@ -98,7 +97,7 @@ The configuration for our benchmarks can be found [here](https://github.com/shad
 
 ## Tools to work with the queries and scenes files 
 
-To load the .scene and .queries files into the warehouse you can use the following methods:
+To load the .scene and .queries files into the warehouse, you can use the following methods:
 
 ### Our high level methods
 
@@ -127,13 +126,13 @@ roslaunch sr_moveit_planner_benchmarking load_queries_to_db.launch queries_file:
 roslaunch sr_moveit_planner_benchmarking export_scenes_to_text.launch output_directory:=[path_to_folder_to_save_file]
 ``` 
 
-* To export the queries that is in the warehouse to a .scene text file:
+* To export the queries that is in the warehouse to a .queries text file:
 ```bash
 roslaunch sr_moveit_planner_benchmarking export_queries_to_text.launch output_directory:=[path_to_folder_to_save_file] (group_prefix:=ra) (cartesian:=false)
 ``` 
 If you want to export the queries in cartesian space (position and orientation) instead of joint space, you can set the cartesian argument to true.
 
-### Methods from moveit
+### Methods from MoveIt!
 The previous methods, internally call a set of MoveIt! methods. You can call the MoveIt! methods directly. 
 
 #### Export to text
@@ -303,15 +302,13 @@ There are the metrics defined by default in MoveIt!:
   The higher the value, the better performance of the planner.  
 * Lenght (rad):
   Calculated by a sum of angles traveled by each of the joints. Formula:
-  <p>L = sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1{</span>abs(x<span style=" vertical-align:sub;">i </span>- x<span style=" vertical-align:sub;">i0</span>)} </p>
-  
-  L = sum i=0 n-1{abs(xi - xi0)}, where:
-  n - number of robot's joints,
-  x - joint's goal position,
-  x0 - joint's initial position.
+  <p>L = sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<span style=" vertical-align:sub;">i0</span>)}, where: </p>
+  n - number of robot's joints, <br>
+  x - joint's goal position, <br>
+  x0 - joint's initial position. <br>
   The lower the value, the better the plan.
 * Clearance (m):
-  Calculated by average distance to nearest invalid state (obstacle) throughout the planned path. Formula:
+  Calculated by average distance to nearest invalid state (obstacle) throughout the planned path. Formula: <br>
   C = (1/n) * sum i=0 n-1 {cl(si)}, where:
   n - number of states on path,
   si - ith state,
