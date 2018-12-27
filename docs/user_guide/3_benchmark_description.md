@@ -311,7 +311,7 @@ These are the metrics defined by default in MoveIt!:
   The lower the value, the better the plan.
 * **Smoothness:**<br>
   Looks at three consecutive way points and the angle formed between them. Value is calculated as a square of sum of all the angles calculated that way. Formula:<br>
-  S = sum<sub>i=2</sub><sup>n-1</sup>{(2 <sub>* </sub>(pi - arccos((d<sub>i-2,i-1</sub><sup>2</sup>+d<sub>i-1,i</sub><sup>2</sup>+d<sub>i-2,i)</sub><sup>2</sup>)/(2<sub> * </sub>d<sub>i-2,i-1</sub> <sub>* </sub>d<sub>i-1,i</sub>))<sup>2</sup>}, where: <br>
+  S = sum<sub>i=2</sub><sup>n-1</sup>{(2 <sub>* </sub>(pi - arccos((d<sub>i-2,i-1</sub><sup>2</sup>+d<sub>i-1,i</sub><sup>2</sup>-d<sub>i-2,i</sub><sup>2</sup>)/(2<sub> * </sub>d<sub>i-2,i-1</sub> <sub>* </sub>d<sub>i-1,i</sub>))))<sup>2</sup>}, where: <br>
   n - number of waypoints on the path,<br>
   d<sub>x,y</sub>  - distance between waypoints with index x and y.<br>
   Aligned points result in S = 0. The lower the value, the smoother plan. 
@@ -326,7 +326,7 @@ These are the metrics defined by default in MoveIt!:
 We have added two new metrics:
 * **Plan quality 1:**<br>
   Calculated by a weighted sum of angles traveled by each of the joints, giving higher weights to the joints closer to the base of the robot, thus penalizing them as small movements of these joints will result in bigger movements of the end effector. Formula:<br>
-  PQ_1 = sum<sub>i=0</sub><sup>n-1{</sup>w<sub>i *</sub> abs(x<sub>i </sub>- x<sub>i0</sub>)}, where:<br>
+  PQ<sub>1</sub> = sum<sub>i=0</sub><sup>n-1{</sup>w<sub>i *</sub> abs(x<sub>i </sub>- x<sub>i0</sub>)}, where:<br>
   n - number of robot's joints,<br>
   w - weight specified for each joint,<br>
   x - joint's goal position,<br>
@@ -334,7 +334,7 @@ We have added two new metrics:
   The lower the value, the better the plan.
 * **Plan quality 2:**<br>
   Measures how different is the total distance traveled by the arm end effector to the most direct path between the start and goal position. Formula:<br>
-  PQ_2 = (d<sub>t</sub>/d<sub>l</sub> + r<sub>t</sub>/r<sub>l</sub>)/2, where:<br>
+  PQ<sub>2</sub> = (d<sub>t</sub>/d<sub>l</sub> + r<sub>t</sub>/r<sub>l</sub>)/2, where:<br>
   d<sub>t</sub> - total distance travelled by the end effector,<br>
   d<sub>l</sub> - distance travelled by the end effector in a straight line,<br>
   r<sub>t</sub> - total rotation done by the end effector,<br>
