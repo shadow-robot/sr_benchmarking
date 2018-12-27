@@ -108,27 +108,27 @@ roslaunch sr_moveit_planner_benchmarking load_all_scenes_and_queries_to_db.launc
 
 * To load one scene and queries files:
 ```bash
-roslaunch sr_moveit_planner_benchmarking load_scenes_and_queries_to_db.launch queries_file:=[path_to_file] scene_file:=[path_to_file]
+roslaunch sr_moveit_planner_benchmarking load_scenes_and_queries_to_db.launch queries_file:=<path_to_file> scene_file:=<path_to_file>
 ``` 
 
 * To load just a scene:
 ```bash
-roslaunch sr_moveit_planner_benchmarking load_scenes_to_db.launch scene_file:=[path_to_file]
+roslaunch sr_moveit_planner_benchmarking load_scenes_to_db.launch scene_file:=<path_to_file>
 ``` 
 
 * To load just a query:
 ```bash
-roslaunch sr_moveit_planner_benchmarking load_queries_to_db.launch queries_file:=[path_to_file]
+roslaunch sr_moveit_planner_benchmarking load_queries_to_db.launch queries_file:=<path_to_file>
 ``` 
 
 * To export a scene that is in the warehouse to a .scene text file:
 ```bash
-roslaunch sr_moveit_planner_benchmarking export_scenes_to_text.launch output_directory:=[path_to_folder_to_save_file]
+roslaunch sr_moveit_planner_benchmarking export_scenes_to_text.launch output_directory:=<path_to_folder_to_save_file>
 ``` 
 
 * To export the queries that is in the warehouse to a .queries text file:
 ```bash
-roslaunch sr_moveit_planner_benchmarking export_queries_to_text.launch output_directory:=[path_to_folder_to_save_file] (group_prefix:=ra) (cartesian:=false)
+roslaunch sr_moveit_planner_benchmarking export_queries_to_text.launch output_directory:=<path_to_folder_to_save_file> (group_prefix:=ra) (cartesian:=false)
 ``` 
 If you want to export the queries in cartesian space (position and orientation) instead of joint space, you can set the cartesian argument to true.
 
@@ -254,7 +254,7 @@ Here are a few examples of how to use them:
 An executable is available to allow to the generation of a specified number of valid (collision free) random queries and save them into the Moveit! warehouse:
 
 ```
-rosrun moveit_ros_warehouse moveit_warehouse_generate_random_queries [name_of_scene] [number_of_random_queries]
+rosrun moveit_ros_warehouse moveit_warehouse_generate_random_queries <name_of_scene> <number_of_random_queries>
 ```
 
 It has different parameters that can be specified:
@@ -285,7 +285,7 @@ Here are a few examples of how to use them:
 * Example of clearing the random queries in example_scene:
   ```
   rosrun moveit_ros_warehouse moveit_warehouse_generate_random_queries example_scene --clear
-
+  ```
 
 ## Benchmark metrics
 

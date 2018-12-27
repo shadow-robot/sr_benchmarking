@@ -11,6 +11,12 @@ RRTConnect, TRRT and PRK seems to be ok, KPIECE seems to be worse
 
 BKPIECE is slow compared to other non-lazy planners; RTTConnect seems to be good
 
+Planners that we have found are the best
+RRTConnect
+EST
+KPIECE
+
+
 ## Which is the planner that solved the most number of queries?
 ## Which is the planner that gives us the best quality plans?
 ## Is it the same to plan in joint or cartesian space?
