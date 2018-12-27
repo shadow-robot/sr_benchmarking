@@ -304,20 +304,20 @@ These are the metrics defined by default in MoveIt!:
   The higher the value, the better performace of the planner.
 * **Lenght (rad):**<br>
   Calculated by a sum of angles traveled by each of the joints. Formula: <br>
-  L = sum<sub>i=0</sub><super>n-1</super>{abs(x<sub>i</sub>- x<sub>i0</sub>)}, where: <br>
+  L = sum<sub>i=0</sub><sup>n-1</sup>{abs(x<sub>i</sub>- x<sub>i0</sub>)}, where: <br>
   n - number of robot's joints, <br>
   x - joint's goal position, <br>
   x<sub>0</sub> - joint's initial position. <br>
   The lower the value, the better the plan.
 * **Smoothness:**<br>
   Looks at three consecutive way points and the angle formed between them. Value is calculated as a square of sum of all the angles calculated that way. Formula:<br>
-  S = sum<sub>i=2</sub><super>n-1</super>{(2 <sub>* </sub>(pi - arccos((d<sub>i-2,i-1</sub><super>2</super>+d<sub>i-1,i</sub><super>2</super>+d<sub>i-2,i)</sub><super>2</super>)/(2<sub> * </sub>d<sub>i-2,i-1</sub> <sub>* </sub>d<sub>i-1,i</sub>))<super>2</super>}, where: <br>
+  S = sum<sub>i=2</sub><sup>n-1</sup>{(2 <sub>* </sub>(pi - arccos((d<sub>i-2,i-1</sub><sup>2</sup>+d<sub>i-1,i</sub><sup>2</sup>+d<sub>i-2,i)</sub><sup>2</sup>)/(2<sub> * </sub>d<sub>i-2,i-1</sub> <sub>* </sub>d<sub>i-1,i</sub>))<sup>2</sup>}, where: <br>
   n - number of waypoints on the path,<br>
-  dx,y - distance between waypoints with index x and y.<br>
+  d<sub>x,y</sub>  - distance between waypoints with index x and y.<br>
   Aligned points result in S = 0. The lower the value, the smoother plan. 
 * **Clearance (m):**<br>
   Calculated by average distance to nearest invalid state (obstacle) throughout the planned path. Formula: <br>
-  C = (1/n)<sub> * </sub>sum<sub>i=0</sub><super>n-1</super>{cl(s<sub>i</sub>)}, where: <br>
+  C = (1/n)<sub> * </sub>sum<sub>i=0</sub><sup>n-1</sup>{cl(s<sub>i</sub>)}, where: <br>
   n - number of states on path,<br>
   s<sub>i</sub> - ith state,<br>
   cl() - distance to the first invalid state.<br>
@@ -326,7 +326,7 @@ These are the metrics defined by default in MoveIt!:
 We have added two new metrics:
 * **Plan quality 1:**<br>
   Calculated by a weighted sum of angles traveled by each of the joints, giving higher weights to the joints closer to the base of the robot, thus penalizing them as small movements of these joints will result in bigger movements of the end effector. Formula:<br>
-  PQ_1 = sum<sub>i=0</sub><super>n-1{</super>w<sub>i *</sub> abs(x<sub>i </sub>- x<sub>i0</sub>)}, where:<br>
+  PQ_1 = sum<sub>i=0</sub><sup>n-1{</sup>w<sub>i *</sub> abs(x<sub>i </sub>- x<sub>i0</sub>)}, where:<br>
   n - number of robot's joints,<br>
   w - weight specified for each joint,<br>
   x - joint's goal position,<br>
