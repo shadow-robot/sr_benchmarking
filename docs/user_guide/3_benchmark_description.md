@@ -301,9 +301,8 @@ There are the metrics defined by default in MoveIt!:
   Percentage of queries that the planner was able to find a solution for. <br>
   The higher the value, the better performance of the planner.  
 * **Lenght (rad):**<br>
-  Calculated by a sum of angles traveled by each of the joints. Formula:
-  L = sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<span style=" vertical-align:sub;">i0</span>)}, where:
-  L = sum<sub>i=0</sub><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<sub>i0</sub>)}, where:
+  Calculated by a sum of angles traveled by each of the joints. Formula: <br>
+  L = sum<sub>i=0</sub><super>n-1</super>{abs(x<sub>i</sub>- x<sub>i0</sub>)}, where:
   n - number of robot's joints, <br>
   x - joint's goal position, <br>
   x<sub>0</sub> - joint's initial position. <br>
