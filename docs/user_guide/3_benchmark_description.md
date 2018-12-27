@@ -1,17 +1,20 @@
 # Benchmark description
 The benchmark problems we define here require the specification of these components: 
-* Scenes: The environment to be used for motion planning.
 * Robot model: The particular robot used for the experiments.
+* Scenes: The environment to be used for motion planning.
 * Queries: A set of initial and goal robot states associated with the scenes.
+
+## Robot Model
+
 
 ## Scenes
 The scene file format (.scene) is used to define a scene where the robot will be performing the
 motions. It can be imported, modified and exported using the Motion Planning RViz
 plugin. 
 
-The scenes defined for our benchmarks can be found [here](https://github.com/shadow-robot/sr_benchmarking/tree/kinetic-devel/sr_moveit_planner_benchmarking/experiments/scenes)
+The scenes defined for our benchmarks can be found [here](https://github.com/shadow-robot/sr_benchmarking/tree/kinetic-devel/sr_moveit_planner_benchmarking/experiments/scenes) 
+and are shown in the following pictures:
 
-Here are some pictures of them:
 ```eval_rst
 +------------+------------+
 | |image0|   | |image1|   |
