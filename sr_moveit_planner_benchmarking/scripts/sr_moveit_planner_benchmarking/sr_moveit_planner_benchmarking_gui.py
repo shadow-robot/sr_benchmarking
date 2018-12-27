@@ -416,7 +416,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
     def create_scene_plugin(self):
         package_path = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')
-        rviz_config_approach = package_path + "/config/scene.rviz"
+        rviz_config_approach = package_path + "/uis/scene.rviz"
 
         reader = rviz.YamlConfigReader()
 
