@@ -302,10 +302,11 @@ There are the metrics defined by default in MoveIt!:
   The higher the value, the better performance of the planner.  
 * **Lenght (rad):**<br>
   Calculated by a sum of angles traveled by each of the joints. Formula:
-  <div>L = sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<span style=" vertical-align:sub;">i0</span>)}, where: </div>
+  L = sum<span style=" vertical-align:sub;">i=0</span><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<span style=" vertical-align:sub;">i0</span>)}, where:
+  L = sum<sub>i=0</sub><span style=" vertical-align:super;">n-1</span>{abs(x<span style=" vertical-align:sub;">i </span>- x<sub>i0</sub>)}, where:
   n - number of robot's joints, <br>
   x - joint's goal position, <br>
-  x0 - joint's initial position. <br>
+  x<sub>0</sub> - joint's initial position. <br>
   The lower the value, the better the plan.
 * **Clearance (m):**<br>
   Calculated by average distance to nearest invalid state (obstacle) throughout the planned path. Formula: <br>
