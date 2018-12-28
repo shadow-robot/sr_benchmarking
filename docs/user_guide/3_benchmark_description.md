@@ -329,7 +329,7 @@ These are the metrics defined by default in MoveIt!:
 We have added two new metrics:
 * **Plan quality 1:**<br>
   Calculated by a weighted sum of angles traveled by each of the joints, giving higher weights to the joints closer to the base of the robot, thus penalizing them as small movements of these joints will result in bigger movements of the end effector. Formula:<br>
-  PQ<sub>1</sub> = sum<sub>i=0</sub><sup>n-1{</sup>w<sub>i *</sub> abs(x<sub>i </sub>- x<sub>i0</sub>)}, where:<br>
+  PQ<sub>1</sub> = sum<sub>i=0</sub><sup>n-1</sup>{w<sub>i *</sub> abs(x<sub>i </sub>- x<sub>i0</sub>)}, where:<br>
   n - number of robot's joints,<br>
   w - weight specified for each joint,<br>
   x - joint's goal position,<br>
