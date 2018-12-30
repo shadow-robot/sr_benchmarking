@@ -1,6 +1,6 @@
 # Visualizing the results
 
-After the benchmarks are executed, the [different metrics](3_benchmark_description.md) are 
+After the benchmarks are executed, the [different metrics]() are 
 computed and written to a logfile. MoveIt! supply a script (moveit_benchmark_statistics.py) to parse this data and plot the statistics.
 
 ```bash
