@@ -245,7 +245,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
@@ -486,7 +486,7 @@
       <attribute name="title">
        <string>Choose query</string>
       </attribute>
-      <widget class="QComboBox" name="planners_combo_box_2">
+      <widget class="QComboBox" name="queries_combo_box">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -522,7 +522,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_smoothness_layout_4"/>
+        <layout class="QVBoxLayout" name="perquery_smoothness_layout_2"/>
        </widget>
       </widget>
       <widget class="QGroupBox" name="group_box_30">
@@ -546,7 +546,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_quality_1_layout_4"/>
+        <layout class="QVBoxLayout" name="perquery_quality_1_layout_2"/>
        </widget>
       </widget>
       <widget class="QGroupBox" name="group_box_31">
@@ -570,7 +570,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_plan_time_layout_4"/>
+        <layout class="QVBoxLayout" name="perquery_plan_time_layout_2"/>
        </widget>
       </widget>
       <widget class="QGroupBox" name="group_box_32">
@@ -594,7 +594,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_solved_layout_4"/>
+        <layout class="QVBoxLayout" name="perquery_solved_layout_2"/>
        </widget>
       </widget>
       <widget class="QGroupBox" name="group_box_33">
@@ -618,7 +618,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_quality_2_layout_4"/>
+        <layout class="QVBoxLayout" name="perquery_quality_2_layout_2"/>
        </widget>
       </widget>
       <widget class="QGroupBox" name="group_box_34">
@@ -642,7 +642,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_lenght_layout_4"/>
+        <layout class="QVBoxLayout" name="perquery_lenght_layout_2"/>
        </widget>
       </widget>
       <widget class="QGroupBox" name="group_box_35">
@@ -666,30 +666,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_clearance_layout_4"/>
-       </widget>
-      </widget>
-      <widget class="QGroupBox" name="group_box_36">
-       <property name="geometry">
-        <rect>
-         <x>950</x>
-         <y>610</y>
-         <width>461</width>
-         <height>275</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Queries legend</string>
-       </property>
-       <widget class="QTextBrowser" name="queries_legend_4">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>27</y>
-          <width>441</width>
-          <height>231</height>
-         </rect>
-        </property>
+        <layout class="QVBoxLayout" name="perquery_clearance_layout_2"/>
        </widget>
       </widget>
       <widget class="QGroupBox" name="group_box_37">
@@ -713,7 +690,7 @@
           <height>251</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="perquery_correct_layout_4"/>
+        <layout class="QVBoxLayout" name="perquery_correct_layout_2"/>
        </widget>
       </widget>
      </widget>
@@ -1009,7 +986,7 @@ p, li { white-space: pre-wrap; }
     </property>
    </widget>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>

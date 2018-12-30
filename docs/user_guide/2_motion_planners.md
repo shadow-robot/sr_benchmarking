@@ -3,26 +3,22 @@
 ## Currently available in MoveIt!
 Currently MoveIt! provide the following planners:
 
-* OMPL 
-  [Open  Motion  Planning  Library](http://ompl.kavrakilab.org/) (OMPL) is  a  popular  choice to solve a motion problem. It is an open-source motion 
+* **[Open  Motion  Planning  Library](http://ompl.kavrakilab.org/)** (OMPL) is  a  popular  choice to solve a motion problem. It is an open-source motion 
   planning  library  that  houses  many  state-of-the-art  sampling  based motion planners. OMPL is configured as the default 
   set of planners for MoveIt!. Currently 23 sampling-based motion planners can be selected for use, and they are described [here](http://ompl.kavrakilab.org/planners.html). 
 
-* STOMP 
-  [Stochastic  Trajectory Optimization for Motion Planning](http://wiki.ros.org/stomp_motion_planner) (STOMP)  is  an  
+* **[Stochastic  Trajectory Optimization for Motion Planning](http://wiki.ros.org/stomp_motion_planner)** (STOMP)  is  an  
   optimization-based  motion  planner.  It  is designed  to  plan  smooth  trajectories  for  robotic  arms, avoiding obstacles, and optimizing constraints. 
   The  planner is currently partially supported in MoveIt!
 
-* CHOMP
-  [Covariant Hamiltonian Optimization for Motion Planning](https://www.ri.cmu.edu/pub_files/2009/5/icra09-chomp.pdf) (CHOMP) 
+* **[Covariant Hamiltonian Optimization for Motion Planning](https://www.ri.cmu.edu/pub_files/2009/5/icra09-chomp.pdf)** (CHOMP) 
   this algorithm capitalizes on covariant gradient and functional gradient approaches to the optimization stage to design 
   a motion planning algorithm based entirely on trajectory optimization. Given an infeasible naive trajectory, CHOMP reacts  
   to the surrounding environment to quickly pull the trajectory out of collision while simultaneously optimizing dynamical 
   quantities such as joint velocities and accelerations. It rapidly converges to a smooth collision-free trajectory that can
   be executed efficiently on the robot. The  planner is currently partially supported in MoveIt!
 
-* SBPL
-  [Search-Based Planning Library](http://wiki.ros.org/sbpl) (SBPL) consists of a set of planners using search-based planning that discretize the space. 
+* **[Search-Based Planning Library](http://wiki.ros.org/sbpl)** (SBPL) consists of a set of planners using search-based planning that discretize the space. 
   Integration into latest version of MoveIt! is work in progress. 
 
 ## Selected planners for our benchmarks
