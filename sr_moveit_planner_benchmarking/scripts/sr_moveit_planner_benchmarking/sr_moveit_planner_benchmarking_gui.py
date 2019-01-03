@@ -33,6 +33,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.create_menu_bar()
 
         self.available_databases = []
+        self.available_benchmarks = []
         self.planners = []
 
         ui_file = os.path.join(rospkg.RosPack().get_path(
@@ -52,6 +53,16 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
         # Load databases from this repo by default
         self.get_available_databases_from_default_path()
+
+        # Benchmark tools tab
+        self.export_scenes_button.clicked.connect(self.export_scenes)
+        self.export_queries_button.clicked.connect(self.export_queries)
+        self.import_all_button.clicked.connect(self.import_scenes_and_queries)
+        self.load_bench_conf()
+
+        self.run_benchmark_button.clicked.connect(self.run_benchmark)
+        self.save_all_logs_button.clicked.connect(self.save_all_logs)
+        self.save_logs_sorted_button.clicked.connect(self.save_logs_sorted)
 
     def init_widget_children(self):
         self.clearance_layout = self._widget.findChild(QVBoxLayout, "clearance_layout")
@@ -89,6 +100,16 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.queries_combo_box = self._widget.findChild(QComboBox, "queries_combo_box")
         self.load_db_button = self._widget.findChild(QPushButton, "load_button")
 
+        # Benchmark tools tab
+        self.export_scenes_button = self._widget.findChild(QPushButton, "pushButton_exportScenes")
+        self.export_queries_button = self._widget.findChild(QPushButton, "pushButton_exportQueries")
+        self.import_all_button = self._widget.findChild(QPushButton, "pushButton_import_all")
+        self.bench_config_combo_box = self._widget.findChild(QComboBox, "bench_config_combobox")
+        self.run_benchmark_button = self._widget.findChild(QPushButton, "pushButton_run_benchmark")
+        self.save_all_logs_button = self._widget.findChild(QPushButton, "pushButton_saving_all_logs")
+        self.save_logs_sorted_button = self._widget.findChild(QPushButton, "pushButton_saving_logs_sorted")
+        self.initial_z_combo_box = self._widget.findChild(QComboBox, "initial_z_comboBox")
+
     def destruct(self):
         self._widget = None
         rospy.loginfo("Closing planner benchmarks visualizer")
@@ -116,6 +137,17 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             self.get_planners_list()
             self.get_queries_list()
             self.update_data_display()
+
+    def load_bench_conf(self):
+        self.bench_config_combo_box.clear()
+        directory = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')+"/experiments/benchmark_configs/"
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                if file.endswith(".yaml"):
+                    full_path = os.path.join(root, file)
+                    rel_path = os.path.relpath(full_path, directory)
+                    self.bench_config_combo_box.addItem(rel_path)
+                    self.available_benchmarks.append({'rel_path': rel_path, 'full_path': full_path})
 
     def create_menu_bar(self):
         self._widget.myQMenuBar = QMenuBar(self._widget)
@@ -431,16 +463,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         scene_layout.addWidget(self.frame_scene)
         self.load_scene_file("empty")
 
-    def load_scene_file(self, scene_name):
-        try:
-            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/" + scene_name + ".scene"
-            p = subprocess.Popen(['rosrun moveit_ros_planning moveit_publish_scene_from_text {}'.format(scenes_path)],
-                                 shell=True)
-        except rospy.ROSException as e:
-            rospy.logerr("There was an error loading the scene: ", scene_name)
-            rospy.logerr(e)
-            return
-
     def find_scene(self):
         self.c.execute("""SELECT setup FROM experiments""")
         setups = self.c.fetchall()
@@ -495,6 +517,87 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def change_plots_per_query_per_query(self):
         self.plot_statistics_per_query_per_query(self.queries_combo_box.currentText())
 
+    def load_scene_file(self, scene_name):
+        try:
+            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/" + scene_name + ".scene"
+            p = subprocess.Popen(['rosrun moveit_ros_planning moveit_publish_scene_from_text {}'.format(scenes_path)],
+                                 shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error loading the scene: ", scene_name)
+            rospy.logerr(e)
+            return
+
+    def export_scenes(self):
+        try:
+            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/"
+            p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking export_scenes_to_text.launch \
+                                  output_directory:={}'.format(scenes_path)],
+                                  shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error exporting the scenes")
+            rospy.logerr(e)
+            return
+
+    def export_queries(self):
+        try:
+            queries_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/queries/"
+            p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking export_queries_to_text.launch \
+                                  output_directory:={}'.format(queries_path)],
+                                  shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error exporting the queries")
+            rospy.logerr(e)
+            return
+
+    def import_scenes_and_queries(self):
+        try:
+            p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking load_all_scenes_and_queries_to_db.launch'],
+                                  shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error importing the scenes and queries")
+            rospy.logerr(e)
+            return
+
+    def run_benchmark(self):
+        path_to_benchmark = None
+        benchmark_to_be_loaded = self.bench_config_combo_box.currentText()
+        for bench in self.available_benchmarks:
+            if benchmark_to_be_loaded == bench['rel_path']:
+                path_to_benchmark = bench['full_path']
+                break
+        if path_to_benchmark is not None:
+            try:
+                bench_opts=path_to_benchmark
+                initial_z = self.initial_z_combo_box.currentText()
+                p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking benchmarking.launch \
+                                      bench_opts:={} initial_z:={}'.format(bench_opts, initial_z)],
+                                     shell=True)
+            except rospy.ROSException as e:
+                rospy.logerr("There was an error exporting the queries")
+                rospy.logerr(e)
+                return
+
+    def save_all_logs(self):
+        try:
+            results_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/results/"
+            p = subprocess.Popen(['rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py \
+                                  -l /tmp/moveit_benchmarks/ -o {}'.format(results_path)],
+                                  shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error importing the scenes and queries")
+            rospy.logerr(e)
+            return
+
+    def save_logs_sorted(self):
+        try:
+            results_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/results/"
+            p = subprocess.Popen(['rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py \
+                                  -l /tmp/moveit_benchmarks/ -o {} --sort'.format(results_path)],
+                                  shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error importing the scenes and queries")
+            rospy.logerr(e)
+            return
 
 if __name__ == "__main__":
     rospy.init_node("moveit_planner_visualizer")

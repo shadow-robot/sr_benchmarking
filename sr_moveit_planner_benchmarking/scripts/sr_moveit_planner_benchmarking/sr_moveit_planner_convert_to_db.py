@@ -267,8 +267,10 @@ if __name__ == "__main__":
     parser = OptionParser("A script to parse benchmarking results.\n" + usage)
     parser.add_option("-d", "--database", dest="dbname", default="benchmark.db",
                       help="Filename of benchmark database [default: %default]")
-    parser.add_option("-a", "--all", dest="log_folder", default=".",
+    parser.add_option("-l", "--log_folder", dest="log_folder", default=".",
                       help="Option to save all log files in a folder to a sqlite3 database")
+    parser.add_option("-o", "--output_folder", dest="output_folder", default=".",
+                      help="Folder to place the sqlite3 databases")
     parser.add_option("-s", "--sort", action="store_true", dest="sort", default=False,
                       help="Sort databases per scene")
 
@@ -280,17 +282,37 @@ if __name__ == "__main__":
         if (os.path.isdir(options.log_folder)):
             if not options.log_folder.endswith("/"):
                 options.log_folder = options.log_folder + "/"
+            if not options.output_folder.endswith("/"):
+                options.output_folder = options.output_folder + "/"
             files = [f for f in os.listdir(options.log_folder) if os.path.isfile(options.log_folder + f)]
 
-            for f in files:
+            # Removing previous dbs that already existed
+            for i, f in enumerate(files):
+                if f.endswith(".log"):
+                    if options.sort:
+                        scene_name = f.split("_Pose")[0]
+                        dbname = options.output_folder + scene_name + "_" + options.dbname
+                        if os.path.isfile(dbname):
+                            print "Removing db:", dbname
+                            os.remove(dbname)
+                    else:
+                        dbname = options.output_folder + options.dbname
+                        if os.path.isfile(dbname):
+                            print "Removing db:", dbname
+                            os.remove(dbname)
+
+            for i, f in enumerate(files):
                 if f.endswith(".log"):
                     if options.sort:
                         # Separate log files per scene
                         scene_name = f.split("_Pose")[0]
+                        dbname = options.output_folder + scene_name + "_" + options.dbname
                         print "Sorting files for scene_name", scene_name
-                        readBenchmarkLog(scene_name + "_" + options.dbname, [options.log_folder + f])
+                        readBenchmarkLog(dbname, [options.log_folder + f])
                     else:
                         # Add all log files to a single db file
-                        readBenchmarkLog(options.dbname, [options.log_folder + f])
+                        dbname = options.output_folder + options.dbname
+                        readBenchmarkLog(dbname, [options.log_folder + f])
+            print "Databases have been generated in:", options.output_folder
         else:
             parser.error("Bad argument provided for folder with log files. Please provide full path of log file")

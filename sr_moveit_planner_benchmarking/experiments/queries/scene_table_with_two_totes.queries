@@ -1,4 +1,22 @@
 scene_table_with_two_totes
+Pose_hard_0
+START
+ra_shoulder_pan_joint = 4.90424
+ra_shoulder_lift_joint = -1.88167
+ra_elbow_joint = -1.79818
+ra_wrist_1_joint = 5.21359
+ra_wrist_2_joint = 1.58724
+ra_wrist_3_joint = -1.88102
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 3.03356
+ra_shoulder_lift_joint = -1.77065
+ra_elbow_joint = -1.88776
+ra_wrist_1_joint = 5.34384
+ra_wrist_2_joint = 1.57111
+ra_wrist_3_joint = -3.75629
+.
 Pose_easy_0
 START
 ra_shoulder_pan_joint = 2.89872
@@ -79,24 +97,6 @@ ra_elbow_joint = -1.05508
 ra_wrist_1_joint = 4.53627
 ra_wrist_2_joint = 1.45628
 ra_wrist_3_joint = -2.11639
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 3.03356
-ra_shoulder_lift_joint = -1.77065
-ra_elbow_joint = -1.88776
-ra_wrist_1_joint = 5.34384
-ra_wrist_2_joint = 1.57111
-ra_wrist_3_joint = -3.75629
-.
-Pose_hard_0
-START
-ra_shoulder_pan_joint = 4.90424
-ra_shoulder_lift_joint = -1.88167
-ra_elbow_joint = -1.79818
-ra_wrist_1_joint = 5.21359
-ra_wrist_2_joint = 1.58724
-ra_wrist_3_joint = -1.88102
 .
 GOAL
 joint_constraint

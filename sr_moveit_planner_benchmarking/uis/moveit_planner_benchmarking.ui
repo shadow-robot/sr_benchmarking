@@ -1056,7 +1056,7 @@ p, li { white-space: pre-wrap; }
        <string>Export the queries in the warehouse to a .queries text file:</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_exportScene">
+     <widget class="QPushButton" name="pushButton_exportScenes">
       <property name="geometry">
        <rect>
         <x>370</x>
@@ -1095,7 +1095,7 @@ p, li { white-space: pre-wrap; }
      <property name="title">
       <string>Import to warehouse</string>
      </property>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="pushButton_import_all">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -1175,7 +1175,7 @@ p, li { white-space: pre-wrap; }
        <string>Initial z of robot base:</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="initial_z_comboBox">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -1195,7 +1195,7 @@ p, li { white-space: pre-wrap; }
        </property>
       </item>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="pushButton_run_benchmark">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1221,7 +1221,7 @@ p, li { white-space: pre-wrap; }
      <property name="title">
       <string>Saving logs to db files</string>
      </property>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="pushButton_saving_all_logs">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1234,7 +1234,7 @@ p, li { white-space: pre-wrap; }
        <string>Saving all logs</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="pushButton_saving_logs_sorted">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1251,8 +1251,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QCommandLinkButton" name="commandLinkButton">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>590</y>
+       <x>10</x>
+       <y>560</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -1262,15 +1262,15 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
     <zorder>label</zorder>
-    <zorder>pushButton_exportScene</zorder>
+    <zorder>pushButton_exportScenes</zorder>
     <zorder>pushButton_exportQueries</zorder>
     <zorder>label_2</zorder>
     <zorder>label_3</zorder>
-    <zorder>pushButton_3</zorder>
+    <zorder>pushButton_import_all</zorder>
     <zorder>label_3</zorder>
-    <zorder>pushButton_3</zorder>
+    <zorder>pushButton_import_all</zorder>
     <zorder>label_3</zorder>
-    <zorder>pushButton_3</zorder>
+    <zorder>pushButton_import_all</zorder>
     <zorder>groupBox_2</zorder>
     <zorder>groupBox_4</zorder>
     <zorder>groupBox_5</zorder>

@@ -1,22 +1,4 @@
 scene_ground_with_boxes
-Pose_easy_0
-START
-ra_shoulder_pan_joint = 0.11
-ra_shoulder_lift_joint = 0.00100692
-ra_elbow_joint = -0.93
-ra_wrist_1_joint = -2.22
-ra_wrist_2_joint = -1.71
-ra_wrist_3_joint = -1.68
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 1.55
-ra_shoulder_lift_joint = -1.14999
-ra_elbow_joint = 2.01
-ra_wrist_1_joint = 2.39
-ra_wrist_2_joint = -1.55
-ra_wrist_3_joint = -1.58
-.
 Pose_easy_1
 START
 ra_shoulder_pan_joint = 2.01244
@@ -34,6 +16,24 @@ ra_elbow_joint = 1.20173
 ra_wrist_1_joint = 2.82173
 ra_wrist_2_joint = -1.72389
 ra_wrist_3_joint = -1.61463
+.
+Pose_easy_0
+START
+ra_shoulder_pan_joint = 0.11
+ra_shoulder_lift_joint = 0.00100692
+ra_elbow_joint = -0.93
+ra_wrist_1_joint = -2.22
+ra_wrist_2_joint = -1.71
+ra_wrist_3_joint = -1.68
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 1.55
+ra_shoulder_lift_joint = -1.14999
+ra_elbow_joint = 2.01
+ra_wrist_1_joint = 2.39
+ra_wrist_2_joint = -1.55
+ra_wrist_3_joint = -1.58
 .
 Pose_easy_3
 START
