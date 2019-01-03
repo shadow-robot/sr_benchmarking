@@ -140,7 +140,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
     def load_bench_conf(self):
         self.bench_config_combo_box.clear()
-        directory = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')+"/experiments/benchmark_configs/"
+        directory = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking') + "/experiments/benchmark_configs/"
         for root, dirs, files in os.walk(directory):
             for file in files:
                 if file.endswith(".yaml"):
@@ -260,7 +260,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
 
         if "clearance" in attribute:
-            ax.ticklabel_format(style='sci', axis='y', scilimits=(-3,4), useLocale=True)
+            ax.ticklabel_format(style='sci', axis='y', scilimits=(-3, 4), useLocale=True)
             ax.yaxis.offsetText.set_fontsize(7)
 
         self.clearLayout(layout)
@@ -426,21 +426,29 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
         for col in colInfo:
             if "path_simplify_clearance" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_clearance_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_clearance_layout_2)
             elif "path_simplify_correct" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_correct_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_correct_layout_2)
             elif "path_simplify_length" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_lenght_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_lenght_layout_2)
             if "path_simplify_plan_quality" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_quality_1_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_quality_1_layout_2)
             if "path_simplify_plan_quality_cartesian" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_quality_2_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_quality_2_layout_2)
             if "path_simplify_smoothness" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_smoothness_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_smoothness_layout_2)
             if "time" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_plan_time_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_plan_time_layout_2)
             if "solved" == col[1]:
-                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2], self.perquery_solved_layout_2)
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_solved_layout_2)
 
     def create_scene_plugin(self):
         package_path = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')
@@ -490,7 +498,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
     def get_queries_list(self):
         self.c.execute('SELECT id, name FROM experiments')
-        self.queries = [(q[0],q[1]) for q in self.c.fetchall()]
+        self.queries = [(q[0], q[1]) for q in self.c.fetchall()]
 
     def set_planners_combobox(self):
         self.planners_combo_box.blockSignals(True)
@@ -532,7 +540,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/"
             p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking export_scenes_to_text.launch \
                                   output_directory:={}'.format(scenes_path)],
-                                  shell=True)
+                                 shell=True)
         except rospy.ROSException as e:
             rospy.logerr("There was an error exporting the scenes")
             rospy.logerr(e)
@@ -543,7 +551,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             queries_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/queries/"
             p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking export_queries_to_text.launch \
                                   output_directory:={}'.format(queries_path)],
-                                  shell=True)
+                                 shell=True)
         except rospy.ROSException as e:
             rospy.logerr("There was an error exporting the queries")
             rospy.logerr(e)
@@ -552,7 +560,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def import_scenes_and_queries(self):
         try:
             p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking load_all_scenes_and_queries_to_db.launch'],
-                                  shell=True)
+                                 shell=True)
         except rospy.ROSException as e:
             rospy.logerr("There was an error importing the scenes and queries")
             rospy.logerr(e)
@@ -567,7 +575,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                 break
         if path_to_benchmark is not None:
             try:
-                bench_opts=path_to_benchmark
+                bench_opts = path_to_benchmark
                 initial_z = self.initial_z_combo_box.currentText()
                 p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking benchmarking.launch \
                                       bench_opts:={} initial_z:={}'.format(bench_opts, initial_z)],
@@ -582,7 +590,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             results_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/results/"
             p = subprocess.Popen(['rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py \
                                   -l /tmp/moveit_benchmarks/ -o {}'.format(results_path)],
-                                  shell=True)
+                                 shell=True)
         except rospy.ROSException as e:
             rospy.logerr("There was an error importing the scenes and queries")
             rospy.logerr(e)
@@ -593,11 +601,12 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             results_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/results/"
             p = subprocess.Popen(['rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py \
                                   -l /tmp/moveit_benchmarks/ -o {} --sort'.format(results_path)],
-                                  shell=True)
+                                 shell=True)
         except rospy.ROSException as e:
             rospy.logerr("There was an error importing the scenes and queries")
             rospy.logerr(e)
             return
+
 
 if __name__ == "__main__":
     rospy.init_node("moveit_planner_visualizer")
