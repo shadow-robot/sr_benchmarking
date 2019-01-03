@@ -168,7 +168,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             self.experiments_info.append("   Memory limit per run: %g MB" % experiment[3])
 
     def plot_attribute(self, cur, planners, attribute, typename, layout):
-        print "attribute", attribute
         labels = []
         measurements = []
         total_per_planner = []

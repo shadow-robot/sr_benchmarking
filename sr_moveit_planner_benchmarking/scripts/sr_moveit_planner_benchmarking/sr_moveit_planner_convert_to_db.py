@@ -278,7 +278,10 @@ if __name__ == "__main__":
         if (os.path.isfile(options.dbname)):
             os.remove(options.dbname)
         if (os.path.isdir(options.log_folder)):
+            if not options.log_folder.endswith("/"):
+                options.log_folder = options.log_folder + "/"
             files = [f for f in os.listdir(options.log_folder) if os.path.isfile(options.log_folder + f)]
+
             for f in files:
                 if f.endswith(".log"):
                     if options.sort:

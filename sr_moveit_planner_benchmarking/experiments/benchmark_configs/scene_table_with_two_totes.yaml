@@ -13,6 +13,12 @@ benchmark_config:
     planners:
         - plugin: ompl_interface/OMPLPlanner
           planners:
+            - BiESTkConfigDefault
+            - ProjESTkConfigDefault
+            - LazyPRMkConfigDefault
+            - LazyPRMstarkConfigDefault
+            - SPARSkConfigDefault
+            - SPARStwokConfigDefault
             - SBLkConfigDefault
             - ESTkConfigDefault
             - LBKPIECEkConfigDefault
@@ -24,3 +30,7 @@ benchmark_config:
             - TRRTkConfigDefault
             - PRMkConfigDefault
             - PRMstarkConfigDefault
+            - FMTkConfigDefault
+            - PDSTkConfigDefault
+            - STRIDEkConfigDefault
+            - BiTRRTkConfigDefault

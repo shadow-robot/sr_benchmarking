@@ -23,11 +23,11 @@ sqlite3 database files that are easily handle, run the following command:
 
 * All files
 ```bash
-rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py -a results/log_files/
+rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py -a /tmp/moveit_benchmarks/
 ```
 
 * Sorted by scenes:
 ```bash
-rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py -a results/log_files/ --sort
+rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py -a /tmp/moveit_benchmarks/ --sort
 ```
 
