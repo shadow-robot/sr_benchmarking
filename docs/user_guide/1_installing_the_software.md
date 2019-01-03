@@ -4,13 +4,13 @@ In order to use the Shadow Moveit! Planner Benchmarking, you can use our docker 
 
 ## Hardware specifications
 
-In order to run our software and the ROS software stack you will need to meet some hardware requirements. 
+In order to run our software and the ROS software stack you will need to meet some hardware requirements.
 
-CPU: Intel i5 or above
-RAM: 4GB or above
-Hard Drive: Fast HDD or SSD (Laptop HDD are very slow)
-Graphics Card: Nvidia GPU (optional)
-OS: Ubuntu 18.04, 16.04 Kinetic (Active development)
+* CPU: Intel i5 or above
+* RAM: 4GB or above
+* Hard Drive: Fast HDD or SSD (Laptop HDD are very slow)
+* Graphics Card: Nvidia GPU (optional)
+* OS: Ubuntu 18.04, 16.04 Kinetic (Active development)
 
 ## Create docker container
 
@@ -22,7 +22,12 @@ Create container:
 ```bash
 docker run -it --privileged --name sr_planner_benchmarking --network=host -e DISPLAY -e QT_X11_NO_MITSHM=1 -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw shadowrobot/dexterous-hand:kinetic-sr-benchmarking
 ```
-(you don’t need to run “docker run” every time, as the container is persistent)
+
+```eval_rst
+.. Note:: You don’t need to run “docker run” every time as the container is persistent.
+```
+
+
 
 To start the container again please execute
 ```
