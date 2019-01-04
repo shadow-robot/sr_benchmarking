@@ -3,6 +3,7 @@
   <!-- Use 0.7621 when scene has table -->
   <arg name="initial_z" default="0.1"/>
   <arg name="visualization" default="true"/>
+  <arg name="rviz" default="true"/>
 
   <!-- urdf to use -->
   <arg name="robot_description" default="$(find sr_box_ur10_moveit_config)/config/ur10_with_box.urdf.xacro" />
@@ -12,6 +13,7 @@
     <include file="$(find sr_box_ur10_moveit_config)/launch/demo.launch">
       <arg name="db" value="true"/>
       <arg name="initial_z" value="$(arg initial_z)" />
+      <arg name="rviz" value="$(arg rviz)"/>
     </include>
   </group>
   <group unless="$(arg visualization)">

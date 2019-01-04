@@ -20,11 +20,9 @@ import signal
 import rospy
 import os
 import rospkg
-from math import floor
 import sqlite3
 import rviz
 import subprocess
-import numpy as np
 
 
 class SrMoveitPlannerBenchmarksVisualizer(Plugin):
@@ -35,6 +33,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.create_menu_bar()
 
         self.available_databases = []
+        self.available_benchmarks = []
         self.planners = []
 
         ui_file = os.path.join(rospkg.RosPack().get_path(
@@ -48,10 +47,22 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.init_widget_children()
         self.create_scene_plugin()
         self.load_db_button.clicked.connect(self.load_database)
-        self.planners_combo_box.currentIndexChanged.connect(self.change_plots_per_query)
+
+        self.planners_combo_box.currentIndexChanged.connect(self.change_plots_per_query_per_planner)
+        self.queries_combo_box.currentIndexChanged.connect(self.change_plots_per_query_per_query)
 
         # Load databases from this repo by default
         self.get_available_databases_from_default_path()
+
+        # Benchmark tools tab
+        self.export_scenes_button.clicked.connect(self.export_scenes)
+        self.export_queries_button.clicked.connect(self.export_queries)
+        self.import_all_button.clicked.connect(self.import_scenes_and_queries)
+        self.load_bench_conf()
+
+        self.run_benchmark_button.clicked.connect(self.run_benchmark)
+        self.save_all_logs_button.clicked.connect(self.save_all_logs)
+        self.save_logs_sorted_button.clicked.connect(self.save_logs_sorted)
 
     def init_widget_children(self):
         self.clearance_layout = self._widget.findChild(QVBoxLayout, "clearance_layout")
@@ -72,12 +83,32 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         self.perquery_plan_time_layout = self._widget.findChild(QVBoxLayout, "perquery_plan_time_layout")
         self.perquery_solved_layout = self._widget.findChild(QVBoxLayout, "perquery_solved_layout")
 
+        self.perquery_clearance_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_clearance_layout_2")
+        self.perquery_correct_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_correct_layout_2")
+        self.perquery_lenght_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_lenght_layout_2")
+        self.perquery_quality_1_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_quality_1_layout_2")
+        self.perquery_quality_2_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_quality_2_layout_2")
+        self.perquery_smoothness_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_smoothness_layout_2")
+        self.perquery_plan_time_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_plan_time_layout_2")
+        self.perquery_solved_layout_2 = self._widget.findChild(QVBoxLayout, "perquery_solved_layout_2")
+
         self.experiments_info = self._widget.findChild(QTextBrowser, "experiments_info")
         self.queries_legend = self._widget.findChild(QTextBrowser, "queries_legend")
         self.scene_label = self._widget.findChild(QLabel, "scene_label")
         self.dbs_combo_box = self._widget.findChild(QComboBox, "dbs_combo_box")
         self.planners_combo_box = self._widget.findChild(QComboBox, "planners_combo_box")
+        self.queries_combo_box = self._widget.findChild(QComboBox, "queries_combo_box")
         self.load_db_button = self._widget.findChild(QPushButton, "load_button")
+
+        # Benchmark tools tab
+        self.export_scenes_button = self._widget.findChild(QPushButton, "pushButton_exportScenes")
+        self.export_queries_button = self._widget.findChild(QPushButton, "pushButton_exportQueries")
+        self.import_all_button = self._widget.findChild(QPushButton, "pushButton_import_all")
+        self.bench_config_combo_box = self._widget.findChild(QComboBox, "bench_config_combobox")
+        self.run_benchmark_button = self._widget.findChild(QPushButton, "pushButton_run_benchmark")
+        self.save_all_logs_button = self._widget.findChild(QPushButton, "pushButton_saving_all_logs")
+        self.save_logs_sorted_button = self._widget.findChild(QPushButton, "pushButton_saving_logs_sorted")
+        self.initial_z_combo_box = self._widget.findChild(QComboBox, "initial_z_comboBox")
 
     def destruct(self):
         self._widget = None
@@ -85,8 +116,10 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
     def update_data_display(self):
         self.set_planners_combobox()
+        self.set_queries_combobox()
         self.plot_statistics()
-        self.change_plots_per_query()
+        self.change_plots_per_query_per_planner()
+        self.change_plots_per_query_per_query()
         self.set_experiments_info()
         scene_name = self.find_scene()
         self.scene_label.setText(scene_name)
@@ -102,7 +135,19 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         if path_to_db is not None:
             self.connect_to_database(path_to_db)
             self.get_planners_list()
+            self.get_queries_list()
             self.update_data_display()
+
+    def load_bench_conf(self):
+        self.bench_config_combo_box.clear()
+        directory = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking') + "/experiments/benchmark_configs/"
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                if file.endswith(".yaml"):
+                    full_path = os.path.join(root, file)
+                    rel_path = os.path.relpath(full_path, directory)
+                    self.bench_config_combo_box.addItem(rel_path)
+                    self.available_benchmarks.append({'rel_path': rel_path, 'full_path': full_path})
 
     def create_menu_bar(self):
         self._widget.myQMenuBar = QMenuBar(self._widget)
@@ -157,13 +202,8 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
     def plot_attribute(self, cur, planners, attribute, typename, layout):
         labels = []
         measurements = []
-        nanCounts = []
         total_per_planner = []
 
-        if typename == 'ENUM':
-            cur.execute('SELECT description FROM enums where name IS "%s"' % attribute)
-            descriptions = [t[0] for t in cur.fetchall()]
-            numValues = len(descriptions)
         for planner in planners:
             cur.execute('SELECT %s FROM runs WHERE plannerid = %s AND %s IS NOT NULL'
                         % (attribute, planner[0], attribute))
@@ -172,35 +212,18 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                         % (planner[0]))
             total_per_planner.append(cur.fetchone()[0])
 
-            cur.execute('SELECT count(*) FROM runs WHERE plannerid = %s AND %s IS NULL'
-                        % (planner[0], attribute))
-            nanCounts.append(cur.fetchone()[0])
             labels.append(planner[1])
-            if typename == 'ENUM':
-                scale = 100. / len(measurement)
-                measurements.append([measurement.count(i) * scale for i in range(numValues)])
-            else:
-                measurements.append(measurement)
+            measurements.append(measurement)
 
         if len(measurements) == 0:
             print('Skipping "%s": no available measurements' % attribute)
             return
 
-        # Add the unit if the attribute is known
-        attribute = attribute.replace('_', ' ')
-        if "time" in attribute:
-            attribute += ' (s)'
-        elif "clearance" in attribute:
-            attribute += ' (m)'
-        elif "cartesian" in attribute:
-            attribute += ''
-        elif "length" in attribute or "quality" in attribute or "smoothness" in attribute:
-            attribute += ' (rad)'
-        elif typename == "BOOLEAN":
-            attribute += ' (%)'
+        self.plot_measurements(measurements, total_per_planner, planners, attribute, typename, labels, layout)
 
+    def plot_measurements(self, measurements, total_per_planner, planners, attribute, typename, labels, layout):
         plt.clf()
-        # GUI
+
         width = 5
         height = 4
         dpi = 100
@@ -209,66 +232,68 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
         figcanvas = FigureCanvas(fig)
         figcanvas.setParent(self._widget)
-
         FigureCanvas.setSizePolicy(figcanvas, QSizePolicy.Expanding, QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(figcanvas)
 
-        # ax = plt.gca()
-        if typename == 'ENUM':
-            width = .5
-            measurements = np.transpose(np.vstack(measurements))
-            colsum = np.sum(measurements, axis=1)
-            rows = np.where(colsum != 0)[0]
-            heights = np.zeros((1, measurements.shape[1]))
-            ind = range(measurements.shape[1])
-            for i in rows:
-                ax.bar(ind, measurements[i], width, bottom=heights[0],
-                       color=matplotlib.cm.hot(int(floor(i * 256 / numValues))),
-                       label=descriptions[i])
-                heights = heights + measurements[i]
-            plt.setp(ax, xticks=[x + width / 2. for x in ind])
-            box = ax.get_position()
-            ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-            props = matplotlib.font_manager.FontProperties()
-            props.set_size('small')
-            ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop=props)
-        elif typename == 'BOOLEAN':
+        if typename == 'BOOLEAN':
             width = .5
             measurementsPercentage = [sum(m) * 100. / total_per_planner[counter] for counter, m in
                                       enumerate(measurements)]
             ind = range(len(measurements))
             ax.bar(ind, measurementsPercentage, width)
             plt.setp(ax, xticks=[x + width / 2. for x in ind])
+            ax.set_ylim([0, 100])
+            ax.set_xlim([0, len(planners)])
         else:
             if int(matplotlibversion.split('.')[0]) < 1:
-                ax.boxplot(measurements, notch=0, sym='k+', vert=1, whis=1.5)
+                ax.boxplot(measurements, notch=0, sym='r+', vert=1, whis=1.5)
             else:
-                ax.boxplot(measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
+                ax.boxplot(measurements, notch=0, sym='r+', vert=1, whis=1.5, bootstrap=1000)
 
         xtickNames = plt.setp(ax, xticklabels=labels)
         plt.setp(xtickNames, rotation=90)
         for tick in ax.xaxis.get_major_ticks():  # shrink the font size of the x tick labels
-            tick.label.set_fontsize(8)
-        for tick in ax.yaxis.get_major_ticks():  # shrink the font size of the x tick labels
-            tick.label.set_fontsize(8)
-        fig.subplots_adjust(bottom=0.3, top=0.95, left=0.1, right=0.98)
-
+            tick.label.set_fontsize(7)
+        for tick in ax.yaxis.get_major_ticks():  # shrink the font size of the y tick labels
+            tick.label.set_fontsize(7)
+        fig.subplots_adjust(bottom=0.32, top=0.90, left=0.08, right=0.98)
         ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
-        # if max(nanCounts) > 0:
-        #     maxy = max([max(y) for y in measurements])
-        #     for i in range(len(labels)):
-        #         x = i + width / 2 if typename == 'BOOLEAN' else i + 1
-        #         ax.text(x, .95 * maxy, str(nanCounts[i]), horizontalalignment='center', size='small')
+
+        if "clearance" in attribute:
+            ax.ticklabel_format(style='sci', axis='y', scilimits=(-3, 4), useLocale=True)
+            ax.yaxis.offsetText.set_fontsize(7)
 
         self.clearLayout(layout)
         layout.addWidget(figcanvas)
 
-    def plot_attribute_per_query(self, cur, planner, attribute, typename, layout):
+    def plot_attribute_per_query_per_query(self, cur, query, planners, attribute, typename, layout):
+        # Plotting each query results in a graph with the planners in x axis
+        experiment_id = [given_query[0] for given_query in self.queries if given_query[1] == query][0]
+
+        labels = []
         measurements = []
-        if typename == 'ENUM':
-            # TODO: Implement enum support
+        total_per_planner = []
+
+        for planner in planners:
+            cur.execute('SELECT %s FROM runs WHERE experimentid=%s AND plannerid = %s AND %s IS NOT NULL'
+                        % (attribute, experiment_id, planner[0], attribute))
+            measurement = [t[0] for t in cur.fetchall() if t[0] != None]
+            cur.execute('SELECT count(*) FROM runs WHERE experimentid=%s AND plannerid = %s'
+                        % (experiment_id, planner[0]))
+            total_per_planner.append(cur.fetchone()[0])
+
+            labels.append(planner[1])
+            measurements.append(measurement)
+
+        if len(measurements) == 0:
+            print('Skipping "%s": no available measurements' % attribute)
             return
 
+        self.plot_measurements(measurements, total_per_planner, planners, attribute, typename, labels, layout)
+
+    def plot_attribute_per_query(self, cur, planner, attribute, typename, layout):
+        # Plotting for the selected planner results for each query
+        measurements = []
         cur.execute('SELECT %s FROM runs WHERE plannerid = %s'
                     % (attribute, planner[0]))
         measurement_including_nan = [t[0] for t in cur.fetchall()]
@@ -278,21 +303,12 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             self.clearLayout(layout)
             return
 
-        # Find the number of runs
-        cur.execute('SELECT runcount FROM experiments WHERE id = 1')
-        runcount = cur.fetchall()[0][0]
-
-        # Find names and number of queries
-        cur.execute('SELECT id FROM experiments')
-        queries = [q[0] for q in cur.fetchall()]
-        num_queries = len(queries)
-
         cur.execute('SELECT experimentid FROM runs WHERE plannerid = %s' % (planner[0]))
         queryid_to_run_mapping = [t[0] for t in cur.fetchall()]
 
         per_query_runcount = []
-        for query_id in queries:
-            per_query_runcount.append(queryid_to_run_mapping.count(query_id))
+        for query in self.queries:
+            per_query_runcount.append(queryid_to_run_mapping.count(query[0]))
 
         matrix_measurements_with_nans = []
         for runcount in per_query_runcount:
@@ -304,19 +320,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
         for per_query_result in matrix_measurements_with_nans:
             matrix_measurements.append([x for x in per_query_result if x is not None])
 
-        # Add the unit if the attribute is known
-        attribute = attribute.replace('_', ' ')
-        if "time" in attribute:
-            attribute += ' (s)'
-        elif "clearance" in attribute:
-            attribute += ' (m)'
-        elif "cartesian" in attribute:
-            attribute += ''
-        elif "length" in attribute or "quality" in attribute or "smoothness" in attribute:
-            attribute += ' (rad)'
-        elif typename == "BOOLEAN":
-            attribute += ' (%)'
-
         plt.clf()
         # GUI
         width = 5
@@ -327,7 +330,6 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
         figcanvas = FigureCanvas(fig)
         figcanvas.setParent(self._widget)
-
         FigureCanvas.setSizePolicy(figcanvas, QSizePolicy.Expanding, QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(figcanvas)
 
@@ -342,7 +344,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                     missing_measurements.append(50)
                     missing_measurements_index.append(i + width / 2)
                 else:
-                    measurements_percentage.append(sum(m) * 100 / len(m))
+                    measurements_percentage.append(sum(m) * 100 / per_query_runcount[i])
             idx = range(len(measurements_percentage))
             ax.bar(idx, measurements_percentage, width)
             ax.scatter(missing_measurements_index, missing_measurements, color='r', marker='x')
@@ -351,14 +353,21 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             ax.set_xlim([0, len(matrix_measurements)])
         else:
             if int(matplotlibversion.split('.')[0]) < 1:
-                ax.boxplot(measurements, notch=0, sym='k+', vert=1, whis=1.5)
+                ax.boxplot(measurements, notch=0, sym='r+', vert=1, whis=1.5)
             else:
-                ax.boxplot(matrix_measurements, notch=0, sym='k+', vert=1, whis=1.5, bootstrap=1000)
+                ax.boxplot(matrix_measurements, notch=0, sym='r+', vert=1, whis=1.5, bootstrap=1000)
 
         for tick in ax.xaxis.get_major_ticks():  # shrink the font size of the x tick labels
-            tick.label.set_fontsize(8)
+            tick.label.set_fontsize(7)
         for tick in ax.yaxis.get_major_ticks():  # shrink the font size of the x tick labels
-            tick.label.set_fontsize(8)
+            tick.label.set_fontsize(7)
+
+        fig.subplots_adjust(bottom=0.1, top=0.90, left=0.08, right=0.98)
+        ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
+
+        if "clearance" in attribute:
+            ax.ticklabel_format(style='sci', axis='y', scilimits=(-3, 4), useLocale=True)
+            ax.yaxis.offsetText.set_fontsize(7)
 
         self.clearLayout(layout)
         layout.addWidget(figcanvas)
@@ -385,7 +394,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             if "solved" == col[1]:
                 self.plot_attribute(self.c, self.planners, col[1], col[2], self.solved_layout)
 
-    def plot_statistics_per_query(self, planner):
+    def plot_statistics_per_query_per_planner(self, planner):
         self.c.execute('PRAGMA table_info(runs)')
         colInfo = self.c.fetchall()[3:]
 
@@ -407,16 +416,43 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             if "solved" == col[1]:
                 self.plot_attribute_per_query(self.c, planner, col[1], col[2], self.perquery_solved_layout)
 
-        self.c.execute('SELECT name FROM experiments')
-        queries = [q[0] for q in self.c.fetchall()]
-        num_queries = len(queries)
         self.queries_legend.clear()
-        for idx, query in enumerate(queries):
-            self.queries_legend.append('Query {}: {}'.format(idx + 1, query))
+        for query in self.queries:
+            self.queries_legend.append('Query {}: {}'.format(query[0], query[1]))
+
+    def plot_statistics_per_query_per_query(self, query):
+        self.c.execute('PRAGMA table_info(runs)')
+        colInfo = self.c.fetchall()[3:]
+
+        for col in colInfo:
+            if "path_simplify_clearance" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_clearance_layout_2)
+            elif "path_simplify_correct" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_correct_layout_2)
+            elif "path_simplify_length" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_lenght_layout_2)
+            if "path_simplify_plan_quality" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_quality_1_layout_2)
+            if "path_simplify_plan_quality_cartesian" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_quality_2_layout_2)
+            if "path_simplify_smoothness" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_smoothness_layout_2)
+            if "time" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_plan_time_layout_2)
+            if "solved" == col[1]:
+                self.plot_attribute_per_query_per_query(self.c, query, self.planners, col[1], col[2],
+                                                        self.perquery_solved_layout_2)
 
     def create_scene_plugin(self):
         package_path = rospkg.RosPack().get_path('sr_moveit_planner_benchmarking')
-        rviz_config_approach = package_path + "/config/scene.rviz"
+        rviz_config_approach = package_path + "/uis/scene.rviz"
 
         reader = rviz.YamlConfigReader()
 
@@ -433,18 +469,7 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
 
         scene_layout = self._widget.findChild(QVBoxLayout, "scene_layout")
         scene_layout.addWidget(self.frame_scene)
-
         self.load_scene_file("empty")
-
-    def load_scene_file(self, scene_name):
-        try:
-            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/" + scene_name + ".scene"
-            p = subprocess.Popen(['rosrun moveit_ros_planning moveit_publish_scene_from_text {}'.format(scenes_path)],
-                                 shell=True)
-        except rospy.ROSException as e:
-            rospy.logerr("There was an error loading the scene: ", scene_name)
-            rospy.logerr(e)
-            return
 
     def find_scene(self):
         self.c.execute("""SELECT setup FROM experiments""")
@@ -471,6 +496,10 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
                     for t in self.c.fetchall()]
         self.planners = sorted(planners, key=lambda a: a[1])
 
+    def get_queries_list(self):
+        self.c.execute('SELECT id, name FROM experiments')
+        self.queries = [(q[0], q[1]) for q in self.c.fetchall()]
+
     def set_planners_combobox(self):
         self.planners_combo_box.blockSignals(True)
         self.planners_combo_box.clear()
@@ -478,11 +507,105 @@ class SrMoveitPlannerBenchmarksVisualizer(Plugin):
             self.planners_combo_box.addItem(planner[1])
         self.planners_combo_box.blockSignals(False)
 
-    def change_plots_per_query(self):
+    def change_plots_per_query_per_planner(self):
         for planner in self.planners:
             if self.planners_combo_box.currentText() == planner[1]:
-                self.plot_statistics_per_query(planner)
+                self.plot_statistics_per_query_per_planner(planner)
                 return
+
+    def set_queries_combobox(self):
+        self.queries_combo_box.blockSignals(True)
+        self.queries_combo_box.clear()
+        queries = sorted(self.queries, key=lambda a: a[1])
+
+        for query in queries:
+            self.queries_combo_box.addItem(query[1])
+        self.queries_combo_box.blockSignals(False)
+
+    def change_plots_per_query_per_query(self):
+        self.plot_statistics_per_query_per_query(self.queries_combo_box.currentText())
+
+    def load_scene_file(self, scene_name):
+        try:
+            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/" + scene_name + ".scene"
+            p = subprocess.Popen(['rosrun moveit_ros_planning moveit_publish_scene_from_text {}'.format(scenes_path)],
+                                 shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error loading the scene: ", scene_name)
+            rospy.logerr(e)
+            return
+
+    def export_scenes(self):
+        try:
+            scenes_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/scenes/"
+            p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking export_scenes_to_text.launch \
+                                  output_directory:={}'.format(scenes_path)],
+                                 shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error exporting the scenes")
+            rospy.logerr(e)
+            return
+
+    def export_queries(self):
+        try:
+            queries_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/queries/"
+            p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking export_queries_to_text.launch \
+                                  output_directory:={}'.format(queries_path)],
+                                 shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error exporting the queries")
+            rospy.logerr(e)
+            return
+
+    def import_scenes_and_queries(self):
+        try:
+            p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking load_all_scenes_and_queries_to_db.launch'],
+                                 shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error importing the scenes and queries")
+            rospy.logerr(e)
+            return
+
+    def run_benchmark(self):
+        path_to_benchmark = None
+        benchmark_to_be_loaded = self.bench_config_combo_box.currentText()
+        for bench in self.available_benchmarks:
+            if benchmark_to_be_loaded == bench['rel_path']:
+                path_to_benchmark = bench['full_path']
+                break
+        if path_to_benchmark is not None:
+            try:
+                bench_opts = path_to_benchmark
+                initial_z = self.initial_z_combo_box.currentText()
+                p = subprocess.Popen(['roslaunch sr_moveit_planner_benchmarking benchmarking.launch \
+                                      bench_opts:={} initial_z:={}'.format(bench_opts, initial_z)],
+                                     shell=True)
+            except rospy.ROSException as e:
+                rospy.logerr("There was an error exporting the queries")
+                rospy.logerr(e)
+                return
+
+    def save_all_logs(self):
+        try:
+            results_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/results/"
+            p = subprocess.Popen(['rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py \
+                                  -l /tmp/moveit_benchmarks/ -o {}'.format(results_path)],
+                                 shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error importing the scenes and queries")
+            rospy.logerr(e)
+            return
+
+    def save_logs_sorted(self):
+        try:
+            results_path = "`rospack find sr_moveit_planner_benchmarking`/experiments/results/"
+            p = subprocess.Popen(['rosrun sr_moveit_planner_benchmarking sr_moveit_planner_convert_to_db.py \
+                                  -l /tmp/moveit_benchmarks/ -o {} --sort'.format(results_path)],
+                                 shell=True)
+        except rospy.ROSException as e:
+            rospy.logerr("There was an error importing the scenes and queries")
+            rospy.logerr(e)
+            return
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
   <arg name="initial_z" default="0.7621"/>
 
   <!-- benchmark options file -->
-  <arg name="bench_opts" default="$(find sr_moveit_planner_benchmarking)/benchmark_configs/scene_table.yaml"/>
+  <arg name="bench_opts" default="$(find sr_moveit_planner_benchmarking)/experiments/benchmark_configs/scene_table.yaml"/>
 
   <arg name="launch_benchmarking" default="true" />
 
