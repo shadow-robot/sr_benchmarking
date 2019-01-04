@@ -1,901 +1,901 @@
 scene_table_with_tote
-RANDOM_pose0
-START
-ra_shoulder_pan_joint = 3.86299
-ra_shoulder_lift_joint = -3.04603
-ra_elbow_joint = 0.157452
-ra_wrist_1_joint = -3.08846
-ra_wrist_2_joint = 4.71062
-ra_wrist_3_joint = 0.855704
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 3.945
-ra_shoulder_lift_joint = 3.58682
-ra_elbow_joint = 2.74229
-ra_wrist_1_joint = -1.30272
-ra_wrist_2_joint = 2.41455
-ra_wrist_3_joint = 0.405133
-.
-RANDOM_pose1
-START
-ra_shoulder_pan_joint = -0.953547
-ra_shoulder_lift_joint = 3.33097
-ra_elbow_joint = 2.4919
-ra_wrist_1_joint = -0.212178
-ra_wrist_2_joint = 6.04809
-ra_wrist_3_joint = -1.36881
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 4.09696
-ra_shoulder_lift_joint = -3.31441
-ra_elbow_joint = 1.47028
-ra_wrist_1_joint = -4.68576
-ra_wrist_2_joint = -0.338257
-ra_wrist_3_joint = -6.0237
-.
-RANDOM_pose2
-START
-ra_shoulder_pan_joint = 3.39457
-ra_shoulder_lift_joint = 3.20394
-ra_elbow_joint = 0.367786
-ra_wrist_1_joint = -1.7083
-ra_wrist_2_joint = -4.9871
-ra_wrist_3_joint = 5.15524
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -4.73556
-ra_shoulder_lift_joint = -0.677039
-ra_elbow_joint = 1.35167
-ra_wrist_1_joint = -4.56975
-ra_wrist_2_joint = 1.4726
-ra_wrist_3_joint = 6.1039
-.
-RANDOM_pose3
-START
-ra_shoulder_pan_joint = -1.84416
-ra_shoulder_lift_joint = -2.93444
-ra_elbow_joint = -0.147737
-ra_wrist_1_joint = -4.58309
-ra_wrist_2_joint = -5.67339
-ra_wrist_3_joint = 5.5236
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 1.11916
-ra_shoulder_lift_joint = -0.0760592
-ra_elbow_joint = -0.070259
-ra_wrist_1_joint = 3.9052
-ra_wrist_2_joint = -1.05602
-ra_wrist_3_joint = -5.7031
-.
-RANDOM_pose4
-START
-ra_shoulder_pan_joint = 6.14633
-ra_shoulder_lift_joint = -0.696601
-ra_elbow_joint = 0.753317
-ra_wrist_1_joint = -2.82346
-ra_wrist_2_joint = -0.111688
-ra_wrist_3_joint = 4.97565
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -2.76399
-ra_shoulder_lift_joint = 2.9061
-ra_elbow_joint = 2.12836
-ra_wrist_1_joint = -4.16468
-ra_wrist_2_joint = -5.49824
-ra_wrist_3_joint = 5.13719
-.
-RANDOM_pose5
-START
-ra_shoulder_pan_joint = 4.23341
-ra_shoulder_lift_joint = 3.09048
-ra_elbow_joint = 2.66615
-ra_wrist_1_joint = -2.33388
-ra_wrist_2_joint = 5.92433
-ra_wrist_3_joint = 4.12361
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 4.78473
-ra_shoulder_lift_joint = 3.5482
-ra_elbow_joint = -0.435254
-ra_wrist_1_joint = 0.367964
-ra_wrist_2_joint = -5.62339
-ra_wrist_3_joint = -1.17493
-.
-RANDOM_pose6
-START
-ra_shoulder_pan_joint = -2.81912
-ra_shoulder_lift_joint = 3.02465
-ra_elbow_joint = 0.320993
-ra_wrist_1_joint = -2.65081
-ra_wrist_2_joint = 0.00842739
-ra_wrist_3_joint = 3.50762
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 5.3785
-ra_shoulder_lift_joint = -2.88385
-ra_elbow_joint = 2.36045
-ra_wrist_1_joint = -6.162
-ra_wrist_2_joint = 6.08681
-ra_wrist_3_joint = 3.37076
-.
-RANDOM_pose7
-START
-ra_shoulder_pan_joint = 1.16933
-ra_shoulder_lift_joint = -0.319087
-ra_elbow_joint = 0.295416
-ra_wrist_1_joint = -0.162204
-ra_wrist_2_joint = -4.8388
-ra_wrist_3_joint = 2.58191
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 6.08085
-ra_shoulder_lift_joint = -0.508674
-ra_elbow_joint = 0.620427
-ra_wrist_1_joint = -2.85623
-ra_wrist_2_joint = 5.835
-ra_wrist_3_joint = -4.34
-.
-RANDOM_pose8
-START
-ra_shoulder_pan_joint = 3.93062
-ra_shoulder_lift_joint = 3.41792
-ra_elbow_joint = -0.561756
-ra_wrist_1_joint = 6.26759
-ra_wrist_2_joint = 0.444172
-ra_wrist_3_joint = -0.949903
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 1.54265
-ra_shoulder_lift_joint = -6.02045
-ra_elbow_joint = -0.731761
-ra_wrist_1_joint = -4.20345
-ra_wrist_2_joint = 4.41821
-ra_wrist_3_joint = 1.77259
-.
-RANDOM_pose9
-START
-ra_shoulder_pan_joint = 3.45909
-ra_shoulder_lift_joint = -2.49401
-ra_elbow_joint = -0.461241
-ra_wrist_1_joint = -4.39731
-ra_wrist_2_joint = 6.06197
-ra_wrist_3_joint = 0.893285
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -1.465
-ra_shoulder_lift_joint = 3.51983
-ra_elbow_joint = -0.00129158
-ra_wrist_1_joint = 3.60572
-ra_wrist_2_joint = -2.57734
-ra_wrist_3_joint = 5.86615
-.
-RANDOM_pose10
-START
-ra_shoulder_pan_joint = 4.45499
-ra_shoulder_lift_joint = 3.78475
-ra_elbow_joint = -1.65436
-ra_wrist_1_joint = 0.237719
-ra_wrist_2_joint = 5.76707
-ra_wrist_3_joint = -2.32819
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -1.80311
-ra_shoulder_lift_joint = -2.88826
-ra_elbow_joint = -0.557471
-ra_wrist_1_joint = -5.38157
-ra_wrist_2_joint = 1.47712
-ra_wrist_3_joint = -1.15878
-.
-RANDOM_pose11
-START
-ra_shoulder_pan_joint = -1.36852
-ra_shoulder_lift_joint = 3.25205
-ra_elbow_joint = -0.00854699
-ra_wrist_1_joint = 0.873275
-ra_wrist_2_joint = 5.03351
-ra_wrist_3_joint = 0.876411
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -5.98297
-ra_shoulder_lift_joint = -0.0592326
-ra_elbow_joint = -2.45873
-ra_wrist_1_joint = 2.27315
-ra_wrist_2_joint = -1.9756
-ra_wrist_3_joint = -2.72926
-.
-RANDOM_pose12
-START
-ra_shoulder_pan_joint = 0.981287
-ra_shoulder_lift_joint = 5.85926
-ra_elbow_joint = 0.0970121
-ra_wrist_1_joint = 4.7385
-ra_wrist_2_joint = -1.9248
-ra_wrist_3_joint = -5.43105
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 4.42249
-ra_shoulder_lift_joint = 3.34345
-ra_elbow_joint = -0.478968
-ra_wrist_1_joint = -2.30412
-ra_wrist_2_joint = -1.00034
-ra_wrist_3_joint = 4.94952
-.
-RANDOM_pose13
-START
-ra_shoulder_pan_joint = 4.96478
-ra_shoulder_lift_joint = -2.56455
-ra_elbow_joint = -0.668777
-ra_wrist_1_joint = -6.1415
-ra_wrist_2_joint = 6.09018
-ra_wrist_3_joint = 1.24418
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -4.86157
-ra_shoulder_lift_joint = 6.06064
-ra_elbow_joint = 0.300645
-ra_wrist_1_joint = -2.73418
-ra_wrist_2_joint = -0.0504362
-ra_wrist_3_joint = 1.42003
-.
-RANDOM_pose14
-START
-ra_shoulder_pan_joint = 4.78323
-ra_shoulder_lift_joint = 3.0043
-ra_elbow_joint = 2.62993
-ra_wrist_1_joint = -2.9707
-ra_wrist_2_joint = -4.95632
-ra_wrist_3_joint = 5.93345
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 6.20706
-ra_shoulder_lift_joint = 5.73936
-ra_elbow_joint = 0.572664
-ra_wrist_1_joint = 3.95555
-ra_wrist_2_joint = -2.15971
-ra_wrist_3_joint = -0.625651
-.
-RANDOM_pose15
-START
-ra_shoulder_pan_joint = -5.05433
-ra_shoulder_lift_joint = 5.94169
-ra_elbow_joint = 0.720909
-ra_wrist_1_joint = -3.96247
-ra_wrist_2_joint = -0.0410332
-ra_wrist_3_joint = 1.29461
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 1.00998
-ra_shoulder_lift_joint = 6.07579
-ra_elbow_joint = -2.5372
-ra_wrist_1_joint = -5.86984
-ra_wrist_2_joint = -1.03701
-ra_wrist_3_joint = 4.85106
-.
-RANDOM_pose16
-START
-ra_shoulder_pan_joint = 4.60187
-ra_shoulder_lift_joint = 3.077
-ra_elbow_joint = 0.802563
-ra_wrist_1_joint = -2.91625
-ra_wrist_2_joint = -6.05739
-ra_wrist_3_joint = -5.23605
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 1.0236
-ra_shoulder_lift_joint = 5.74659
-ra_elbow_joint = 0.486294
-ra_wrist_1_joint = -5.49656
-ra_wrist_2_joint = -0.416134
-ra_wrist_3_joint = 5.47132
-.
-RANDOM_pose17
-START
-ra_shoulder_pan_joint = -6.02232
-ra_shoulder_lift_joint = -0.714576
-ra_elbow_joint = 0.635407
-ra_wrist_1_joint = -1.87112
-ra_wrist_2_joint = -0.777048
-ra_wrist_3_joint = -5.63197
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -0.376335
-ra_shoulder_lift_joint = 5.8894
-ra_elbow_joint = 0.403845
-ra_wrist_1_joint = 3.20751
-ra_wrist_2_joint = -0.970549
-ra_wrist_3_joint = 5.9375
-.
-RANDOM_pose18
-START
-ra_shoulder_pan_joint = 1.62482
-ra_shoulder_lift_joint = -0.0943183
-ra_elbow_joint = -0.265805
-ra_wrist_1_joint = 5.67051
-ra_wrist_2_joint = -4.82518
-ra_wrist_3_joint = 0.00676854
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 6.01699
-ra_shoulder_lift_joint = -0.226779
-ra_elbow_joint = -2.58602
-ra_wrist_1_joint = -1.09127
-ra_wrist_2_joint = -5.44048
-ra_wrist_3_joint = -1.52669
-.
-RANDOM_pose19
-START
-ra_shoulder_pan_joint = -3.22443
-ra_shoulder_lift_joint = 2.98888
-ra_elbow_joint = 0.79588
-ra_wrist_1_joint = -2.92965
-ra_wrist_2_joint = 4.92974
-ra_wrist_3_joint = -2.90841
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -4.81918
-ra_shoulder_lift_joint = -0.298748
-ra_elbow_joint = 0.277351
-ra_wrist_1_joint = -3.43501
-ra_wrist_2_joint = -1.14782
-ra_wrist_3_joint = -5.58824
-.
-RANDOM_pose20
-START
-ra_shoulder_pan_joint = 4.42844
-ra_shoulder_lift_joint = -2.83784
-ra_elbow_joint = -0.685428
-ra_wrist_1_joint = 0.227319
-ra_wrist_2_joint = -4.63604
-ra_wrist_3_joint = 4.56003
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -4.68928
-ra_shoulder_lift_joint = -0.668562
-ra_elbow_joint = 1.04908
-ra_wrist_1_joint = -0.968004
-ra_wrist_2_joint = -5.16069
-ra_wrist_3_joint = -0.299057
-.
-RANDOM_pose21
-START
-ra_shoulder_pan_joint = 6.07669
-ra_shoulder_lift_joint = 5.96583
-ra_elbow_joint = 0.491463
-ra_wrist_1_joint = -6.26048
-ra_wrist_2_joint = -5.38055
-ra_wrist_3_joint = 3.50375
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -5.49057
-ra_shoulder_lift_joint = -6.24775
-ra_elbow_joint = -0.336651
-ra_wrist_1_joint = 5.62502
-ra_wrist_2_joint = 2.21937
-ra_wrist_3_joint = -1.98475
-.
-RANDOM_pose22
-START
-ra_shoulder_pan_joint = -5.51227
-ra_shoulder_lift_joint = -0.674018
-ra_elbow_joint = 1.13666
-ra_wrist_1_joint = -0.239067
-ra_wrist_2_joint = 1.71662
-ra_wrist_3_joint = 2.31929
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 1.39653
-ra_shoulder_lift_joint = -0.527894
-ra_elbow_joint = 1.29928
-ra_wrist_1_joint = 2.05266
-ra_wrist_2_joint = -1.62542
-ra_wrist_3_joint = 4.91186
-.
-RANDOM_pose23
-START
-ra_shoulder_pan_joint = 0.123077
-ra_shoulder_lift_joint = -6.0604
-ra_elbow_joint = -1.96417
-ra_wrist_1_joint = -3.71355
-ra_wrist_2_joint = 1.0896
-ra_wrist_3_joint = 4.8727
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 3.98239
-ra_shoulder_lift_joint = 3.62314
-ra_elbow_joint = -0.335924
-ra_wrist_1_joint = -2.16307
-ra_wrist_2_joint = -0.277987
-ra_wrist_3_joint = -4.46398
-.
-RANDOM_pose24
-START
-ra_shoulder_pan_joint = 1.61281
-ra_shoulder_lift_joint = -0.0801111
-ra_elbow_joint = -0.644255
-ra_wrist_1_joint = -5.27319
-ra_wrist_2_joint = 1.39502
-ra_wrist_3_joint = 0.189206
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -2.67728
-ra_shoulder_lift_joint = -3.31138
-ra_elbow_joint = 2.03992
-ra_wrist_1_joint = 1.15627
-ra_wrist_2_joint = 1.90229
-ra_wrist_3_joint = -3.56984
-.
-RANDOM_pose25
-START
-ra_shoulder_pan_joint = 4.27411
-ra_shoulder_lift_joint = -2.57102
-ra_elbow_joint = 2.86854
-ra_wrist_1_joint = 3.02908
-ra_wrist_2_joint = 1.26404
-ra_wrist_3_joint = 5.29254
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 0.0467249
-ra_shoulder_lift_joint = -0.263621
-ra_elbow_joint = 0.226581
-ra_wrist_1_joint = -2.22008
-ra_wrist_2_joint = 5.76899
-ra_wrist_3_joint = 5.5678
-.
-RANDOM_pose26
-START
-ra_shoulder_pan_joint = 1.06214
-ra_shoulder_lift_joint = 0.249178
-ra_elbow_joint = -0.864922
-ra_wrist_1_joint = -4.94033
-ra_wrist_2_joint = 5.71703
-ra_wrist_3_joint = 3.46367
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 3.9223
-ra_shoulder_lift_joint = -2.70938
-ra_elbow_joint = -0.972748
-ra_wrist_1_joint = -6.01358
-ra_wrist_2_joint = 4.88385
-ra_wrist_3_joint = -1.59862
-.
-RANDOM_pose27
-START
-ra_shoulder_pan_joint = 0.438974
-ra_shoulder_lift_joint = -0.207579
-ra_elbow_joint = 0.293707
-ra_wrist_1_joint = -0.832958
-ra_wrist_2_joint = 1.99438
-ra_wrist_3_joint = -4.0743
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 6.17438
-ra_shoulder_lift_joint = 5.98493
-ra_elbow_joint = 0.12716
-ra_wrist_1_joint = 3.37076
-ra_wrist_2_joint = -0.573891
-ra_wrist_3_joint = -2.67986
-.
-RANDOM_pose28
-START
-ra_shoulder_pan_joint = 0.807307
-ra_shoulder_lift_joint = -6.10376
-ra_elbow_joint = -0.885752
-ra_wrist_1_joint = -1.92703
-ra_wrist_2_joint = 5.53985
-ra_wrist_3_joint = -3.65954
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 3.77831
-ra_shoulder_lift_joint = -2.99837
-ra_elbow_joint = 0.383912
-ra_wrist_1_joint = 4.35091
-ra_wrist_2_joint = 1.65616
-ra_wrist_3_joint = 4.61261
-.
-RANDOM_pose29
-START
-ra_shoulder_pan_joint = 5.18697
-ra_shoulder_lift_joint = 3.10276
-ra_elbow_joint = 2.55925
-ra_wrist_1_joint = 0.185327
-ra_wrist_2_joint = 0.978836
-ra_wrist_3_joint = -5.09555
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 4.37534
-ra_shoulder_lift_joint = -2.818
-ra_elbow_joint = 2.55427
-ra_wrist_1_joint = 6.04572
-ra_wrist_2_joint = -4.89936
-ra_wrist_3_joint = -1.15575
-.
-RANDOM_pose30
-START
-ra_shoulder_pan_joint = 1.08261
-ra_shoulder_lift_joint = 3.81482
-ra_elbow_joint = 2.51003
-ra_wrist_1_joint = 6.25673
-ra_wrist_2_joint = 1.35542
-ra_wrist_3_joint = -2.1698
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 5.24593
-ra_shoulder_lift_joint = -0.703168
-ra_elbow_joint = 2.57391
-ra_wrist_1_joint = 1.96529
-ra_wrist_2_joint = 0.499367
-ra_wrist_3_joint = -1.19926
-.
-RANDOM_pose31
-START
-ra_shoulder_pan_joint = 5.56589
-ra_shoulder_lift_joint = 3.9238
-ra_elbow_joint = -2.09716
-ra_wrist_1_joint = 1.88233
-ra_wrist_2_joint = 0.717651
-ra_wrist_3_joint = 0.0306638
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 3.55174
-ra_shoulder_lift_joint = -3.23963
-ra_elbow_joint = 0.339555
-ra_wrist_1_joint = -5.77488
-ra_wrist_2_joint = -4.11878
-ra_wrist_3_joint = 2.42668
-.
-RANDOM_pose32
-START
-ra_shoulder_pan_joint = -1.66153
-ra_shoulder_lift_joint = 3.62138
-ra_elbow_joint = -0.815027
-ra_wrist_1_joint = -1.02946
-ra_wrist_2_joint = -1.2265
-ra_wrist_3_joint = -5.91441
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -0.290189
-ra_shoulder_lift_joint = 0.2472
-ra_elbow_joint = -2.4081
-ra_wrist_1_joint = -4.19102
-ra_wrist_2_joint = -5.59702
-ra_wrist_3_joint = 4.79026
-.
-RANDOM_pose33
-START
-ra_shoulder_pan_joint = 3.66704
-ra_shoulder_lift_joint = 3.98701
-ra_elbow_joint = -1.02834
-ra_wrist_1_joint = 2.91899
-ra_wrist_2_joint = -5.47646
-ra_wrist_3_joint = -5.23999
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -1.5424
-ra_shoulder_lift_joint = 3.83786
-ra_elbow_joint = 2.62866
-ra_wrist_1_joint = -2.65031
-ra_wrist_2_joint = -0.288844
-ra_wrist_3_joint = 4.20973
-.
-RANDOM_pose34
-START
-ra_shoulder_pan_joint = -0.318301
-ra_shoulder_lift_joint = -0.092705
-ra_elbow_joint = 0.391217
-ra_wrist_1_joint = 3.95351
-ra_wrist_2_joint = 1.28752
-ra_wrist_3_joint = 0.639075
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -5.87303
-ra_shoulder_lift_joint = 5.6348
-ra_elbow_joint = 0.697162
-ra_wrist_1_joint = -5.54246
-ra_wrist_2_joint = -0.0966333
-ra_wrist_3_joint = 1.71888
-.
-RANDOM_pose35
-START
-ra_shoulder_pan_joint = 4.69009
-ra_shoulder_lift_joint = 3.22589
-ra_elbow_joint = 2.86585
-ra_wrist_1_joint = -4.05191
-ra_wrist_2_joint = 5.62134
-ra_wrist_3_joint = 5.64408
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -0.668704
-ra_shoulder_lift_joint = -0.100038
-ra_elbow_joint = -2.66154
-ra_wrist_1_joint = 4.54972
-ra_wrist_2_joint = 0.31493
-ra_wrist_3_joint = -4.526
-.
-RANDOM_pose36
-START
-ra_shoulder_pan_joint = 5.32082
-ra_shoulder_lift_joint = -2.32746
-ra_elbow_joint = -2.5046
-ra_wrist_1_joint = -6.26018
-ra_wrist_2_joint = 5.44258
-ra_wrist_3_joint = -6.10159
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 4.8131
-ra_shoulder_lift_joint = 3.72439
-ra_elbow_joint = -1.04056
-ra_wrist_1_joint = -0.190455
-ra_wrist_2_joint = 0.158052
-ra_wrist_3_joint = 0.966502
-.
 RANDOM_pose37
 START
-ra_shoulder_pan_joint = -1.28068
-ra_shoulder_lift_joint = 3.29686
-ra_elbow_joint = 0.388514
-ra_wrist_1_joint = 4.66881
-ra_wrist_2_joint = -4.54586
-ra_wrist_3_joint = -6.17695
+ra_shoulder_pan_joint = -0.22206
+ra_shoulder_lift_joint = -1.70194
+ra_elbow_joint = 2.45125
+ra_wrist_1_joint = 1.98143
+ra_wrist_2_joint = -0.625475
+ra_wrist_3_joint = -6.15058
 .
 GOAL
 joint_constraint
-ra_shoulder_pan_joint = 0.740404
-ra_shoulder_lift_joint = -0.0126853
-ra_elbow_joint = -0.123309
-ra_wrist_1_joint = 4.31752
-ra_wrist_2_joint = 1.85294
-ra_wrist_3_joint = -1.29602
-.
-RANDOM_pose38
-START
-ra_shoulder_pan_joint = -6.19001
-ra_shoulder_lift_joint = -0.719313
-ra_elbow_joint = 1.1642
-ra_wrist_1_joint = -6.04238
-ra_wrist_2_joint = 5.81975
-ra_wrist_3_joint = 2.26541
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -2.0511
-ra_shoulder_lift_joint = -3.29867
-ra_elbow_joint = 2.60294
-ra_wrist_1_joint = -4.4164
-ra_wrist_2_joint = 0.450868
-ra_wrist_3_joint = -4.88837
-.
-RANDOM_pose39
-START
-ra_shoulder_pan_joint = 0.830859
-ra_shoulder_lift_joint = -0.786131
-ra_elbow_joint = 1.51741
-ra_wrist_1_joint = 4.69218
-ra_wrist_2_joint = -5.15181
-ra_wrist_3_joint = 0.844509
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -1.02761
-ra_shoulder_lift_joint = 5.4845
-ra_elbow_joint = 2.24682
-ra_wrist_1_joint = -4.7436
-ra_wrist_2_joint = 0.798306
-ra_wrist_3_joint = 3.04273
-.
-RANDOM_pose40
-START
-ra_shoulder_pan_joint = 0.391976
-ra_shoulder_lift_joint = -0.384857
-ra_elbow_joint = 0.393783
-ra_wrist_1_joint = -1.67209
-ra_wrist_2_joint = -0.570736
-ra_wrist_3_joint = -1.99293
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 1.96955
-ra_shoulder_lift_joint = 5.91847
-ra_elbow_joint = -2.72791
-ra_wrist_1_joint = -0.112544
-ra_wrist_2_joint = -5.44851
-ra_wrist_3_joint = 4.71499
-.
-RANDOM_pose41
-START
-ra_shoulder_pan_joint = 5.33584
-ra_shoulder_lift_joint = -3.10371
-ra_elbow_joint = 2.5024
-ra_wrist_1_joint = -6.05611
-ra_wrist_2_joint = -0.501611
-ra_wrist_3_joint = -0.128508
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 0.893297
-ra_shoulder_lift_joint = 6.22974
-ra_elbow_joint = -0.106059
-ra_wrist_1_joint = -4.18979
-ra_wrist_2_joint = -5.26471
-ra_wrist_3_joint = -5.87489
-.
-RANDOM_pose42
-START
-ra_shoulder_pan_joint = -5.597
-ra_shoulder_lift_joint = 5.847
-ra_elbow_joint = 0.544594
-ra_wrist_1_joint = -1.60781
-ra_wrist_2_joint = 4.57291
-ra_wrist_3_joint = -4.02776
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -1.89385
-ra_shoulder_lift_joint = 3.23465
-ra_elbow_joint = -0.0283496
-ra_wrist_1_joint = -3.36886
-ra_wrist_2_joint = -5.2928
-ra_wrist_3_joint = 0.0179167
-.
-RANDOM_pose43
-START
-ra_shoulder_pan_joint = -2.97323
-ra_shoulder_lift_joint = -2.79432
-ra_elbow_joint = -0.307151
-ra_wrist_1_joint = 3.79586
-ra_wrist_2_joint = 1.11558
-ra_wrist_3_joint = -1.06201
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -2.71292
-ra_shoulder_lift_joint = -2.62821
-ra_elbow_joint = 2.65261
-ra_wrist_1_joint = 5.91717
-ra_wrist_2_joint = 1.66689
-ra_wrist_3_joint = 5.87543
-.
-RANDOM_pose44
-START
-ra_shoulder_pan_joint = -3.32934
-ra_shoulder_lift_joint = -2.44637
-ra_elbow_joint = 2.78639
-ra_wrist_1_joint = 3.27649
-ra_wrist_2_joint = -0.796502
-ra_wrist_3_joint = -5.26334
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -3.24427
-ra_shoulder_lift_joint = 3.36324
-ra_elbow_joint = -0.0730683
-ra_wrist_1_joint = 4.94357
-ra_wrist_2_joint = 1.70551
-ra_wrist_3_joint = -3.84438
-.
-RANDOM_pose45
-START
-ra_shoulder_pan_joint = 0.765694
-ra_shoulder_lift_joint = -6.0252
-ra_elbow_joint = -1.38116
-ra_wrist_1_joint = 6.05959
-ra_wrist_2_joint = 6.19238
-ra_wrist_3_joint = 1.18947
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -5.87418
-ra_shoulder_lift_joint = -0.68883
-ra_elbow_joint = -2.57631
-ra_wrist_1_joint = -2.09026
-ra_wrist_2_joint = -5.64928
-ra_wrist_3_joint = -2.80202
-.
-RANDOM_pose46
-START
-ra_shoulder_pan_joint = 0.474952
-ra_shoulder_lift_joint = 5.74893
-ra_elbow_joint = 0.843331
-ra_wrist_1_joint = 6.01035
-ra_wrist_2_joint = -5.05786
-ra_wrist_3_joint = -4.90697
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = 3.39995
-ra_shoulder_lift_joint = 3.86845
-ra_elbow_joint = -2.6565
-ra_wrist_1_joint = -5.28896
-ra_wrist_2_joint = 6.22383
-ra_wrist_3_joint = 1.39701
-.
-RANDOM_pose47
-START
-ra_shoulder_pan_joint = -2.52228
-ra_shoulder_lift_joint = -3.05329
-ra_elbow_joint = 0.0373236
-ra_wrist_1_joint = -5.06998
-ra_wrist_2_joint = 0.556205
-ra_wrist_3_joint = -2.25156
-.
-GOAL
-joint_constraint
-ra_shoulder_pan_joint = -2.82572
-ra_shoulder_lift_joint = -0.834531
-ra_elbow_joint = -2.36824
-ra_wrist_1_joint = -2.6931
-ra_wrist_2_joint = -0.560264
-ra_wrist_3_joint = -0.62692
+ra_shoulder_pan_joint = -0.452625
+ra_shoulder_lift_joint = -1.39544
+ra_elbow_joint = -1.43651
+ra_wrist_1_joint = -5.18227
+ra_wrist_2_joint = 0.0701488
+ra_wrist_3_joint = -3.85825
 .
 RANDOM_pose48
 START
-ra_shoulder_pan_joint = -5.77444
-ra_shoulder_lift_joint = -0.420949
-ra_elbow_joint = 0.831204
-ra_wrist_1_joint = 6.18598
-ra_wrist_2_joint = 4.83093
-ra_wrist_3_joint = -2.27166
+ra_shoulder_pan_joint = 0.375488
+ra_shoulder_lift_joint = 5.82856
+ra_elbow_joint = -2.66539
+ra_wrist_1_joint = -0.804513
+ra_wrist_2_joint = 1.49925
+ra_wrist_3_joint = 2.61645
 .
 GOAL
 joint_constraint
-ra_shoulder_pan_joint = -2.37461
-ra_shoulder_lift_joint = -2.30379
-ra_elbow_joint = -2.64669
-ra_wrist_1_joint = -4.84154
-ra_wrist_2_joint = 0.0423438
-ra_wrist_3_joint = -0.49351
+ra_shoulder_pan_joint = 1.41527
+ra_shoulder_lift_joint = -0.541466
+ra_elbow_joint = -2.29925
+ra_wrist_1_joint = 0.35829
+ra_wrist_2_joint = 0.911818
+ra_wrist_3_joint = 3.1237
 .
 RANDOM_pose49
 START
-ra_shoulder_pan_joint = -5.83085
-ra_shoulder_lift_joint = -6.19897
-ra_elbow_joint = -2.77975
-ra_wrist_1_joint = -5.52235
-ra_wrist_2_joint = 0.472615
-ra_wrist_3_joint = 6.13228
+ra_shoulder_pan_joint = 4.60436
+ra_shoulder_lift_joint = 5.36562
+ra_elbow_joint = -1.99765
+ra_wrist_1_joint = 4.64494
+ra_wrist_2_joint = 0.442587
+ra_wrist_3_joint = 2.89452
 .
 GOAL
 joint_constraint
-ra_shoulder_pan_joint = 0.64039
-ra_shoulder_lift_joint = 5.57541
-ra_elbow_joint = 1.32816
-ra_wrist_1_joint = 2.67912
-ra_wrist_2_joint = -5.43315
-ra_wrist_3_joint = -5.90131
+ra_shoulder_pan_joint = 6.24379
+ra_shoulder_lift_joint = -0.82861
+ra_elbow_joint = -2.79032
+ra_wrist_1_joint = 5.4099
+ra_wrist_2_joint = -1.013
+ra_wrist_3_joint = 4.74287
+.
+RANDOM_pose0
+START
+ra_shoulder_pan_joint = -0.828574
+ra_shoulder_lift_joint = -1.32062
+ra_elbow_joint = -2.54034
+ra_wrist_1_joint = 5.04605
+ra_wrist_2_joint = -1.53142
+ra_wrist_3_joint = 0.0760651
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.61453
+ra_shoulder_lift_joint = -1.45526
+ra_elbow_joint = -1.26793
+ra_wrist_1_joint = 3.4829
+ra_wrist_2_joint = -5.7138
+ra_wrist_3_joint = -5.70314
+.
+RANDOM_pose1
+START
+ra_shoulder_pan_joint = -0.31226
+ra_shoulder_lift_joint = -1.68391
+ra_elbow_joint = 2.10291
+ra_wrist_1_joint = -3.46001
+ra_wrist_2_joint = -5.64361
+ra_wrist_3_joint = 2.48169
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 0.437022
+ra_shoulder_lift_joint = 4.1115
+ra_elbow_joint = 2.3901
+ra_wrist_1_joint = 2.60366
+ra_wrist_2_joint = -1.87977
+ra_wrist_3_joint = 5.29947
+.
+RANDOM_pose2
+START
+ra_shoulder_pan_joint = 3.69667
+ra_shoulder_lift_joint = 3.57167
+ra_elbow_joint = 1.78249
+ra_wrist_1_joint = -5.19427
+ra_wrist_2_joint = 0.882973
+ra_wrist_3_joint = -1.85091
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -3.24836
+ra_shoulder_lift_joint = 4.65509
+ra_elbow_joint = -1.00813
+ra_wrist_1_joint = 2.29422
+ra_wrist_2_joint = -1.44645
+ra_wrist_3_joint = -5.33761
+.
+RANDOM_pose3
+START
+ra_shoulder_pan_joint = 0.123258
+ra_shoulder_lift_joint = -0.145977
+ra_elbow_joint = 0.284913
+ra_wrist_1_joint = 5.00253
+ra_wrist_2_joint = -5.63372
+ra_wrist_3_joint = 3.66851
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 6.24426
+ra_shoulder_lift_joint = -1.14759
+ra_elbow_joint = 2.07972
+ra_wrist_1_joint = 1.90519
+ra_wrist_2_joint = 0.202134
+ra_wrist_3_joint = -6.20017
+.
+RANDOM_pose4
+START
+ra_shoulder_pan_joint = 5.90913
+ra_shoulder_lift_joint = -0.144203
+ra_elbow_joint = -1.88636
+ra_wrist_1_joint = 2.2887
+ra_wrist_2_joint = -6.22647
+ra_wrist_3_joint = 0.567585
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 5.70771
+ra_shoulder_lift_joint = 5.25869
+ra_elbow_joint = 1.68685
+ra_wrist_1_joint = -1.02523
+ra_wrist_2_joint = -6.14804
+ra_wrist_3_joint = -4.63894
+.
+RANDOM_pose5
+START
+ra_shoulder_pan_joint = -3.44477
+ra_shoulder_lift_joint = 4.64113
+ra_elbow_joint = 2.87365
+ra_wrist_1_joint = -3.05534
+ra_wrist_2_joint = 1.0989
+ra_wrist_3_joint = 0.154292
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.48328
+ra_shoulder_lift_joint = 3.81291
+ra_elbow_joint = -0.488079
+ra_wrist_1_joint = 3.45444
+ra_wrist_2_joint = 0.0627625
+ra_wrist_3_joint = 3.40238
+.
+RANDOM_pose6
+START
+ra_shoulder_pan_joint = 5.45228
+ra_shoulder_lift_joint = -1.7678
+ra_elbow_joint = 1.78785
+ra_wrist_1_joint = 1.46758
+ra_wrist_2_joint = -6.01896
+ra_wrist_3_joint = 3.47132
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 4.5828
+ra_shoulder_lift_joint = 4.06269
+ra_elbow_joint = 1.69914
+ra_wrist_1_joint = 1.56727
+ra_wrist_2_joint = 5.67342
+ra_wrist_3_joint = 0.491474
+.
+RANDOM_pose7
+START
+ra_shoulder_pan_joint = 2.13631
+ra_shoulder_lift_joint = -2.01269
+ra_elbow_joint = 2.1255
+ra_wrist_1_joint = -0.75391
+ra_wrist_2_joint = -1.54807
+ra_wrist_3_joint = 6.09583
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.48623
+ra_shoulder_lift_joint = 4.53373
+ra_elbow_joint = -0.934185
+ra_wrist_1_joint = 4.07042
+ra_wrist_2_joint = 1.25387
+ra_wrist_3_joint = -5.79273
+.
+RANDOM_pose8
+START
+ra_shoulder_pan_joint = -0.437869
+ra_shoulder_lift_joint = 5.85734
+ra_elbow_joint = 0.1837
+ra_wrist_1_joint = -0.460905
+ra_wrist_2_joint = 0.949086
+ra_wrist_3_joint = 0.674494
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.4011
+ra_shoulder_lift_joint = -2.22339
+ra_elbow_joint = 2.23148
+ra_wrist_1_joint = 1.98345
+ra_wrist_2_joint = -6.17057
+ra_wrist_3_joint = 0.535999
+.
+RANDOM_pose9
+START
+ra_shoulder_pan_joint = 4.12705
+ra_shoulder_lift_joint = 3.84181
+ra_elbow_joint = -1.11138
+ra_wrist_1_joint = 0.953756
+ra_wrist_2_joint = 0.733344
+ra_wrist_3_joint = 1.46971
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 5.50432
+ra_shoulder_lift_joint = -1.79287
+ra_elbow_joint = -2.74091
+ra_wrist_1_joint = -4.60073
+ra_wrist_2_joint = -4.48807
+ra_wrist_3_joint = -1.08925
+.
+RANDOM_pose10
+START
+ra_shoulder_pan_joint = 5.58179
+ra_shoulder_lift_joint = 5.3908
+ra_elbow_joint = 1.90637
+ra_wrist_1_joint = 2.41025
+ra_wrist_2_joint = 0.554561
+ra_wrist_3_joint = -4.61971
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -4.78049
+ra_shoulder_lift_joint = -2.00987
+ra_elbow_joint = 2.23196
+ra_wrist_1_joint = -4.99538
+ra_wrist_2_joint = -5.10104
+ra_wrist_3_joint = 3.1889
+.
+RANDOM_pose11
+START
+ra_shoulder_pan_joint = -5.67028
+ra_shoulder_lift_joint = -0.85715
+ra_elbow_joint = -2.13342
+ra_wrist_1_joint = -1.25461
+ra_wrist_2_joint = 5.19413
+ra_wrist_3_joint = 4.82284
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 1.22575
+ra_shoulder_lift_joint = -0.904001
+ra_elbow_joint = 1.13559
+ra_wrist_1_joint = -3.59214
+ra_wrist_2_joint = -5.40303
+ra_wrist_3_joint = -1.28656
+.
+RANDOM_pose12
+START
+ra_shoulder_pan_joint = -2.74055
+ra_shoulder_lift_joint = 3.59236
+ra_elbow_joint = -0.50811
+ra_wrist_1_joint = 3.27225
+ra_wrist_2_joint = 4.76935
+ra_wrist_3_joint = -2.60301
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -5.09913
+ra_shoulder_lift_joint = 5.52707
+ra_elbow_joint = -1.96124
+ra_wrist_1_joint = -2.5647
+ra_wrist_2_joint = 1.411
+ra_wrist_3_joint = 2.46321
+.
+RANDOM_pose13
+START
+ra_shoulder_pan_joint = 3.70604
+ra_shoulder_lift_joint = -2.16616
+ra_elbow_joint = -0.740791
+ra_wrist_1_joint = -5.68873
+ra_wrist_2_joint = -5.82665
+ra_wrist_3_joint = -5.84527
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.31894
+ra_shoulder_lift_joint = -2.83342
+ra_elbow_joint = -0.656642
+ra_wrist_1_joint = 5.18372
+ra_wrist_2_joint = -0.894671
+ra_wrist_3_joint = 2.94038
+.
+RANDOM_pose14
+START
+ra_shoulder_pan_joint = 6.23437
+ra_shoulder_lift_joint = 5.34735
+ra_elbow_joint = 0.715579
+ra_wrist_1_joint = -0.451907
+ra_wrist_2_joint = -4.22457
+ra_wrist_3_joint = 0.460076
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 2.91285
+ra_shoulder_lift_joint = -2.78894
+ra_elbow_joint = 1.6763
+ra_wrist_1_joint = 4.51454
+ra_wrist_2_joint = -2.02864
+ra_wrist_3_joint = 0.0824274
+.
+RANDOM_pose15
+START
+ra_shoulder_pan_joint = -1.46014
+ra_shoulder_lift_joint = 4.42289
+ra_elbow_joint = 2.13168
+ra_wrist_1_joint = -2.85549
+ra_wrist_2_joint = 0.966897
+ra_wrist_3_joint = 1.4615
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 1.58979
+ra_shoulder_lift_joint = 5.64261
+ra_elbow_joint = -2.2364
+ra_wrist_1_joint = -2.72015
+ra_wrist_2_joint = 4.49455
+ra_wrist_3_joint = -2.97346
+.
+RANDOM_pose16
+START
+ra_shoulder_pan_joint = -1.51137
+ra_shoulder_lift_joint = 4.9785
+ra_elbow_joint = -2.81693
+ra_wrist_1_joint = -5.17089
+ra_wrist_2_joint = -4.15875
+ra_wrist_3_joint = -5.88329
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -5.99277
+ra_shoulder_lift_joint = 6.12244
+ra_elbow_joint = 0.0484678
+ra_wrist_1_joint = 4.57821
+ra_wrist_2_joint = -4.33914
+ra_wrist_3_joint = 3.67866
+.
+RANDOM_pose17
+START
+ra_shoulder_pan_joint = 1.0605
+ra_shoulder_lift_joint = 5.08367
+ra_elbow_joint = -1.88777
+ra_wrist_1_joint = -4.55327
+ra_wrist_2_joint = 4.10321
+ra_wrist_3_joint = 2.69949
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 6.02389
+ra_shoulder_lift_joint = 4.21579
+ra_elbow_joint = 2.46013
+ra_wrist_1_joint = -5.94128
+ra_wrist_2_joint = 5.66245
+ra_wrist_3_joint = 2.05681
+.
+RANDOM_pose18
+START
+ra_shoulder_pan_joint = 4.60262
+ra_shoulder_lift_joint = -2.32423
+ra_elbow_joint = 1.31695
+ra_wrist_1_joint = 0.989822
+ra_wrist_2_joint = -5.31766
+ra_wrist_3_joint = -0.834452
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.56121
+ra_shoulder_lift_joint = 4.47393
+ra_elbow_joint = -1.34622
+ra_wrist_1_joint = 4.53393
+ra_wrist_2_joint = 0.83751
+ra_wrist_3_joint = 3.59008
+.
+RANDOM_pose19
+START
+ra_shoulder_pan_joint = -0.935929
+ra_shoulder_lift_joint = -2.04686
+ra_elbow_joint = 2.68564
+ra_wrist_1_joint = 3.22314
+ra_wrist_2_joint = 1.50281
+ra_wrist_3_joint = -5.1941
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.42998
+ra_shoulder_lift_joint = 4.94683
+ra_elbow_joint = -1.98911
+ra_wrist_1_joint = -2.26935
+ra_wrist_2_joint = 5.3466
+ra_wrist_3_joint = -6.24502
+.
+RANDOM_pose20
+START
+ra_shoulder_pan_joint = -1.57439
+ra_shoulder_lift_joint = -1.22263
+ra_elbow_joint = -1.66946
+ra_wrist_1_joint = 0.275787
+ra_wrist_2_joint = -0.859419
+ra_wrist_3_joint = 1.78088
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.30663
+ra_shoulder_lift_joint = 4.49574
+ra_elbow_joint = -2.76317
+ra_wrist_1_joint = -5.7739
+ra_wrist_2_joint = -6.12247
+ra_wrist_3_joint = 3.39708
+.
+RANDOM_pose21
+START
+ra_shoulder_pan_joint = -4.56875
+ra_shoulder_lift_joint = -2.10518
+ra_elbow_joint = 1.95455
+ra_wrist_1_joint = -4.33654
+ra_wrist_2_joint = 4.51889
+ra_wrist_3_joint = 0.418489
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.96186
+ra_shoulder_lift_joint = 5.15857
+ra_elbow_joint = -2.05608
+ra_wrist_1_joint = -0.648627
+ra_wrist_2_joint = 5.34197
+ra_wrist_3_joint = 2.60172
+.
+RANDOM_pose22
+START
+ra_shoulder_pan_joint = -2.97963
+ra_shoulder_lift_joint = -1.50236
+ra_elbow_joint = -2.07805
+ra_wrist_1_joint = -1.16907
+ra_wrist_2_joint = -4.74519
+ra_wrist_3_joint = 3.13938
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 3.92082
+ra_shoulder_lift_joint = 4.51092
+ra_elbow_joint = -2.00614
+ra_wrist_1_joint = -5.71229
+ra_wrist_2_joint = 0.558614
+ra_wrist_3_joint = -1.24044
+.
+RANDOM_pose23
+START
+ra_shoulder_pan_joint = -4.96634
+ra_shoulder_lift_joint = -1.08753
+ra_elbow_joint = 1.14026
+ra_wrist_1_joint = 1.31143
+ra_wrist_2_joint = 5.50768
+ra_wrist_3_joint = -4.68512
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 1.55137
+ra_shoulder_lift_joint = -2.07046
+ra_elbow_joint = 1.81481
+ra_wrist_1_joint = 3.09022
+ra_wrist_2_joint = 4.6725
+ra_wrist_3_joint = -4.81575
+.
+RANDOM_pose24
+START
+ra_shoulder_pan_joint = -5.40458
+ra_shoulder_lift_joint = 3.99162
+ra_elbow_joint = 1.87455
+ra_wrist_1_joint = 3.54968
+ra_wrist_2_joint = 2.11214
+ra_wrist_3_joint = -2.66974
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 6.05524
+ra_shoulder_lift_joint = 5.99074
+ra_elbow_joint = -2.39579
+ra_wrist_1_joint = 6.06778
+ra_wrist_2_joint = 5.73209
+ra_wrist_3_joint = 1.79678
+.
+RANDOM_pose25
+START
+ra_shoulder_pan_joint = 0.820944
+ra_shoulder_lift_joint = -0.930307
+ra_elbow_joint = -2.05148
+ra_wrist_1_joint = 1.7465
+ra_wrist_2_joint = -1.22636
+ra_wrist_3_joint = -5.69435
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 4.05723
+ra_shoulder_lift_joint = 3.74133
+ra_elbow_joint = -0.521343
+ra_wrist_1_joint = 1.68632
+ra_wrist_2_joint = 5.3998
+ra_wrist_3_joint = 4.29834
+.
+RANDOM_pose26
+START
+ra_shoulder_pan_joint = -0.0022417
+ra_shoulder_lift_joint = -1.01193
+ra_elbow_joint = -2.4201
+ra_wrist_1_joint = -2.39537
+ra_wrist_2_joint = 0.266501
+ra_wrist_3_joint = 2.39722
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 0.595304
+ra_shoulder_lift_joint = -0.772495
+ra_elbow_joint = 0.549313
+ra_wrist_1_joint = 5.21285
+ra_wrist_2_joint = 0.846315
+ra_wrist_3_joint = 0.0507627
+.
+RANDOM_pose27
+START
+ra_shoulder_pan_joint = 4.28831
+ra_shoulder_lift_joint = -1.87943
+ra_elbow_joint = -1.19899
+ra_wrist_1_joint = -4.07661
+ra_wrist_2_joint = -1.66712
+ra_wrist_3_joint = -2.14155
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.12893
+ra_shoulder_lift_joint = -1.46749
+ra_elbow_joint = -1.98575
+ra_wrist_1_joint = -3.45255
+ra_wrist_2_joint = 1.27123
+ra_wrist_3_joint = -2.36522
+.
+RANDOM_pose28
+START
+ra_shoulder_pan_joint = -2.68738
+ra_shoulder_lift_joint = 3.97625
+ra_elbow_joint = -0.557247
+ra_wrist_1_joint = 1.11271
+ra_wrist_2_joint = -5.78542
+ra_wrist_3_joint = -2.17756
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.90269
+ra_shoulder_lift_joint = 4.42123
+ra_elbow_joint = -1.12571
+ra_wrist_1_joint = 5.21269
+ra_wrist_2_joint = -0.401958
+ra_wrist_3_joint = -4.3942
+.
+RANDOM_pose29
+START
+ra_shoulder_pan_joint = -5.99986
+ra_shoulder_lift_joint = -1.53066
+ra_elbow_joint = 1.54807
+ra_wrist_1_joint = -5.81304
+ra_wrist_2_joint = -4.62703
+ra_wrist_3_joint = -0.651173
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 3.61325
+ra_shoulder_lift_joint = -1.83548
+ra_elbow_joint = -2.31336
+ra_wrist_1_joint = 1.36172
+ra_wrist_2_joint = 0.652339
+ra_wrist_3_joint = 2.52985
+.
+RANDOM_pose30
+START
+ra_shoulder_pan_joint = -6.19803
+ra_shoulder_lift_joint = 4.6749
+ra_elbow_joint = 1.84666
+ra_wrist_1_joint = -0.222822
+ra_wrist_2_joint = -1.43554
+ra_wrist_3_joint = -5.05472
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.78297
+ra_shoulder_lift_joint = -2.30252
+ra_elbow_joint = -0.405457
+ra_wrist_1_joint = -0.825878
+ra_wrist_2_joint = 0.97006
+ra_wrist_3_joint = 0.251641
+.
+RANDOM_pose31
+START
+ra_shoulder_pan_joint = -3.21329
+ra_shoulder_lift_joint = -3.14917
+ra_elbow_joint = 1.70889
+ra_wrist_1_joint = -1.41421
+ra_wrist_2_joint = 5.24718
+ra_wrist_3_joint = 4.15127
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.10084
+ra_shoulder_lift_joint = -2.49382
+ra_elbow_joint = 1.79546
+ra_wrist_1_joint = -2.43203
+ra_wrist_2_joint = 1.12201
+ra_wrist_3_joint = 0.728157
+.
+RANDOM_pose32
+START
+ra_shoulder_pan_joint = 3.19857
+ra_shoulder_lift_joint = -1.8549
+ra_elbow_joint = -1.53318
+ra_wrist_1_joint = 4.38615
+ra_wrist_2_joint = -6.00799
+ra_wrist_3_joint = -3.84656
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -1.44004
+ra_shoulder_lift_joint = -2.07477
+ra_elbow_joint = -1.42815
+ra_wrist_1_joint = 2.55015
+ra_wrist_2_joint = 1.03573
+ra_wrist_3_joint = 4.15681
+.
+RANDOM_pose33
+START
+ra_shoulder_pan_joint = -2.43949
+ra_shoulder_lift_joint = 3.59557
+ra_elbow_joint = 0.461015
+ra_wrist_1_joint = -1.16384
+ra_wrist_2_joint = 1.38677
+ra_wrist_3_joint = -2.21419
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -0.679015
+ra_shoulder_lift_joint = -2.26547
+ra_elbow_joint = 1.95229
+ra_wrist_1_joint = 0.539014
+ra_wrist_2_joint = 1.74313
+ra_wrist_3_joint = 1.95688
+.
+RANDOM_pose34
+START
+ra_shoulder_pan_joint = -5.26388
+ra_shoulder_lift_joint = -1.09811
+ra_elbow_joint = 0.448556
+ra_wrist_1_joint = 1.18016
+ra_wrist_2_joint = -4.12806
+ra_wrist_3_joint = 5.1231
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 6.19352
+ra_shoulder_lift_joint = -0.81227
+ra_elbow_joint = -2.43208
+ra_wrist_1_joint = 3.8869
+ra_wrist_2_joint = 5.45952
+ra_wrist_3_joint = 5.47817
+.
+RANDOM_pose35
+START
+ra_shoulder_pan_joint = -5.99291
+ra_shoulder_lift_joint = -1.15831
+ra_elbow_joint = 1.82625
+ra_wrist_1_joint = 2.12431
+ra_wrist_2_joint = 5.32224
+ra_wrist_3_joint = -5.20719
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -0.555977
+ra_shoulder_lift_joint = 5.92586
+ra_elbow_joint = -1.80818
+ra_wrist_1_joint = -3.53206
+ra_wrist_2_joint = -0.575675
+ra_wrist_3_joint = 0.384559
+.
+RANDOM_pose36
+START
+ra_shoulder_pan_joint = -6.02899
+ra_shoulder_lift_joint = -0.0122697
+ra_elbow_joint = -1.40513
+ra_wrist_1_joint = 1.08447
+ra_wrist_2_joint = -0.698965
+ra_wrist_3_joint = -4.29189
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.41481
+ra_shoulder_lift_joint = -3.02835
+ra_elbow_joint = 2.08711
+ra_wrist_1_joint = 4.21532
+ra_wrist_2_joint = -5.39099
+ra_wrist_3_joint = -1.81833
+.
+RANDOM_pose38
+START
+ra_shoulder_pan_joint = 0.347044
+ra_shoulder_lift_joint = 5.84293
+ra_elbow_joint = 0.331364
+ra_wrist_1_joint = -1.28547
+ra_wrist_2_joint = 5.74109
+ra_wrist_3_joint = 6.14309
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 6.23644
+ra_shoulder_lift_joint = 5.36066
+ra_elbow_joint = 1.36398
+ra_wrist_1_joint = -2.6812
+ra_wrist_2_joint = 4.34391
+ra_wrist_3_joint = -0.73288
+.
+RANDOM_pose39
+START
+ra_shoulder_pan_joint = 4.27559
+ra_shoulder_lift_joint = -0.961155
+ra_elbow_joint = -2.05292
+ra_wrist_1_joint = 5.07294
+ra_wrist_2_joint = 5.22313
+ra_wrist_3_joint = -2.29046
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 1.18458
+ra_shoulder_lift_joint = -1.69311
+ra_elbow_joint = 1.88618
+ra_wrist_1_joint = 1.65828
+ra_wrist_2_joint = 0.524564
+ra_wrist_3_joint = 1.73311
+.
+RANDOM_pose40
+START
+ra_shoulder_pan_joint = -2.54755
+ra_shoulder_lift_joint = 3.4394
+ra_elbow_joint = -0.469023
+ra_wrist_1_joint = 6.07933
+ra_wrist_2_joint = 0.896518
+ra_wrist_3_joint = 5.90645
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 1.59855
+ra_shoulder_lift_joint = -1.5566
+ra_elbow_joint = 1.43695
+ra_wrist_1_joint = 0.377476
+ra_wrist_2_joint = -5.2287
+ra_wrist_3_joint = 3.41054
+.
+RANDOM_pose41
+START
+ra_shoulder_pan_joint = -5.7731
+ra_shoulder_lift_joint = -0.16042
+ra_elbow_joint = -1.58537
+ra_wrist_1_joint = 5.18381
+ra_wrist_2_joint = 5.93693
+ra_wrist_3_joint = -4.18696
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 3.03893
+ra_shoulder_lift_joint = -1.94353
+ra_elbow_joint = 2.82904
+ra_wrist_1_joint = 1.93129
+ra_wrist_2_joint = -0.725631
+ra_wrist_3_joint = 4.35858
+.
+RANDOM_pose42
+START
+ra_shoulder_pan_joint = 1.50402
+ra_shoulder_lift_joint = 5.02692
+ra_elbow_joint = 1.07808
+ra_wrist_1_joint = 2.06496
+ra_wrist_2_joint = 0.929673
+ra_wrist_3_joint = 4.70632
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 5.58256
+ra_shoulder_lift_joint = -1.63398
+ra_elbow_joint = -2.62724
+ra_wrist_1_joint = -0.718873
+ra_wrist_2_joint = 4.45182
+ra_wrist_3_joint = 2.68905
+.
+RANDOM_pose43
+START
+ra_shoulder_pan_joint = -0.680823
+ra_shoulder_lift_joint = 5.91377
+ra_elbow_joint = -1.59383
+ra_wrist_1_joint = -1.34329
+ra_wrist_2_joint = 1.27234
+ra_wrist_3_joint = 2.21006
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -2.31754
+ra_shoulder_lift_joint = 3.8685
+ra_elbow_joint = 2.65027
+ra_wrist_1_joint = -2.84191
+ra_wrist_2_joint = -4.13535
+ra_wrist_3_joint = 3.32745
+.
+RANDOM_pose44
+START
+ra_shoulder_pan_joint = -0.858564
+ra_shoulder_lift_joint = 5.82797
+ra_elbow_joint = -1.77906
+ra_wrist_1_joint = -5.16164
+ra_wrist_2_joint = 5.99935
+ra_wrist_3_joint = 1.68234
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 0.877149
+ra_shoulder_lift_joint = 5.61923
+ra_elbow_joint = 0.189998
+ra_wrist_1_joint = -4.84227
+ra_wrist_2_joint = 1.73021
+ra_wrist_3_joint = -3.33394
+.
+RANDOM_pose45
+START
+ra_shoulder_pan_joint = -5.29594
+ra_shoulder_lift_joint = 5.692
+ra_elbow_joint = -0.00415391
+ra_wrist_1_joint = -4.44257
+ra_wrist_2_joint = -4.93049
+ra_wrist_3_joint = 3.52248
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -3.37832
+ra_shoulder_lift_joint = -2.45384
+ra_elbow_joint = 1.5519
+ra_wrist_1_joint = -0.138569
+ra_wrist_2_joint = -1.54487
+ra_wrist_3_joint = -4.07094
+.
+RANDOM_pose46
+START
+ra_shoulder_pan_joint = 0.0956716
+ra_shoulder_lift_joint = -1.09738
+ra_elbow_joint = -1.31498
+ra_wrist_1_joint = 2.445
+ra_wrist_2_joint = -4.90809
+ra_wrist_3_joint = -1.36993
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = 0.0183917
+ra_shoulder_lift_joint = -0.915433
+ra_elbow_joint = 0.130852
+ra_wrist_1_joint = -0.738742
+ra_wrist_2_joint = 4.24522
+ra_wrist_3_joint = 2.34604
+.
+RANDOM_pose47
+START
+ra_shoulder_pan_joint = 3.58863
+ra_shoulder_lift_joint = 3.48785
+ra_elbow_joint = 2.03258
+ra_wrist_1_joint = -3.63815
+ra_wrist_2_joint = -5.10668
+ra_wrist_3_joint = -3.36717
+.
+GOAL
+joint_constraint
+ra_shoulder_pan_joint = -0.445215
+ra_shoulder_lift_joint = -0.425564
+ra_elbow_joint = -2.52134
+ra_wrist_1_joint = -2.04119
+ra_wrist_2_joint = -2.19035
+ra_wrist_3_joint = 0.815097
 .
