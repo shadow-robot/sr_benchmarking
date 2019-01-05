@@ -1248,37 +1248,6 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </widget>
-    <widget class="QCommandLinkButton" name="commandLinkButton">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>560</y>
-       <width>181</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Open Documentation</string>
-     </property>
-    </widget>
-    <zorder>label</zorder>
-    <zorder>pushButton_exportScenes</zorder>
-    <zorder>pushButton_exportQueries</zorder>
-    <zorder>label_2</zorder>
-    <zorder>label_3</zorder>
-    <zorder>pushButton_import_all</zorder>
-    <zorder>label_3</zorder>
-    <zorder>pushButton_import_all</zorder>
-    <zorder>label_3</zorder>
-    <zorder>pushButton_import_all</zorder>
-    <zorder>groupBox_2</zorder>
-    <zorder>groupBox_4</zorder>
-    <zorder>groupBox_5</zorder>
-    <zorder>groupBox_2</zorder>
-    <zorder>groupBox_4</zorder>
-    <zorder>groupBox_5</zorder>
-    <zorder>groupBox_6</zorder>
-    <zorder>commandLinkButton</zorder>
    </widget>
   </widget>
  </widget>

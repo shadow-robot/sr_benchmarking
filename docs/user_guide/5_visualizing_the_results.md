@@ -1,6 +1,6 @@
 # Visualizing the results
 
-After the benchmarks are executed, the [different metrics]() are
+After the benchmarks are executed, the different metrics are
 computed and written to a logfile. MoveIt! supply a script [moveit_benchmark_statistics.py](http://docs.ros.org/kinetic/api/moveit_ros_benchmarks/html/moveit__benchmark__statistics_8py_source.html) to parse this data and plot the statistics.
 
 ```bash

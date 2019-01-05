@@ -2,7 +2,7 @@
 
 ## Executing the benchmarks
 
-After defining the scenes, queries and benchmark configurations (as described [here]()), you
+After defining the scenes, queries and benchmark configurations, you
 are ready to execute the benchmarks. To do so, execute the following launch file:
 
 ```bash

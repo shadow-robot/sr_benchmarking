@@ -40,4 +40,3 @@ to contribute with more scenes and queries that exercise other capabilities of p
 * [Benchmarks description](user_guide/3_benchmark_description.md)
 * [Running an experiment](user_guide/4_running_an_experiment.md)
 * [Visualizing the results](user_guide/5_visualizing_the_results.md)
-* [Analysing the results](user_guide/6_analysing_the_results.md)
