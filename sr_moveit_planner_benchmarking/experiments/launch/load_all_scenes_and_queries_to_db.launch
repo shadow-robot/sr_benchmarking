@@ -1,7 +1,7 @@
 <launch>
     <!-- Load robot and warehouse-->
     <include file="$(find sr_moveit_planner_benchmarking)/launch/robot.launch">
-      <arg name="visualization" default="false"/>
+      <arg name="visualization" value="false"/>
     </include>
 
     <!-- load scene 1 -->
@@ -9,7 +9,7 @@
         <arg name="queries_file" value="$(find sr_moveit_planner_benchmarking)/experiments/queries/scene_ground.queries"/>
         <arg name="scene_file" value="$(find sr_moveit_planner_benchmarking)/experiments/scenes/scene_ground.scene"/>
         <arg name="load_robot" value="false"/>
-        <arg name="node_name" default="ground"/>
+        <arg name="node_name" value="ground"/>
     </include>
 
     <!-- load scene 2 -->
@@ -17,7 +17,7 @@
         <arg name="queries_file" value="$(find sr_moveit_planner_benchmarking)/experiments/queries/scene_ground_with_boxes.queries"/>
         <arg name="scene_file" value="$(find sr_moveit_planner_benchmarking)/experiments/scenes/scene_ground_with_boxes.scene"/>
         <arg name="load_robot" value="false"/>
-        <arg name="node_name" default="ground_with_boxes"/>
+        <arg name="node_name" value="ground_with_boxes"/>
     </include>
 
     <!-- load scene 3 -->
@@ -25,7 +25,7 @@
         <arg name="queries_file" value="$(find sr_moveit_planner_benchmarking)/experiments/queries/scene_table.queries"/>
         <arg name="scene_file" value="$(find sr_moveit_planner_benchmarking)/experiments/scenes/scene_table.scene"/>
         <arg name="load_robot" value="false"/>
-        <arg name="node_name" default="table"/>
+        <arg name="node_name" value="table"/>
     </include>
 
     <!-- load scene 4 -->
@@ -33,7 +33,7 @@
         <arg name="queries_file" value="$(find sr_moveit_planner_benchmarking)/experiments/queries/scene_table_with_objects.queries"/>
         <arg name="scene_file" value="$(find sr_moveit_planner_benchmarking)/experiments/scenes/scene_table_with_objects.scene"/>
         <arg name="load_robot" value="false"/>
-        <arg name="node_name" default="table_with_objects"/>
+        <arg name="node_name" value="table_with_objects"/>
     </include>
 
     <!-- load scene 5 -->
@@ -41,7 +41,7 @@
         <arg name="queries_file" value="$(find sr_moveit_planner_benchmarking)/experiments/queries/scene_table_with_tote.queries"/>
         <arg name="scene_file" value="$(find sr_moveit_planner_benchmarking)/experiments/scenes/scene_table_with_tote.scene"/>
         <arg name="load_robot" value="false"/>
-        <arg name="node_name" default="table_with_tote"/>
+        <arg name="node_name" value="table_with_tote"/>
     </include>
 
     <!-- load scene 6 -->
@@ -49,6 +49,6 @@
         <arg name="queries_file" value="$(find sr_moveit_planner_benchmarking)/experiments/queries/scene_table_with_two_totes.queries"/>
         <arg name="scene_file" value="$(find sr_moveit_planner_benchmarking)/experiments/scenes/scene_table_with_two_totes.scene"/>
         <arg name="load_robot" value="false"/>
-        <arg name="node_name" default="table_with_two_totes"/>
+        <arg name="node_name" value="table_with_two_totes"/>
     </include>
 </launch>
