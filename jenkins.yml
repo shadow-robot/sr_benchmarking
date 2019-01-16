@@ -5,7 +5,7 @@ settings:
     release: kinetic
   docker:
     image: shadowrobot/build-tools
-    tag: xenial-kinetic-gazebo-models
+    tag: xenial-kinetic-mongodb-fix
   toolset:
     template_job_name: template_unit_tests_and_code_coverage
     modules:

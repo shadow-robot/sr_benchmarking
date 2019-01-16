@@ -2,42 +2,29 @@
   <arg name="queries_file" default="$(find sr_moveit_planner_benchmarking)/test/test_queries_to_import.queries"/>
   <arg name="queries_cartesian_file" default="$(find sr_moveit_planner_benchmarking)/test/test_cartesian_queries_to_import.queries"/>
 
-  <!-- Allow user to specify database location -->
-  <arg name="db_path" default="$(find sr_multi_moveit_config)/default_warehouse_mongo_db" />
-
-  <!-- If database loading was enabled, start mongodb as well -->
-  <include file="$(find sr_multi_moveit_config)/launch/default_warehouse_db.launch">
-    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
-  </include>
-
-  <arg name="robot_config_file" default="$(find sr_multi_moveit_config)/config/robot_configs/right_sh_ur10.yaml"/>
-  <arg name="robot_description" default="'$(find sr_multi_description)/urdf/right_srhand_ur10.urdf.xacro'"/>
-
-  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
-  <include file="$(find sr_multi_moveit_config)/launch/planning_context.launch">
-    <arg name="load_robot_description" value="true"/>
-    <arg name="robot_description" value="$(arg robot_description)"/>
-    <arg name="robot_config_file" value="$(arg robot_config_file)"/>
+  <!-- Load robot settings -->
+  <include file="$(find sr_moveit_planner_benchmarking)/launch/robot.launch">
+    <arg name="visualization" value="false" />
   </include>
 
   <!-- Import queries -->
-  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="12 sr_moveit_planner_benchmarking load_queries_to_db.launch
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="20 sr_moveit_planner_benchmarking load_queries_to_db.launch
       queries_file:=$(arg queries_file)" name="timed_import_queries" output="screen"/>
 
     <!-- Import queries -->
-  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="15 sr_moveit_planner_benchmarking load_queries_to_db.launch
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="23 sr_moveit_planner_benchmarking load_queries_to_db.launch
       queries_file:=$(arg queries_cartesian_file)" name="timed_import_cartesian_queries" output="screen"/>
 
   <arg name="output_directory" default="/tmp/generated_files_warehouse_moveit/"/>
   <arg name="group_prefix" default="ra"/>
 
   <!-- Export queries in joint space -->
-  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="18 sr_moveit_planner_benchmarking export_queries_to_text.launch
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="28 sr_moveit_planner_benchmarking export_queries_to_text.launch
       output_directory:=$(arg output_directory) group_prefix:=$(arg group_prefix)" name="timed_export_queries" output="screen"/>
 
   <!-- Export queries in cartesian space -->
-  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="20 sr_moveit_planner_benchmarking export_queries_to_text.launch
+  <node pkg="sr_utilities_common" type="timed_roslaunch.sh" args="33 sr_moveit_planner_benchmarking export_queries_to_text.launch
       output_directory:=$(arg output_directory) group_prefix:=$(arg group_prefix) cartesian:=true" name="timed_export_queries_cartesian" output="screen"/>
 
-  <test test-name="test_import_export_queries" pkg="sr_moveit_planner_benchmarking" type="test_import_export_queries.py" time-limit = "400.0" args = "" />
+  <test test-name="test_import_export_queries" pkg="sr_moveit_planner_benchmarking" type="test_import_export_queries.py" time-limit = "800.0" args = "" />
 </launch>

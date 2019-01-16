@@ -1,0 +1,36 @@
+benchmark_config:
+    warehouse:
+        host: 127.0.0.1
+        port: 33829
+        scene_name: scene_table
+    parameters:
+        name: scene_table
+        runs: 10
+        group: right_arm
+        timeout: 10.0
+        output_directory: /tmp/moveit_benchmarks/
+        queries: .*
+    planners:
+        - plugin: ompl_interface/OMPLPlanner
+          planners:
+            - BiESTkConfigDefault
+            - ProjESTkConfigDefault
+            - LazyPRMkConfigDefault
+            - LazyPRMstarkConfigDefault
+            - SPARSkConfigDefault
+            - SPARStwokConfigDefault
+            - SBLkConfigDefault
+            - ESTkConfigDefault
+            - LBKPIECEkConfigDefault
+            - BKPIECEkConfigDefault
+            - KPIECEkConfigDefault
+            - RRTkConfigDefault
+            - RRTConnectkConfigDefault
+            - RRTstarkConfigDefault
+            - TRRTkConfigDefault
+            - PRMkConfigDefault
+            - PRMstarkConfigDefault
+            - FMTkConfigDefault
+            - PDSTkConfigDefault
+            - STRIDEkConfigDefault
+            - BiTRRTkConfigDefault
