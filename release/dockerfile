@@ -1,0 +1,19 @@
+FROM shadowrobot/dexterous-hand:kinetic-night-build
+
+LABEL Description="This ROS Kinetic image contains Shadow's dexterous hand software with sr_benchmarking repo. It includes IDE environments." Vendor="Shadow Robot" Version="1.0"
+
+USER user
+
+RUN cd /home/user/projects/shadow_robot/base_deps/src && \
+    git clone https://github.com/shadow-robot/sr_benchmarking.git && \
+    git clone https://github.com/ros-planning/moveit_resources.git && \
+    cd /home/user/projects/shadow_robot/base/ && \
+    source /home/user/projects/shadow_robot/base_deps/devel/setup.bash && \
+    catkin_make
+
+USER root
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+CMD ["/usr/bin/terminator"]
+
