@@ -4,13 +4,14 @@ LABEL Description="This ROS Kinetic image contains Shadow's dexterous hand softw
 
 USER user
 
-RUN source /home/user/projects/shadow_robot/base_deps/devel/setup.bash && \
+RUN source /opt/ros/kinetic/setup.bash && \
+    source /home/user/projects/shadow_robot/base_deps/devel/setup.bash && \
+    source /home/user/projects/shadow_robot/base/devel/setup.bash && \
     cd /home/user/projects/shadow_robot/base_deps/src && \
     git clone https://github.com/shadow-robot/sr_benchmarking.git && \
     git clone https://github.com/ros-planning/moveit_resources.git && \
     cd /home/user/projects/shadow_robot/base_deps/ && \
     catkin_make && \
-    source /home/user/projects/shadow_robot/base/devel/setup.bash && \
     roscd moveit && \
     git checkout F_improving_exporting_importing_from_warehouse && \
     cd /home/user/projects/shadow_robot/base/ && \
