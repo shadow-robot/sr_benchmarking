@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <arg name="node_name" default=""/>
     <arg name="queries_file" default="$(find sr_moveit_planner_benchmarking)/data/scene_ground_with_boxes.queries"/>
