@@ -6,7 +6,7 @@
   <arg name="rviz" default="true"/>
 
   <!-- urdf to use -->
-  <arg name="robot_description" default="$(find sr_box_ur10_moveit_config)/config/ur10_with_box.urdf.xacro" />
+  <arg name="robot_description" default="$(find sr_box_ur10_moveit_config)/config/ra_ur10_with_box.urdf.xacro" />
 
   <!-- Load robot and warehouse-->
   <group if="$(arg visualization)">
