@@ -3,8 +3,6 @@ project(sr_moveit_planner_benchmarking)
 
 add_compile_options(-std=c++11)
 
-catkin_python_setup()
-
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
@@ -19,6 +17,8 @@ catkin_package(
     moveit_ros_benchmarks
   INCLUDE_DIRS include
 )
+
+catkin_python_setup()
 
 include_directories(include ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
 
