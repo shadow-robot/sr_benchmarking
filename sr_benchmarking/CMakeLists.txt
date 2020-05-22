@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sr_benchmarking)
 
-find_package(catkin  python-psutil REQUIRED rospy sr_benchmarking_msgs)
+find_package(catkin REQUIRED rospy sr_benchmarking_msgs)
+find_package(python-psutil REQUIRED
 catkin_python_setup()
 
 catkin_package(
