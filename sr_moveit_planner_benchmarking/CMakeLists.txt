@@ -3,6 +3,8 @@ project(sr_moveit_planner_benchmarking)
 
 add_compile_options(-std=c++11)
 
+catkin_python_setup()
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
@@ -24,6 +26,11 @@ add_executable(sr_moveit_run_benchmark src/SrRunBenchmark.cpp src/SrBenchmarkExe
 target_link_libraries(sr_moveit_run_benchmark ${catkin_LIBRARIES})
 
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+## Mark cpp header files for installation
+install(DIRECTORY include/${PROJECT_NAME}/
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+        FILES_MATCHING PATTERN "*.hpp")
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
