@@ -18,12 +18,19 @@ catkin_package(
   INCLUDE_DIRS include
 )
 
+catkin_python_setup()
+
 include_directories(include ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
 
 add_executable(sr_moveit_run_benchmark src/SrRunBenchmark.cpp src/SrBenchmarkExecutor.cpp)
 target_link_libraries(sr_moveit_run_benchmark ${catkin_LIBRARIES})
 
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+## Mark cpp header files for installation
+install(DIRECTORY include/${PROJECT_NAME}/
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+        FILES_MATCHING PATTERN "*.hpp")
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
