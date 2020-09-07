@@ -5,8 +5,4 @@
 - git:
     local-name: moveit
     uri: https://github.com/shadow-robot/moveit.git
-    version: F_improving_exporting_importing_from_warehouse
-- git:
-    local-name: moveit_resources
-    uri: https://github.com/ros-planning/moveit_resources.git
-    version: master
+    version: F#SRC-2333_wait_for_tcp_joint_sub
